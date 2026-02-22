@@ -27,10 +27,18 @@ python3 system_engine.py
 Markers used by the script (place these into the README where you want the status block). Run `python3 system_engine.py --init` to insert them automatically:
 
 <!-- VRAB_SYSTEM_STATS_START -->
-...status block managed by system_engine.py...
+**Current Status:** IDLE 🔴
+- **Level:** 3
+- **Rank:** E-Rank Hunter
+- **Last Sync:** 2026-02-22 05:15
 <!-- VRAB_SYSTEM_STATS_END -->
 
-The script will only replace the content between `<!-- VRAB_SYSTEM_STATS_START -->` and `<!-- VRAB_SYSTEM_STATS_END -->` and will avoid touching the file if no changes are necessary. The script will also ignore the usage example markers — you must run `--init` before updates occur. This prevents CI/watchers from retriggering updates.
+The script will only replace the content between `<!-- VRAB_SYSTEM_STATS_START -->
+**Current Status:** IDLE 🔴
+- **Level:** 3
+- **Rank:** E-Rank Hunter
+- **Last Sync:** 2026-02-22 05:15
+<!-- VRAB_SYSTEM_STATS_END -->` and will avoid touching the file if no changes are necessary. The script will also ignore the usage example markers — you must run `--init` before updates occur. This prevents CI/watchers from retriggering updates.
 
 **Current Status:** IDLE 🔴
 - **Level:** 3
