@@ -1,6 +1,6 @@
 # [ SYSTEM STATUS: ONLINE ] ⚡
 
-![System Sync](https://github.com/Vrab0001/Vrab0001/actions/workflows/daily_sync.yml/badge.svg)
+![System Sync](https://github.com/vrab0001-dev/Vrab0001/actions/workflows/daily_sync.yml/badge.svg)
 
 ### 👤 PLAYER: Vibhusha
 ### 🎖️ RANK: DATA ARCHITECT
