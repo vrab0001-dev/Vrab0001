@@ -2,7 +2,7 @@
 
 ![System Sync](https://github.com/Vrab0001/Vrab0001/actions/workflows/daily_sync.yml/badge.svg)
 
-### 👤 PLAYER: [YOUR NAME]
+### 👤 PLAYER: Vibhusha
 ### 🎖️ RANK: DATA ARCHITECT
 
 **Current Status:** IDLE 🔴
