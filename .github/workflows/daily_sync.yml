@@ -1,0 +1,34 @@
+name: System Sync
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every night at midnight
+  push:
+    branches: [ main ] # Runs whenever you update this repo
+  workflow_dispatch: # Allows manual testing
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Run Engine
+        run: python system_engine.py
+
+      - name: Commit Update
+        run: |
+          git config --local user.email "system@hunter.com"
+          git config --local user.name "The System"
+          git add README.md
+          git commit -m "System: Stats Updated" || echo "No changes to commit"
+          git push
