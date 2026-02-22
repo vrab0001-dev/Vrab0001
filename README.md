@@ -24,13 +24,13 @@ python3 system_engine.py --dry-run
 python3 system_engine.py
 ```
 
-Markers used by the script (place these into the README where you want the status block):
+Markers used by the script (place these into the README where you want the status block). Run `python3 system_engine.py --init` to insert them automatically:
 
-<!-- STATS_START -->
+<!-- VRAB_SYSTEM_STATS_START -->
 ...status block managed by system_engine.py...
-<!-- STATS_END -->
+<!-- VRAB_SYSTEM_STATS_END -->
 
-The script will only replace the content between `<!-- STATS_START -->` and `<!-- STATS_END -->` and will avoid touching the file if no changes are necessary. This prevents CI/watchers from retriggering updates.
+The script will only replace the content between `<!-- VRAB_SYSTEM_STATS_START -->` and `<!-- VRAB_SYSTEM_STATS_END -->` and will avoid touching the file if no changes are necessary. The script will also ignore the usage example markers — you must run `--init` before updates occur. This prevents CI/watchers from retriggering updates.
 
 **Current Status:** IDLE 🔴
 - **Level:** 3

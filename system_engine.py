@@ -7,8 +7,8 @@ from datetime import datetime
 # --- SYSTEM CONFIGURATION ---
 USERNAME = "vrab0001-dev" 
 RAID_REPO = "data-engineering-raids"
-STATS_START = "<!-- STATS_START -->"
-STATS_END = "<!-- STATS_END -->"
+STATS_START = "<!-- VRAB_SYSTEM_STATS_START -->"
+STATS_END = "<!-- VRAB_SYSTEM_STATS_END -->"
 
 
 def init_readme(dry_run=False):
