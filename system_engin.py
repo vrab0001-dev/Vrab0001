@@ -4,7 +4,7 @@ import requests
 from datetime import datetime
 
 # --- SYSTEM CONFIGURATION ---
-USERNAME = "Vrab0001" 
+USERNAME = "vrab0001-dev" 
 RAID_REPO = "data-engineering-raids"
 
 def check_github_activity():
