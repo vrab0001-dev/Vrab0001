@@ -2,16 +2,19 @@ name: System Sync
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every night at midnight
-  push:
-    branches: [ main ] # Runs whenever you update this repo
-  workflow_dispatch: # Allows manual testing
+    - cron: '0 0 * * *'       # Every night at midnight UTC
+  workflow_dispatch:            # Manual trigger from GitHub UI
+  repository_dispatch:          # Triggered by raid repo push
+    types: [raid-complete]
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - name: Checkout Code
+      - name: Checkout Profile Repo
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -22,13 +25,15 @@ jobs:
       - name: Install Dependencies
         run: pip install requests
 
-      - name: Run Engine
+      - name: Run System Engine
+        env:
+          GITHUB_TOKEN: ${{ secrets.RAID_TOKEN }}
         run: python system_engine.py
 
-      - name: Commit Update
+      - name: Commit Changes
         run: |
-          git config --local user.email "system@hunter.com"
+          git config --local user.email "system@vrab0001.dev"
           git config --local user.name "The System"
-          git add README.md
-          # The 'git diff --quiet' check prevents empty/looping commits
-          git diff --quiet && git diff --staged --quiet || (git commit -m "System: Stats Updated" && git push)
+          git add README.md system_state.json
+          git diff --quiet && git diff --staged --quiet || \
+            (git commit -m "⚡ System: Stats Updated" && git push)

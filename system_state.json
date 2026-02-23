@@ -1,0 +1,21 @@
+{
+  "xp": 6,
+  "skills": {
+    "SQL": {
+      "level": 1,
+      "xp_contributed": 3
+    },
+    "Data Cleaning": {
+      "level": 1,
+      "xp_contributed": 1
+    },
+    "Data Modelling": {
+      "level": 1,
+      "xp_contributed": 1
+    }
+  },
+  "quests_completed": [
+    "SQL Raid: Restructure Indian Govt CPI Data"
+  ],
+  "last_sync": "N/A"
+}
