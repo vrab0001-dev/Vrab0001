@@ -25,10 +25,11 @@
 
 ---
 
-### 📜 THE QUEST LOG
-- [x] **SQL Raid:** Restructure Indian Govt CPI Data
-- [ ] **Python Raid:** Automate CSV Data Cleaning
-- [ ] **System Quest:** Achieve a successful automated "Level Up"
+### 📜 DAILY QUEST LOG
+
+<!-- VRAB_QUESTS_START -->
+_No quests generated yet. Will appear on next sync._
+<!-- VRAB_QUESTS_END -->
 
 ---
 
