@@ -2,9 +2,9 @@ name: System Sync
 
 on:
   schedule:
-    - cron: '0 0 * * *'       # Every night at midnight UTC
-  workflow_dispatch:            # Manual trigger from GitHub UI
-  repository_dispatch:          # Triggered by raid repo push
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  repository_dispatch:
     types: [raid-complete]
 
 jobs:
@@ -23,11 +23,12 @@ jobs:
           python-version: '3.12'
 
       - name: Install Dependencies
-        run: pip install requests
+        run: pip install requests anthropic
 
       - name: Run System Engine
         env:
-          GITHUB_TOKEN: ${{ secrets.RAID_TOKEN }}
+          RAID_TOKEN: ${{ secrets.RAID_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python system_engine.py
 
       - name: Commit Changes
