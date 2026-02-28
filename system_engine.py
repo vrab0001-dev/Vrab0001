@@ -195,6 +195,7 @@ Respond ONLY with a JSON array of exactly 3 objects. No preamble, no markdown fe
             },
             json={
                 "model": "claude-haiku-4-5-20251001",
+                "system": "You are a data engineering mentor. Always respond with raw JSON only, no markdown, no explanation.",
                 "max_tokens": 1000,
                 "messages": [{"role": "user", "content": prompt}],
             },
@@ -202,7 +203,7 @@ Respond ONLY with a JSON array of exactly 3 objects. No preamble, no markdown fe
         )
 
         if response.status_code != 200:
-            print(f"Claude API error: {response.status_code}")
+            print(f"Claude API error: {response.status_code} - {response.text}")
             return None
 
         raw = response.json()["content"][0]["text"].strip()
