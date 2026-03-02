@@ -219,7 +219,7 @@ Respond ONLY with a JSON array of exactly 3 objects. No preamble, no markdown fe
                 "model": "claude-haiku-4-5-20251001",
                 "system": "You are a data engineering mentor. Always respond with raw JSON only, no markdown, no explanation.",
                 "max_tokens": 1000,
-                "messages": [{{"role": "user", "content": prompt}}],
+                "messages": [{"role": "user", "content": prompt}],
             },
             timeout=30,
         )
