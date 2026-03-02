@@ -160,27 +160,49 @@ def generate_quests(level, title, skills):
     skill_list = ", ".join(skills.keys()) if skills else "none yet"
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    prompt = f"""You are a data engineering mentor generating daily practice quests for a learner.
+    prompt = f"""You are a data engineering mentor generating daily practice quests for a learner based in Australia.
 
 Player profile:
 - Level: {level} ({title})
 - Skills unlocked: {skill_list}
 - Date: {today}
 
-Generate exactly 3 daily quests appropriate for this level from real platforms like LeetCode, Kaggle, HackerRank, Mode Analytics, or StrataScratch.
+Skill assessment results:
+- SQL: Intermediate — knows JOINs, GROUP BY, HAVING, subqueries. Ready for window functions (ROW_NUMBER, RANK, LAG, LEAD), CTEs, complex analytical queries.
+- Python: Beginner-Intermediate — knows lists, dicts, list comprehensions, basic pandas. Ready for data cleaning scripts, CSV automation, file I/O.
 
-Level 1-2: Very easy SQL queries, simple Python scripts, basic data tasks.
-Level 3-4: Intermediate SQL, data cleaning scripts, EDA on Kaggle datasets.
-Level 5+: Complex queries, ETL pipelines, advanced Python, real datasets.
+Generate exactly 3 daily quests. Rules:
+1. Quest 1: A SQL challenge using window functions, CTEs, or complex aggregations.
+2. Quest 2: A Python/pandas challenge involving data cleaning, transformation, or automation.
+3. Quest 3: A combined data engineering task involving both Python and SQL.
+
+DATASET RULES — this is critical:
+- Prioritise real Australian open datasets from these sectors and sources:
+
+  FINANCE: ASX 200 historical prices (Kaggle), RBA interest rate decisions (rba.gov.au), ASIC company filings (data.gov.au)
+  TRANSPORT: NSW Road Crash Data (data.nsw.gov.au), BITRE aviation statistics (bitre.gov.au), Transport for NSW open data (opendata.transport.nsw.gov.au)
+  ENVIRONMENT & CLIMATE: Australian Weather observations (Bureau of Meteorology / Kaggle by jsphyg), Australian Wildfire dataset (Kaggle), Great Barrier Reef monitoring data (aims.gov.au)
+  HEALTH: AIHW health expenditure data (aihw.gov.au), COVID-19 Australia dataset (Kaggle), PBS prescription data (data.gov.au)
+  AGRICULTURE: ABARES crop production data (agriculture.gov.au), Australian wine production statistics (wineaustralia.com), Livestock slaughter data (abs.gov.au)
+  DEMOGRAPHICS & SOCIETY: ABS Census 2021 (abs.gov.au), Australian Electoral Commission results (aec.gov.au), ACNC charity data (acnc.gov.au)
+  CRIME & JUSTICE: NSW Bureau of Crime Statistics (bocsar.nsw.gov.au), Victorian Crime Statistics (crimestatistics.vic.gov.au)
+  ENERGY: AEMO electricity demand data (aemo.com.au), Australian energy statistics (energy.gov.au)
+  SPORT: AFL match results (Kaggle / afltables.com), Australian Open Tennis results (Kaggle), Cricket Australia stats (Kaggle)
+  TOURISM: Tourism Research Australia data (tra.gov.au), Melbourne pedestrian counting (Melbourne Open Data Portal)
+
+- Rotate sectors daily so the player gets exposure to different industries over time.
+- Only name datasets you are confident actually exist and are freely available. If unsure, use a well-known Kaggle dataset.
+- Do NOT include any URLs. Just the dataset name and where to find it (site name only).
+
+Tasks must be specific, actionable, and take 30-60 minutes. No trivial tasks.
 
 Respond ONLY with a JSON array of exactly 3 objects. No preamble, no markdown fences, just raw JSON:
 [
   {{
     "type": "SQL",
     "title": "Short quest title",
-    "description": "One sentence description of the task",
-    "platform": "LeetCode",
-    "link": "https://actual-url.com",
+    "description": "Specific task description explaining exactly what to do and what the expected output is",
+    "dataset": "Dataset name — where to find it (site name only, no URL)",
     "file_ext": ".sql"
   }}
 ]"""
@@ -188,22 +210,22 @@ Respond ONLY with a JSON array of exactly 3 objects. No preamble, no markdown fe
     try:
         response = requests.post(
             "https://api.anthropic.com/v1/messages",
-            headers={
+            headers={{
                 "x-api-key": api_key,
                 "anthropic-version": "2023-06-01",
                 "content-type": "application/json",
-            },
-            json={
+            }},
+            json={{
                 "model": "claude-haiku-4-5-20251001",
                 "system": "You are a data engineering mentor. Always respond with raw JSON only, no markdown, no explanation.",
                 "max_tokens": 1000,
-                "messages": [{"role": "user", "content": prompt}],
-            },
+                "messages": [{{"role": "user", "content": prompt}}],
+            }},
             timeout=30,
         )
 
         if response.status_code != 200:
-            print(f"Claude API error: {response.status_code} - {response.text}")
+            print(f"Claude API error: {{response.status_code}} - {{response.text}}")
             return None
 
         raw = response.json()["content"][0]["text"].strip()
@@ -226,10 +248,9 @@ def build_quests_block(quests, files_today):
         completed = q.get("file_ext", "") in extensions_today
         tick = "x" if completed else " "
         icon = {"SQL": "🗄️", "Python": "🐍", "Data": "📊"}.get(q["type"], "⚡")
-        lines.append(
-            f"- [{tick}] {icon} **{q['type']} Quest:** [{q['title']}]({q['link']})  \n"
-            f"  _{q['description']}_ — `{q['platform']}`"
-        )
+        dataset = q.get("dataset", "")
+        line = f"- [{tick}] {icon} **{q['type']} Quest:** {q['title']}\n  _{q['description']}_\n  📦 Dataset: `{dataset}`"
+        lines.append(line)
 
     return "\n".join(lines)
 
