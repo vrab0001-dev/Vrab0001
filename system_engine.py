@@ -241,7 +241,7 @@ def build_quests_block(quests, files_today):
     if not quests:
         return "_No quests generated yet. Will appear on next sync._"
 
-    extensions_today = {os.path.splitext(f)[1].lower() for f in files_today}
+    extensions_today = {os.path.splitext(f)[1].lower() for f in files_today if isinstance(f, str)}
 
     lines = []
     for q in quests:
@@ -265,6 +265,8 @@ def process_files(files, state):
     new_skills = []
 
     for filepath in files:
+        if not isinstance(filepath, str):
+            continue
         ext = os.path.splitext(filepath)[1].lower()
         if ext in SKILL_MAP and ext not in extensions_seen:
             extensions_seen.add(ext)
