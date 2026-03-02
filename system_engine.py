@@ -210,22 +210,22 @@ Respond ONLY with a JSON array of exactly 3 objects. No preamble, no markdown fe
     try:
         response = requests.post(
             "https://api.anthropic.com/v1/messages",
-            headers={{
+            headers={
                 "x-api-key": api_key,
                 "anthropic-version": "2023-06-01",
                 "content-type": "application/json",
-            }},
-            json={{
+            },
+            json={
                 "model": "claude-haiku-4-5-20251001",
                 "system": "You are a data engineering mentor. Always respond with raw JSON only, no markdown, no explanation.",
                 "max_tokens": 1000,
                 "messages": [{{"role": "user", "content": prompt}}],
-            }},
+            },
             timeout=30,
         )
 
         if response.status_code != 200:
-            print(f"Claude API error: {{response.status_code}} - {{response.text}}")
+            print(f"Claude API error: {response.status_code} - {response.text}")
             return None
 
         raw = response.json()["content"][0]["text"].strip()
