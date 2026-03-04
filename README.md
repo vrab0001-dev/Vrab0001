@@ -12,17 +12,16 @@
 |------|-------|
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
-| 💠 Total XP | 6  |
-| 📅 Last Sync | 2026-03-04 12:18 AEDT |
+| 💠 Total XP | 7 +1 XP today |
+| 📅 Last Sync | 2026-03-04 12:24 AEDT |
 
-**XP Progress:** `████████████░░░░░░░░ 6/10 XP`
+**XP Progress:** `██████████████░░░░░░ 7/10 XP`
 
 ### 🛠️ SKILLS UNLOCKED
 - 🗄️ **SQL**
 - 🧹 **Data Cleaning**
 - 🏗️ **Data Modelling**
 - 🐍 **Python**
-- 🆕 **New Skills Unlocked:** Python
 <!-- VRAB_SYSTEM_STATS_END -->
 
 ---
@@ -30,7 +29,7 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Ranking with Moving Averages
+- [x] 🗄️ **SQL Quest:** ASX 200 Stock Performance Ranking with Moving Averages
   _Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate the 20-day and 50-day moving averages for each stock's closing price, (2) Rank stocks by their most recent price gain/loss percentage within the last 30 days using ROW_NUMBER(), (3) Use a CTE to identify only stocks where the 20-day MA is above the 50-day MA (bullish signal), and (4) Return the top 10 stocks by momentum with columns: stock_code, current_price, price_change_pct, rank_by_momentum, ma_20, ma_50. Order by rank ascending._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
   📁 Submit as: `quest1_2026-03-04.sql`
