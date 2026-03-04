@@ -12,10 +12,10 @@
 |------|-------|
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
-| 💠 Total XP | 7 +1 XP today |
-| 📅 Last Sync | 2026-03-04 12:24 AEDT |
+| 💠 Total XP | 8 +1 XP today |
+| 📅 Last Sync | 2026-03-04 12:37 AEDT |
 
-**XP Progress:** `██████████████░░░░░░ 7/10 XP`
+**XP Progress:** `████████████████░░░░ 8/10 XP`
 
 ### 🛠️ SKILLS UNLOCKED
 - 🗄️ **SQL**
