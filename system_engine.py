@@ -3,6 +3,7 @@ import re
 import json
 import requests
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 # --- SYSTEM CONFIGURATION ---
 USERNAME = "vrab0001-dev"
@@ -12,6 +13,7 @@ STATS_END = "<!-- VRAB_SYSTEM_STATS_END -->"
 QUESTS_START = "<!-- VRAB_QUESTS_START -->"
 QUESTS_END = "<!-- VRAB_QUESTS_END -->"
 STATE_FILE = "system_state.json"
+TZ = ZoneInfo("Australia/Melbourne")
 
 # --- LEVEL PROGRESSION ---
 LEVELS = [
@@ -25,20 +27,21 @@ LEVELS = [
     {"level": 8, "title": "Cloud Data Engineer",   "xp": 270},
 ]
 
-# --- SKILL MAPPING ---
+# --- SKILL MAPPING (XP from quests only, not file pushes) ---
 SKILL_MAP = {
-    ".sql":  {"name": "SQL",             "xp": 3},
-    ".py":   {"name": "Python",          "xp": 3},
-    ".sh":   {"name": "Shell Scripting", "xp": 2},
-    ".json": {"name": "JSON & APIs",     "xp": 1},
-    ".yml":  {"name": "Automation",      "xp": 2},
-    ".yaml": {"name": "Automation",      "xp": 2},
-    ".csv":  {"name": "Data Cleaning",   "xp": 1},
-    ".ipynb":{"name": "Data Analysis",   "xp": 3},
-    ".md":   {"name": "Documentation",   "xp": 1},
+    ".sql":  {"name": "SQL"},
+    ".py":   {"name": "Python"},
+    ".sh":   {"name": "Shell Scripting"},
+    ".json": {"name": "JSON & APIs"},
+    ".yml":  {"name": "Automation"},
+    ".yaml": {"name": "Automation"},
+    ".csv":  {"name": "Data Cleaning"},
+    ".ipynb":{"name": "Data Analysis"},
+    ".md":   {"name": "Documentation"},
 }
 
-DAILY_COMPLETION_BONUS = 2
+# XP per quest type (quest 1=SQL, quest 2=Python, quest 3=Combined)
+QUEST_XP = {1: 1, 2: 1, 3: 2}
 
 
 # ─────────────────────────────────────────────
@@ -96,6 +99,11 @@ def build_xp_bar(xp, current_level, next_level, width=20):
     return f"{bar} {lvl_xp}/{needed} XP"
 
 
+def now_melbourne():
+    """Return current datetime in Melbourne timezone."""
+    return datetime.now(TZ)
+
+
 # ─────────────────────────────────────────────
 # GITHUB
 # ─────────────────────────────────────────────
@@ -109,7 +117,7 @@ def get_headers():
 
 def get_todays_commits():
     url = f"https://api.github.com/repos/{USERNAME}/{RAID_REPO}/commits"
-    today = datetime.now(timezone.utc).date()
+    today_melb = now_melbourne().date()
     try:
         response = requests.get(url, headers=get_headers(), timeout=10)
         if response.status_code == 403:
@@ -123,8 +131,10 @@ def get_todays_commits():
         todays_shas = []
         for commit in commits:
             date_str = commit["commit"]["author"]["date"]
-            dt = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ").date()
-            if dt == today:
+            # GitHub returns UTC — convert to Melbourne time for comparison
+            dt_utc = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+            dt_melb = dt_utc.astimezone(TZ).date()
+            if dt_melb == today_melb:
                 todays_shas.append(commit["sha"])
 
         if not todays_shas:
@@ -158,7 +168,7 @@ def generate_quests(level, title, skills):
         return None
 
     skill_list = ", ".join(skills.keys()) if skills else "none yet"
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = now_melbourne().strftime("%Y-%m-%d")
 
     prompt = f"""You are a data engineering mentor generating daily practice quests for a learner based in Australia.
 
@@ -241,15 +251,31 @@ def build_quests_block(quests, files_today):
     if not quests:
         return "_No quests generated yet. Will appear on next sync._"
 
-    extensions_today = {os.path.splitext(f)[1].lower() for f in files_today if isinstance(f, str)}
+    # Detect which quest numbers were completed via filename pattern quest1_, quest2_, quest3_
+    completed_quests = set()
+    for f in files_today:
+        if not isinstance(f, str):
+            continue
+        fname = os.path.basename(f).lower()
+        for i in range(1, 4):
+            if fname.startswith(f"quest{i}_"):
+                completed_quests.add(i)
 
     lines = []
-    for q in quests:
-        completed = q.get("file_ext", "") in extensions_today
+    for i, q in enumerate(quests):
+        quest_num = i + 1
+        completed = quest_num in completed_quests
         tick = "x" if completed else " "
         icon = {"SQL": "🗄️", "Python": "🐍", "Data": "📊"}.get(q["type"], "⚡")
         dataset = q.get("dataset", "")
-        line = f"- [{tick}] {icon} **{q['type']} Quest:** {q['title']}\n  _{q['description']}_\n  📦 Dataset: `{dataset}`"
+        today = now_melbourne().strftime("%Y-%m-%d")
+        hint = f"quest{quest_num}_{today}.sql" if q.get("file_ext") == ".sql" else f"quest{quest_num}_{today}.py"
+        line = (
+            f"- [{tick}] {icon} **{q['type']} Quest:** {q['title']}\n"
+            f"  _{q['description']}_\n"
+            f"  📦 Dataset: `{dataset}`\n"
+            f"  📁 Submit as: `{hint}`"
+        )
         lines.append(line)
 
     return "\n".join(lines)
@@ -260,32 +286,39 @@ def build_quests_block(quests, files_today):
 # ─────────────────────────────────────────────
 
 def process_files(files, state):
-    extensions_seen = set()
-    xp_gained = 0
+    """Track skill unlocks from file extensions. XP is awarded by quest completion only."""
     new_skills = []
 
     for filepath in files:
         if not isinstance(filepath, str):
             continue
         ext = os.path.splitext(filepath)[1].lower()
-        if ext in SKILL_MAP and ext not in extensions_seen:
-            extensions_seen.add(ext)
-            skill_info = SKILL_MAP[ext]
-            skill_name = skill_info["name"]
-            xp = skill_info["xp"]
-            xp_gained += xp
-
+        if ext in SKILL_MAP:
+            skill_name = SKILL_MAP[ext]["name"]
             if skill_name not in state["skills"]:
                 state["skills"][skill_name] = {"level": 1, "xp_contributed": 0}
                 new_skills.append(skill_name)
 
-            state["skills"][skill_name]["xp_contributed"] += xp
+    return new_skills
 
-    if len(extensions_seen) >= 3:
-        xp_gained += DAILY_COMPLETION_BONUS
-        print(f"Daily completion bonus! +{DAILY_COMPLETION_BONUS} XP")
 
-    return xp_gained, new_skills
+def calculate_quest_xp(files):
+    """Award XP based on quest filenames: quest1=1XP, quest2=1XP, quest3=2XP."""
+    xp_gained = 0
+    completed_quests = set()
+
+    for f in files:
+        if not isinstance(f, str):
+            continue
+        fname = os.path.basename(f).lower()
+        for quest_num in range(1, 4):
+            if fname.startswith(f"quest{quest_num}_") and quest_num not in completed_quests:
+                completed_quests.add(quest_num)
+                xp = QUEST_XP[quest_num]
+                xp_gained += xp
+                print(f"Quest {quest_num} completed! +{xp} XP")
+
+    return xp_gained
 
 
 def build_skills_block(skills):
@@ -326,7 +359,7 @@ def update_readme(state, is_active, xp_gained, new_skills, files_today):
     xp_bar = build_xp_bar(xp, current_level, next_level)
     skills_block = build_skills_block(state["skills"])
     status = "ACTIVE 🟢" if is_active else "IDLE 🔴"
-    sync_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    sync_time = now_melbourne().strftime("%Y-%m-%d %H:%M AEDT")
     gained_str = f"+{xp_gained} XP today" if xp_gained > 0 else ""
     new_skill_str = f"\n- 🆕 **New Skills Unlocked:** {', '.join(new_skills)}" if new_skills else ""
 
@@ -375,7 +408,7 @@ def update_readme(state, is_active, xp_gained, new_skills, files_today):
 if __name__ == "__main__":
     print("[ SYSTEM ENGINE STARTING ]")
     state = load_state()
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today_str = now_melbourne().strftime("%Y-%m-%d")
 
     files, is_active = get_todays_commits()
     print(f"Files changed today: {files}")
@@ -384,16 +417,16 @@ if __name__ == "__main__":
     new_skills = []
 
     if files:
-        if state.get("last_xp_date") == today_str:
-            print("XP already awarded today — skipping XP gain.")
-            _, new_skills = process_files(files, state)
-        else:
-            xp_gained, new_skills = process_files(files, state)
+        # Always track skill unlocks regardless of XP cap
+        new_skills = process_files(files, state)
+        if new_skills:
+            print(f"New skills unlocked: {new_skills}")
+
+        # XP only from quest completions, capped once per quest per day
+        xp_gained = calculate_quest_xp(files)
+        if xp_gained > 0:
             state["xp"] += xp_gained
-            state["last_xp_date"] = today_str
-            print(f"XP gained: {xp_gained} | Total XP: {state['xp']}")
-            if new_skills:
-                print(f"New skills: {new_skills}")
+            print(f"Total XP: {state['xp']}")
 
     current, next_lvl = get_level_info(state["xp"])
     print(f"Level: {current['level']} - {current['title']}")
