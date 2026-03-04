@@ -1,7 +1,7 @@
 # ⚡ [ SYSTEM STATUS: ONLINE ]
 
 ### 👤 PLAYER: Vrab0001
-### 🌏 REGION: Australia / India
+### 🌏 REGION: Australia
 
 ---
 
@@ -47,6 +47,6 @@
 
 ### 📖 ABOUT
 Data engineering learner building real projects from real data.
-Currently raiding Indian government datasets and automating everything in sight.
+Currently raiding Australian government datasets and automating everything in sight.
 
 > *"The weakest hunter can still clear the dungeon — if they keep showing up."*
