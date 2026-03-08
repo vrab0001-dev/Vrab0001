@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-07 15:45 AEDT |
+| 📅 Last Sync | 2026-03-08 16:00 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Rankings
-  _Using ASX 200 historical price data, write a query with window functions to calculate: (1) the 30-day rolling average price for each stock, (2) the rank of each stock by daily percentage change within its sector, and (3) identify stocks that hit a new 52-week high on any given date. Use ROW_NUMBER() or RANK() to number consecutive days where a stock outperformed its sector average. Output should show date, stock ticker, closing price, 30-day moving average, sector rank, and a flag indicating 52-week high._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-07.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Injury Classification
-  _Download NSW Road Crash Data (contains crash records with injury severity, vehicle type, location, weather). Clean the dataset by: (1) handling missing values in injury_type and weather_condition columns using appropriate strategies, (2) standardising location names (remove duplicates caused by spelling variations), (3) creating a new derived column that classifies crashes as 'Fatal', 'Serious Injury', 'Other Injury', or 'Non-Injury' based on max_injury_level, (4) removing duplicate crash records based on crash_id and date, (5) exporting the cleaned dataset to CSV. Use pandas and provide a data quality report showing rows removed and transformations applied._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate the 30-day moving average price for each stock using LAG or frame clauses; (2) Rank stocks by their YTD percentage gain using RANK() OVER (ORDER BY gain DESC); (3) Identify the top 5 stocks with the highest volatility (standard deviation of daily returns) using window functions and CTEs. Return stock ticker, current price, 30-day MA, YTD rank, and volatility rank. Order by volatility rank descending._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-03-08.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation Pipeline
+  _Download NSW Road Crash Data (contains crashes, vehicles, persons tables). Write a Python/pandas script to: (1) Load all three CSV files; (2) Clean missing values in critical columns (crash_date, latitude, longitude, accident_type); (3) Standardise date formats and remove duplicates; (4) Merge the tables on crash_id; (5) Create a summary CSV with crashes grouped by Local Government Area (LGA), showing total crashes, fatalities, and injuries per LGA; (6) Identify and flag the top 10 dangerous LGAs. Output: cleaned_crashes.csv and lga_summary.csv with quality metrics (rows before/after cleaning)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-07.py`
-- [ ] ⚡ **Combined Quest:** Australian Agricultural Export Pipeline Analysis
-  _Pipeline task: (1) Python: Download ABARES crop production data and livestock slaughter statistics. Clean both datasets, harmonise commodity names, and merge them into a single denormalised table showing year, commodity, production_volume, and product_type (crop or livestock). Export to CSV and load into a local SQLite database. (2) SQL: Query the database to find: the top 5 commodities by total production volume across all years, year-over-year growth rate for each commodity (using LAG window function), and identify which commodities showed consistent growth (positive growth for 3+ consecutive years). Use a CTE to calculate growth rates and a second CTE to identify consistency patterns. Output should show commodity name, avg_annual_growth_rate, and consistency_score._
-  📦 Dataset: `ABARES Crop Production Data & ABS Livestock Slaughter Data — agriculture.gov.au and abs.gov.au`
-  📁 Submit as: `quest3_2026-03-07.py`
+  📁 Submit as: `quest2_2026-03-08.py`
+- [ ] ⚡ **Combined Quest:** Bureau of Meteorology Weather Data Pipeline with SQL Analytics
+  _Write a Python script to: (1) Download Australian Weather observations (daily data for 3 major cities: Sydney, Melbourne, Brisbane) from BoM Kaggle dataset; (2) Clean temperature, rainfall, and humidity columns (handle missing values, convert units if needed); (3) Load the cleaned data into a local SQLite database with a schema including date, city, temp_max, temp_min, rainfall, humidity; (4) Write SQL queries to: calculate rolling 7-day average temperature per city using window functions, identify days with extreme weather (temp > 35°C or rainfall > 50mm), rank cities by average annual rainfall using RANK(). Output: (a) SQLite database file, (b) Python preprocessing script with validation checks, (c) SQL results as CSV showing top 10 hottest days and rainfall rankings._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest3_2026-03-08.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
