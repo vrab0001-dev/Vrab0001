@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-03-09 16:11 AEDT",
+  "last_sync": "2026-03-10 16:00 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Stock Performance Rankings with Rolling Averages",
-      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate a 20-day rolling average closing price for each stock, (2) Rank stocks by their current price relative to their 20-day average (highest outperformers first), (3) Use LAG to show price change from the previous trading day, (4) Filter for stocks where current price exceeds rolling average by at least 5%. Return columns: stock_symbol, current_price, rolling_avg_20d, price_change_pct, rank. Use a CTE to structure the rolling average calculation first.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Volatility Rankings with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, calculate the 30-day rolling standard deviation of daily returns for the top 10 most volatile stocks. Use window functions (ROW_NUMBER, LAG) to compute daily percentage changes, then rank stocks by volatility. Return a result set with: stock_code, current_price, volatility_rank, rolling_std_dev, and the date range analysed. Order by volatility_rank ascending.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Safety Hotspot Identification",
-      "description": "Download the NSW Road Crash Data (from data.nsw.gov.au). Write a Python script using pandas to: (1) Clean missing values in latitude/longitude columns by removing or imputing with suburb centroids, (2) Standardise date formats and extract year/month/day_of_week, (3) Remove duplicate crash records (same location, date, time within 1 minute), (4) Identify the top 10 crash hotspots (by latitude/longitude grid cell of 0.01 degrees), (5) Export a cleaned CSV with columns: crash_id, date, day_of_week, latitude, longitude, severity, vehicle_count. Include data quality report showing rows removed and reason.",
+      "title": "NSW Road Crash Data Cleaning & Aggregation Pipeline",
+      "description": "Download NSW Road Crash Data from the NSW open data portal. Write a Python/pandas script to: (1) load the CSV; (2) handle missing values in crash_type and severity columns (impute with 'Unknown'); (3) standardise datetime formats in crash_date; (4) remove duplicate records based on crash_id; (5) create a new column 'hour_of_day' from crash_time; (6) aggregate crashes by local government area and severity to produce a summary CSV with columns: LGA, severity, crash_count, avg_casualties. Save output as 'nsw_crashes_summary.csv'.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Wine Production Analysis: Data Pipeline & Trend Query",
-      "description": "Build an end-to-end data pipeline: (1) In Python, fetch/download Australian wine production statistics (by region and year), clean inconsistent region names (e.g. 'South Australia' vs 'S.A.'), handle missing production volumes by forward-filling, and load into a SQLite database with tables: regions, vintages, production_data. (2) In SQL, write a query using CTEs and window functions to calculate: year-over-year production growth rate by region, rank regions by growth rate for the latest vintage, and identify regions with declining production (negative growth for 3+ consecutive years). Return: region, vintage, production_volume, yoy_growth_pct, rank, trend_status (declining/stable/growing). Expected output: CSV file ready for dashboard visualisation.",
-      "dataset": "Australian Wine Production Statistics \u2014 wineaustralia.com / Kaggle",
-      "file_ext": ".py + .sql"
+      "title": "Australian Wine Production Analysis: ETL & Analytics",
+      "description": "Create an end-to-end data pipeline: (1) Use Python/pandas to extract and clean Australian wine production data (from Wineaustralia or ABS) \u2014 handle missing values, standardise region names, and convert production volumes to numeric types; (2) Load cleaned data into a SQLite database with a wine_production table; (3) Write SQL queries to: identify the top 5 regions by total production volume, calculate year-on-year growth rate using LAG window function, and list all regions where production declined by more than 10% in the latest year. Return results as a formatted report showing region, production_volume, yoy_growth_pct, and status (growth/decline).",
+      "dataset": "Australian Wine Production Statistics \u2014 wineaustralia.com or ABS",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-03-09"
+  "last_quest_date": "2026-03-10"
 }
