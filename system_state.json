@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-03-14 16:01 AEDT",
+  "last_sync": "2026-03-15 16:27 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis with Window Functions",
-      "description": "Using the ASX 200 historical stock prices dataset, write a SQL query with window functions to: (1) Calculate the 5-day moving average of closing prices for each stock ticker, (2) Rank stocks by their price momentum (difference between current close and 5-day MA) within each trading week, (3) Identify the top 10 stocks with the strongest upward momentum in the most recent week. Use ROW_NUMBER() or RANK() and LAG() window functions. Expected output: ticker, date, closing_price, moving_avg_5day, momentum_rank, momentum_value. Order by momentum_rank ascending.",
+      "title": "ASX 200 Rolling Volatility & Momentum Tracker",
+      "description": "Using ASX 200 historical price data, calculate the 30-day rolling standard deviation (volatility) and 14-day momentum (price change %) for each stock. Use window functions ROW_NUMBER() and LAG() to identify the top 5 most volatile stocks on the latest date. Order results by volatility descending. Expected output: stock ticker, latest close price, 30-day volatility, 14-day momentum, rank.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Risk Scoring Pipeline",
-      "description": "Download NSW Road Crash Data (from data.nsw.gov.au). Write a Python script using pandas to: (1) Load the crash CSV and handle missing values in crash_type, severity, and location fields using appropriate imputation or removal, (2) Standardise location data by removing whitespace and converting to title case, (3) Create a risk_score column (0-100) based on severity (fatal=100, serious injury=75, other injury=50, non-injury=25) weighted by number of vehicles involved, (4) Export the cleaned dataset to a new CSV with only relevant columns: crash_id, date, location, severity, vehicles_involved, risk_score. Add logging to track rows removed and transformations applied.",
+      "title": "NSW Road Crash Data Cleaning & Risk Score Pipeline",
+      "description": "Download NSW Road Crash Data (CSV). Clean the dataset by: (1) removing rows with >30% missing values, (2) standardising date columns to YYYY-MM-DD format, (3) handling categorical inconsistencies in crash type and severity columns (e.g. 'Fatal' vs 'FATAL'), (4) creating a derived 'risk_score' column (weighted combination of speed limit, number of vehicles, and fatality count). Export cleaned data to a new CSV. Deliverable: cleaned CSV + Python script with docstrings explaining each cleaning step.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomaly Detection & Reporting System",
-      "description": "Using the Australian Weather Observations dataset (Bureau of Meteorology via Kaggle), build an end-to-end pipeline: (1) In Python/pandas: load daily temperature and rainfall data, clean missing values, and calculate rolling 30-day averages for each station, (2) Identify anomalies where daily temperature deviates >2 standard deviations from the 30-day rolling mean, (3) Export anomalies to a staging CSV with columns: station_id, date, temperature, anomaly_flag, deviation_magnitude. (4) In SQL: create a table from the staging CSV, then write a query to rank anomalies by severity per station-month combination using PARTITION BY, and generate a summary report: station_id, anomaly_month, anomaly_count, max_deviation, avg_deviation. (5) Return top 15 anomaly hotspots across Australia.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology (Kaggle: jsphyg dataset)",
-      "file_ext": ".py/.sql"
+      "title": "Weather Patterns & Wildfire Correlation Analysis",
+      "description": "Combine Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) with Australian Wildfire dataset. (1) In Python/pandas: load both CSVs, merge on date and location (nearest weather station), and create a 'fire_risk_index' = (temperature - 20) * (100 - humidity) / rainfall. (2) In SQL: load the enriched data into a local database, partition by region and month, use ROW_NUMBER() and LAG() to detect unusual spikes in fire risk, calculate month-over-month change %. (3) Export final results showing region, month, fire_risk_index, anomaly flag, and trend direction. Deliverable: Python script + SQL query + output CSV with anomalies flagged.",
+      "dataset": "Australian Weather Observations (Bureau of Meteorology / Kaggle) + Australian Wildfire Dataset (Kaggle)",
+      "file_ext": ".py, .sql, .csv"
     }
   ],
-  "last_quest_date": "2026-03-14"
+  "last_quest_date": "2026-03-15"
 }
