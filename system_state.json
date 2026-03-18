@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-03-17 16:13 AEDT",
+  "last_sync": "2026-03-18 16:19 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Momentum Analysis with Window Functions",
-      "description": "Using ASX 200 historical stock price data, write a SQL query that calculates a 20-day moving average of closing prices and identifies momentum shifts for each stock. Use window functions ROW_NUMBER() and LAG() to: (1) rank stocks by price change percentage within each trading day, (2) calculate the 20-day moving average using a window frame, (3) detect when a stock crosses above/below its moving average, and (4) return the top 10 stocks with the strongest upward momentum crossovers in the last 30 trading days. Include date, stock symbol, closing price, moving average, and momentum signal (crossover type) in your output.",
+      "title": "ASX 200 Rolling Average Momentum Rank",
+      "description": "Using ASX 200 historical price data, calculate the 20-day rolling average for each stock's closing price. Then rank stocks within each date by their rolling average momentum (current rolling avg vs previous day's rolling avg). Use a CTE to structure rolling averages, then a window function to rank by momentum. Filter for the top 10 stocks by positive momentum on the most recent date in your dataset. Expected output: date, stock_symbol, close_price, rolling_avg_20d, momentum_change, momentum_rank.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Aggregation",
-      "description": "Download the NSW Road Crash Data (contains incidents, locations, severity, vehicle types, dates). Write a Python/pandas script that: (1) loads the CSV and inspects for missing values, duplicates, and data type mismatches, (2) cleans the dataset by handling nulls in critical columns (severity, crash date, location) and standardizing location names to remove whitespace/case inconsistencies, (3) creates a new feature 'time_of_day' by binning crash hours into periods (Night 22-06, Morning 06-12, Afternoon 12-18, Evening 18-22), (4) aggregates crashes by local government area and time_of_day to identify high-risk periods, and (5) exports a cleaned CSV with summary statistics showing total crashes, severity distribution, and top 5 LGAs by incident count. Validate your cleaning by comparing row counts before/after.",
+      "title": "NSW Road Crash Data Cleaning and Severity Profiling",
+      "description": "Download NSW Road Crash Data from data.nsw.gov.au (CSV format). Clean the dataset by: (1) handling missing values in crash severity and road type columns (document your strategy), (2) standardising datetime formats for crash_date, (3) removing duplicate crash records based on crash_id, (4) creating a new column 'time_of_day' categorising crashes into Morning (6-12), Afternoon (12-18), Evening (18-24), Night (0-6). Generate a summary showing crash count and mean number of persons injured by severity level and time_of_day. Output cleaned dataset to CSV and summary statistics to JSON.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Great Barrier Reef Monitoring: Python ETL + SQL Analytics",
-      "description": "Build a mini data pipeline using Great Barrier Reef monitoring data (coral bleaching, water temperature, observation dates, reef zones). Step 1 (Python): Load the raw CSV, clean date formats to ISO 8601, remove rows with missing temperature readings, standardize reef zone names to title case, and calculate a new column 'temperature_anomaly' as (observed_temp - 30-year_historical_mean). Save the cleaned data to a new CSV. Step 2 (SQL): Load the cleaned CSV into a database, then write a query using CTEs and window functions to: (1) identify the top 3 reef zones by bleaching severity (using ROW_NUMBER), (2) calculate year-over-year temperature change using LAG(), (3) flag zones where bleaching increased despite stable/cooling temperatures (anomaly detection), and (4) return a summary showing zone name, current bleaching percentage, temperature trend, and anomaly flag. Your output should help identify reef zones requiring urgent intervention.",
-      "dataset": "Great Barrier Reef Monitoring Data \u2014 aims.gov.au",
-      "file_ext": ".py / .sql"
+      "title": "Cricket Australia Venue Performance ETL Pipeline",
+      "description": "Build a Python script that: (1) reads Cricket Australia match results data (from Kaggle), (2) cleans player names and venue names (handle inconsistent spacing, capitalization), (3) loads cleaned data into a SQLite database with two tables: matches (match_id, venue, date, result) and performances (match_id, player_name, runs, wickets). Then write SQL queries to: (a) rank venues by total runs scored across all matches using ROW_NUMBER, (b) calculate each player's career performance metrics (total runs, total wickets, matches played) and identify their best performance using RANK() partitioned by player. Export final SQL results to CSV. Expected deliverable: SQLite db file + Python ETL script + SQL analysis script + output CSVs.",
+      "dataset": "Cricket Australia Test & ODI Match Results \u2014 Kaggle",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-03-17"
+  "last_quest_date": "2026-03-18"
 }
