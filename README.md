@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-18 16:19 AEDT |
+| 📅 Last Sync | 2026-03-19 16:15 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Average Momentum Rank
-  _Using ASX 200 historical price data, calculate the 20-day rolling average for each stock's closing price. Then rank stocks within each date by their rolling average momentum (current rolling avg vs previous day's rolling avg). Use a CTE to structure rolling averages, then a window function to rank by momentum. Filter for the top 10 stocks by positive momentum on the most recent date in your dataset. Expected output: date, stock_symbol, close_price, rolling_avg_20d, momentum_change, momentum_rank._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-18.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Severity Profiling
-  _Download NSW Road Crash Data from data.nsw.gov.au (CSV format). Clean the dataset by: (1) handling missing values in crash severity and road type columns (document your strategy), (2) standardising datetime formats for crash_date, (3) removing duplicate crash records based on crash_id, (4) creating a new column 'time_of_day' categorising crashes into Morning (6-12), Afternoon (12-18), Evening (18-24), Night (0-6). Generate a summary showing crash count and mean number of persons injured by severity level and time_of_day. Output cleaned dataset to CSV and summary statistics to JSON._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility Analysis
+  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for the top 5 most volatile stocks. Use a CTE to first calculate daily percentage changes, then apply ROW_NUMBER() PARTITION BY stock_code to rank stocks by volatility. Finally, use a window function to compute the rolling 30-day standard deviation. Return stock_code, date, daily_return, and rolling_volatility ordered by date descending, volatility descending. This teaches you CTEs, window functions, and financial metrics calculation._
+  📦 Dataset: `ASX 200 historical prices — Kaggle`
+  📁 Submit as: `quest1_2026-03-19.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download NSW Road Crash Data (contains injury crashes with detailed attributes). Build a Python script using pandas that: (1) loads the CSV and inspects for missing values, (2) standardises date columns to datetime format, (3) removes duplicates based on crash_id, (4) creates a new column 'severity_category' by binning injury count into Low/Medium/High/Critical, (5) filters for crashes in Sydney region only, (6) exports cleaned data to a new CSV. Document the data quality issues found and rows removed at each step. Expected output: cleaned CSV with 5+ new insights printed to console about crash patterns._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-18.py`
-- [ ] ⚡ **Combined Quest:** Cricket Australia Venue Performance ETL Pipeline
-  _Build a Python script that: (1) reads Cricket Australia match results data (from Kaggle), (2) cleans player names and venue names (handle inconsistent spacing, capitalization), (3) loads cleaned data into a SQLite database with two tables: matches (match_id, venue, date, result) and performances (match_id, player_name, runs, wickets). Then write SQL queries to: (a) rank venues by total runs scored across all matches using ROW_NUMBER, (b) calculate each player's career performance metrics (total runs, total wickets, matches played) and identify their best performance using RANK() partitioned by player. Export final SQL results to CSV. Expected deliverable: SQLite db file + Python ETL script + SQL analysis script + output CSVs._
-  📦 Dataset: `Cricket Australia Test & ODI Match Results — Kaggle`
-  📁 Submit as: `quest3_2026-03-18.py`
+  📁 Submit as: `quest2_2026-03-19.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Extremes Data Pipeline
+  _Create an end-to-end pipeline combining Python and SQL. Step 1 (Python): Download Australian Weather observations (Bureau of Meteorology dataset on Kaggle). Load CSV, clean temperature and rainfall columns (handle missing values, convert to numeric), and create a 'extreme_event' flag for days where temp > 95th percentile OR rainfall > 95th percentile. Save to a staging CSV. Step 2 (SQL): Load staging CSV into a SQLite database. Write a query using window functions (LAG/LEAD) to identify consecutive days of extreme events, count streak lengths, and identify the state with the longest heat/rain streak. Return state, streak_length, start_date, end_date, event_type. This teaches you full data engineering workflow: extract, transform, load, analyse._
+  📦 Dataset: `Australian Weather observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest3_2026-03-19.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
