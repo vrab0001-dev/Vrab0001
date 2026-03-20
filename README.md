@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-19 16:15 AEDT |
+| 📅 Last Sync | 2026-03-20 16:07 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility Analysis
-  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for the top 5 most volatile stocks. Use a CTE to first calculate daily percentage changes, then apply ROW_NUMBER() PARTITION BY stock_code to rank stocks by volatility. Finally, use a window function to compute the rolling 30-day standard deviation. Return stock_code, date, daily_return, and rolling_volatility ordered by date descending, volatility descending. This teaches you CTEs, window functions, and financial metrics calculation._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-19.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data (contains injury crashes with detailed attributes). Build a Python script using pandas that: (1) loads the CSV and inspects for missing values, (2) standardises date columns to datetime format, (3) removes duplicates based on crash_id, (4) creates a new column 'severity_category' by binning injury count into Low/Medium/High/Critical, (5) filters for crashes in Sydney region only, (6) exports cleaned data to a new CSV. Document the data quality issues found and rows removed at each step. Expected output: cleaned CSV with 5+ new insights printed to console about crash patterns._
-  📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-19.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Extremes Data Pipeline
-  _Create an end-to-end pipeline combining Python and SQL. Step 1 (Python): Download Australian Weather observations (Bureau of Meteorology dataset on Kaggle). Load CSV, clean temperature and rainfall columns (handle missing values, convert to numeric), and create a 'extreme_event' flag for days where temp > 95th percentile OR rainfall > 95th percentile. Save to a staging CSV. Step 2 (SQL): Load staging CSV into a SQLite database. Write a query using window functions (LAG/LEAD) to identify consecutive days of extreme events, count streak lengths, and identify the state with the longest heat/rain streak. Return state, streak_length, start_date, end_date, event_type. This teaches you full data engineering workflow: extract, transform, load, analyse._
-  📦 Dataset: `Australian Weather observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-03-19.py`
+- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Ranking with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their 30-day price momentum. Calculate the percentage change from 30 days ago to today for each stock using LAG() and ROW_NUMBER(). Create a CTE to filter only stocks with positive momentum, then rank them by momentum percentage in descending order. Return the top 10 stocks with their symbol, current price, 30-day price change, percentage change, and rank. Handle NULL values where historical data is missing._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-03-20.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download the NSW Road Crash Data from the NSW Government open data portal. Write a Python script using pandas to: (1) Load the CSV and identify missing values, duplicates, and data type inconsistencies; (2) Clean the dataset by handling missing location coordinates, standardising datetime columns, and removing duplicate crash records; (3) Engineer new features including crash severity category (from injury counts), hour of day from timestamp, and a flag for night-time crashes (between 20:00-06:00); (4) Export the cleaned dataset to a new CSV. Document your data quality findings in comments._
+  📦 Dataset: `NSW Road Crash Data — Transport for NSW Open Data`
+  📁 Submit as: `quest2_2026-03-20.py`
+- [ ] ⚡ **Python + SQL Quest:** Australian Wine Production Pipeline: Extract, Transform, Load
+  _Build a mini ETL pipeline using Python and SQLite: (1) Download or source Australian wine production statistics by region and vintage year; (2) Write a Python script to clean the data (handle missing production volumes, standardise region names, validate vintage years); (3) Create a SQLite database with a schema for wine regions and production records; (4) Load the cleaned data into SQLite using Python; (5) Write a SQL query to calculate total production by region over all years, average production per vintage, and identify the top 3 regions by total volume. Export results to CSV. Include error handling for file I/O and data validation._
+  📦 Dataset: `Australian Wine Production Statistics — Wine Australia`
+  📁 Submit as: `quest3_2026-03-20.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
