@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-22 16:11 AEDT |
+| 📅 Last Sync | 2026-03-23 16:46 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Rankings
-  _Using ASX 200 historical price data, write a SQL query with window functions to calculate the 30-day rolling average price for each stock symbol, then rank stocks by their current price relative to this rolling average (highest to lowest). Include columns: symbol, current_date, close_price, rolling_avg_30d, price_vs_avg_pct, and rank_by_performance. Filter for the last 5 trading days only and order by rank ascending._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using the ASX 200 historical prices dataset, calculate the 10-day and 30-day moving averages for the top 5 most traded stocks by volume. Use window functions (AVG() OVER) to compute these moving averages partitioned by stock ticker and ordered by date. Then identify which stocks had the biggest price momentum (current price vs 30-day MA) on the most recent date. Return: ticker, date, close_price, ma_10day, ma_30day, momentum_percentage. Order by momentum_percentage DESC._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-22.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Export Pipeline
-  _Download NSW Road Crash Data (CSV format). Write a Python script using pandas to: (1) identify and handle missing values in the Severity and Speed_Zone columns (document your strategy), (2) standardise date formats to YYYY-MM-DD, (3) remove duplicate crash records based on Crash_ID, (4) create a new column Crash_Hour extracted from crash_time, (5) filter for crashes in the last 5 years only, and (6) export the cleaned dataset as a new CSV file. Print a before/after summary showing row counts and data types._
+  📁 Submit as: `quest1_2026-03-23.sql`
+- [ ] 🐍 **Python Quest:** Australian Weather Data Cleaning & Missing Value Imputation
+  _Download or use the Australian Weather observations dataset (Bureau of Meteorology). Load a CSV with temperature, humidity, rainfall, and wind speed data from multiple Australian cities across 2024-2025. Clean the data by: (1) identifying and documenting missing values per column, (2) removing rows with >30% missing data, (3) imputing missing temperature values using forward-fill then backward-fill per city, (4) imputing rainfall with 0 where appropriate, (5) removing outliers >3 standard deviations from mean per city. Output: a clean CSV with row counts before/after, missing value counts per column before/after, and a summary report showing data quality improvements._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology or Kaggle (jsphyg)`
+  📁 Submit as: `quest2_2026-03-23.py`
+- [ ] ⚡ **Combined Quest:** NSW Road Crash Data: Injury Severity Trends & Root Cause Analysis Pipeline
+  _Using NSW Road Crash Data (data.nsw.gov.au): (1) In Python/pandas: Load the crash dataset, clean date/time fields, convert crash_severity to numeric categories (1=non-injury, 2=other injury, 3=serious injury, 4=fatality). Handle missing speed_zone, weather, and road_type values. Save cleaned data to a SQLite database. (2) In SQL: Create a CTE that ranks crashes by severity within each LGA (Local Government Area) and month. Use ROW_NUMBER() to identify the top 3 most dangerous months per LGA. Then aggregate: for each LGA and severity level, count crashes and calculate average number of vehicles involved. Return: lga, month, severity_rank, crash_count, avg_vehicles_involved, severity_label. (3) Combine: use Python to read SQL results and generate a markdown report with insights on which LGAs had worsening trends and which weather/road conditions were most common in high-severity crashes._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-22.py`
-- [ ] ⚡ **Combined Quest:** Great Barrier Reef Health Monitoring Pipeline
-  _Using Great Barrier Reef monitoring data from AIMS, build an end-to-end pipeline: (1) Load the coral health observations CSV in Python using pandas, (2) clean the data by removing invalid temperature readings (outside 15-35°C range) and standardising location names to title case, (3) create a SQLite database table called reef_observations with columns: observation_id, location, date_observed, water_temp, coral_health_score, and bleaching_level, (4) insert the cleaned data into SQLite, (5) write a SQL query with a CTE to calculate the average health score by location and identify locations where average health has declined by more than 10% year-over-year, (6) export results to CSV. Document your data quality checks._
-  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
-  📁 Submit as: `quest3_2026-03-22.py`
+  📁 Submit as: `quest3_2026-03-23.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
