@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-25 12:07 AEDT |
+| 📅 Last Sync | 2026-03-26 12:13 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Ranking with Window Functions
-  _Using ASX 200 historical price data, calculate the 30-day price momentum for each stock. Use window functions (ROW_NUMBER, LAG) to rank stocks by momentum within each trading week. Specifically: (1) Calculate the price change from 30 days ago to today using LAG(). (2) Rank stocks by momentum percentile within each calendar week using ROW_NUMBER() OVER (PARTITION BY week ORDER BY momentum DESC). (3) Filter for only the top 10 momentum stocks per week. (4) Return: stock_code, trading_date, price_change_pct, momentum_rank, week_number. Use a CTE to structure the calculation cleanly._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking
+  _Using ASX 200 historical stock price data, write a query with window functions to: (1) Calculate the 30-day price change percentage for each stock using LAG, (2) Rank stocks by momentum within each sector using RANK() OVER, (3) Identify the top 3 performers and bottom 3 performers per sector, (4) Use a CTE to filter only stocks with volume > 1M shares traded. Return sector, stock symbol, current price, 30-day change %, and rank. Order by sector and rank._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-25.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
-  _Download NSW Road Crash Data and perform data cleaning: (1) Load the CSV and identify missing values, duplicates, and data type mismatches. (2) Clean crash_date column (convert to datetime), handle any malformed entries. (3) Extract new features: day_of_week, hour_of_day from crash_date_time. (4) Create a severity_score by mapping injury_level (fatal=3, serious=2, other=1) and counting vehicles involved. (5) Remove crashes with incomplete location data (missing latitude/longitude). (6) Save cleaned dataset as cleaned_nsw_crashes.csv with all original + new columns. Document any rows dropped and why in a summary report._
+  📁 Submit as: `quest1_2026-03-26.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data (from NSW open data portal). Write a Python/pandas script to: (1) Load the CSV and inspect for missing values and data types, (2) Clean date columns and convert to datetime, (3) Handle missing values in crash location and severity fields (document your strategy), (4) Create a new column for crash hour extracted from timestamp, (5) Aggregate crashes by Local Government Area (LGA) and hour-of-day to find peak crash times, (6) Export a cleaned CSV with aggregated counts. Show summary statistics before and after cleaning._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-25.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Extremes Analysis Pipeline
-  _Create an end-to-end pipeline combining Python and SQL: (1) Use Python (pandas) to load Australian Bureau of Meteorology weather observations data. Clean temperature, rainfall, and wind speed columns (handle missing values, outliers). (2) Write cleaned data to a local SQLite database in a table called weather_observations. (3) In SQL, use window functions to identify extreme weather events: calculate 7-day rolling average temperature, rank days by max_temp within each month, and flag any day in the top 5% hottest/coldest per month. (4) Query the database to find: Which Australian state/region had the most extreme temperature swings (biggest gap between max and min) in the last 12 months? (5) Return: state, month, avg_temp_swing, extreme_rank. Save results to extremes_report.csv from Python._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
-  📁 Submit as: `quest3_2026-03-25.py`
+  📁 Submit as: `quest2_2026-03-26.py`
+- [ ] ⚡ **Combined Quest:** Weather Impact on Electricity Demand Analysis
+  _Combine Australian Bureau of Meteorology weather observations with AEMO electricity demand data. (1) Use Python/pandas to load and merge both datasets on date and region/state, (2) Clean temperature, humidity, and demand data (handle outliers, missing values), (3) Create features: temperature deviation from historical average, day-of-week, is-weekend flag, (4) Load cleaned data into SQLite, (5) Write SQL query using window functions to calculate: rolling 7-day average demand, demand rank by day-of-week, and correlation of temperature change to demand change using LAG. (6) Identify days where demand exceeded the 90th percentile and temperature was above 30°C. Export results showing date, state, demand, temp, and anomaly flags._
+  📦 Dataset: `Australian Weather Observations (Bureau of Meteorology / Kaggle) + AEMO Electricity Demand Data — aemo.com.au`
+  📁 Submit as: `quest3_2026-03-26.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
