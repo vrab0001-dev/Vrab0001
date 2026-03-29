@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-03-28 12:06 AEDT",
+  "last_sync": "2026-03-29 12:15 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis",
-      "description": "Using ASX 200 historical price data, calculate a 20-day moving average and identify momentum shifts. Write a query using window functions (ROW_NUMBER, LAG, LEAD) to rank each company by the percentage change between current price and 20-day MA, then identify the top 5 gainers and bottom 5 losers on the most recent date. Include a CTE to calculate the moving average, then use it in a ranking query. Output: company_code, current_price, moving_avg_20day, pct_change, momentum_rank, date.",
+      "title": "ASX 200 Momentum Tracker",
+      "description": "Using ASX 200 historical prices, write a query with window functions to calculate: (1) the 20-day moving average price for each stock, (2) the rank of stocks by daily percentage change within each date, and (3) identify stocks that hit a new 52-week high on each trading date. Use ROW_NUMBER() or RANK() and LAG() to compare current price against the max price in the preceding 252 trading days. Return stock code, date, closing price, moving average, daily rank, and a flag indicating 52-week high. Order by date descending, then by rank ascending.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning Pipeline",
-      "description": "Download NSW Road Crash Data from data.nsw.gov.au. Build a pandas data cleaning script that: (1) handles missing values in crash_severity and location columns (impute or drop strategically), (2) standardises date formats to YYYY-MM-DD, (3) removes duplicate records based on crash_id, (4) creates new features: crash_hour (extracted from time), is_fatal (boolean from severity), and suburb_postcode (parsed from address). Export cleaned data to a new CSV. Document your decisions on missing data handling with inline comments.",
+      "title": "NSW Road Crash Data Scrubber",
+      "description": "Download NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas to: (1) load the CSV and identify missing values, outliers, and data type mismatches, (2) standardise suburb names (remove leading/trailing spaces, convert to title case), (3) extract hour from crash datetime and create a new 'time_of_day' column (Morning 6-12, Afternoon 12-18, Evening 18-24, Night 0-6), (4) remove duplicate crash records based on date, location, and severity, (5) export the cleaned dataset to a new CSV. Document all transformations applied and row counts before/after cleaning.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomaly Detection Pipeline",
-      "description": "Combine Python and SQL to build an anomaly detection workflow. (1) Use pandas to load Australian Bureau of Meteorology weather observations (daily max/min temperature, rainfall by station). Clean the data: handle missing values, standardise temperature units to Celsius, remove outliers using IQR method. (2) Load cleaned data into SQLite. (3) Write SQL queries with CTEs to calculate z-scores for temperature and rainfall by station and month. Identify days in the past 12 months where temperature or rainfall deviated >2 standard deviations from the monthly mean. (4) Export anomalies to CSV with columns: station_name, date, metric, observed_value, expected_range, z_score. Output should highlight potential climate anomalies for analysis.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
-      "file_ext": ".py"
+      "title": "Australian Open Tennis Analytics Pipeline",
+      "description": "Build an end-to-end pipeline: (1) Download Australian Open Tennis results dataset from Kaggle. (2) Use Python/pandas to clean player names, standardise tournament year, remove null match results, and engineer features: player age at tournament, previous Grand Slam wins, seeding rank. (3) Load cleaned data into a SQL database (SQLite or PostgreSQL). (4) Write a SQL query using CTEs to: identify the top 5 most successful players across all years (by win percentage), calculate their average matches per tournament, and rank players by consistency (lowest std dev of win rate year-over-year). (5) Export final results to CSV. Provide both the Python script and SQL query, plus a summary of data quality issues found and how you resolved them.",
+      "dataset": "Australian Open Tennis Results \u2014 Kaggle",
+      "file_ext": ".py / .sql"
     }
   ],
-  "last_quest_date": "2026-03-28"
+  "last_quest_date": "2026-03-29"
 }
