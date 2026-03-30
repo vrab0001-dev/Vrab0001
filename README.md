@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-29 12:15 AEDT |
+| 📅 Last Sync | 2026-03-30 12:17 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Tracker
-  _Using ASX 200 historical prices, write a query with window functions to calculate: (1) the 20-day moving average price for each stock, (2) the rank of stocks by daily percentage change within each date, and (3) identify stocks that hit a new 52-week high on each trading date. Use ROW_NUMBER() or RANK() and LAG() to compare current price against the max price in the preceding 252 trading days. Return stock code, date, closing price, moving average, daily rank, and a flag indicating 52-week high. Order by date descending, then by rank ascending._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Price Momentum Ranking
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their 7-day price momentum. Calculate the percentage change from 7 days ago using LAG(), then use RANK() to identify the top 10 gainers and bottom 10 losers for the most recent trading date. Include columns: stock_symbol, current_price, price_7_days_ago, momentum_percent, momentum_rank. Order by momentum_rank ascending. This tests your understanding of LAG() for time-series analysis, window function ordering, and multi-column ranking._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-29.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Scrubber
-  _Download NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas to: (1) load the CSV and identify missing values, outliers, and data type mismatches, (2) standardise suburb names (remove leading/trailing spaces, convert to title case), (3) extract hour from crash datetime and create a new 'time_of_day' column (Morning 6-12, Afternoon 12-18, Evening 18-24, Night 0-6), (4) remove duplicate crash records based on date, location, and severity, (5) export the cleaned dataset to a new CSV. Document all transformations applied and row counts before/after cleaning._
+  📁 Submit as: `quest1_2026-03-30.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Risk Scoring
+  _Download the NSW Road Crash Data from NSW Open Data. Write a Python/pandas script to: (1) Load the CSV and identify missing values in critical columns (crash_severity, council_area, speed_zone); (2) Handle missing crash_severity by mode-imputation within each council_area; (3) Remove rows with missing council_area; (4) Create a new 'risk_score' column calculated as: (number_of_casualties * 2) + (1 if speed_zone > 80 else 0); (5) Export the cleaned dataset to a new CSV with filename cleaned_nsw_crashes_20260330.csv. Include a summary print statement showing rows removed and risk_score distribution (min, max, mean)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-29.py`
-- [ ] ⚡ **Combined Quest:** Australian Open Tennis Analytics Pipeline
-  _Build an end-to-end pipeline: (1) Download Australian Open Tennis results dataset from Kaggle. (2) Use Python/pandas to clean player names, standardise tournament year, remove null match results, and engineer features: player age at tournament, previous Grand Slam wins, seeding rank. (3) Load cleaned data into a SQL database (SQLite or PostgreSQL). (4) Write a SQL query using CTEs to: identify the top 5 most successful players across all years (by win percentage), calculate their average matches per tournament, and rank players by consistency (lowest std dev of win rate year-over-year). (5) Export final results to CSV. Provide both the Python script and SQL query, plus a summary of data quality issues found and how you resolved them._
-  📦 Dataset: `Australian Open Tennis Results — Kaggle`
-  📁 Submit as: `quest3_2026-03-29.py`
+  📁 Submit as: `quest2_2026-03-30.py`
+- [ ] ⚡ **Combined Quest:** Australian Wildfire Impact Analysis Pipeline
+  _Build an end-to-end data pipeline: (1) In Python, download/load the Australian Wildfire dataset (Kaggle). Clean and transform it: parse date columns, handle null values in fire_size_acres and state columns, create a new column month_year from the date. Export to CSV as wildfire_cleaned.csv. (2) Create a SQL database table from this CSV. (3) Write a SQL query using CTEs to: calculate total acres burned per state per month, then use window functions (ROW_NUMBER) to rank months within each state by acres burned. Find the top 3 most damaging months for each state. Return columns: state, month_year, acres_burned, month_rank. (4) In Python, read the SQL query results and create a summary report (printed to console) showing: which state had the worst month on record and total acres across all states. This tests your ability to orchestrate Python data prep, SQL analytics, and CTEs._
+  📦 Dataset: `Australian Wildfire Dataset — Kaggle`
+  📁 Submit as: `quest3_2026-03-30.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
