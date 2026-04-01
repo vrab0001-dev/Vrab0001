@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-03-31 12:14 AEDT |
+| 📅 Last Sync | 2026-04-01 12:21 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
-  _Using ASX 200 historical stock price data, calculate the 20-day moving average and identify stocks that have gained more than 10% in the last 30 days. Use window functions (AVG() OVER and ROW_NUMBER() OVER) to rank stocks by their 30-day performance. Return the top 10 performing stocks with columns: stock_symbol, current_price, price_30_days_ago, percentage_gain, moving_average_20day, rank. Use a CTE to structure the moving average calculation separately._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking
+  _Using ASX 200 historical price data, write a query with window functions to: (1) Calculate the 30-day price change percentage for each stock using LAG, (2) Rank stocks by momentum within each sector using RANK() OVER (PARTITION BY sector ORDER BY price_change DESC), (3) Identify the top 3 performers and bottom 3 performers per sector, (4) Include a CTE to filter only stocks with at least 20 trading days of data in the last month. Output should show stock_code, sector, current_price, price_30d_ago, momentum_rank, and momentum_percentage._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-03-31.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Risk Score Generator
-  _Download NSW Road Crash Data (contains crash records with location, date, severity, vehicle count). Clean the dataset by: (1) handling missing values in severity and location fields, (2) converting date strings to datetime, (3) removing duplicate crash records, (4) standardising location names. Then create a new column 'risk_score' calculated as (severity_level × vehicle_count) / weather_impact_factor. Export the cleaned dataset to CSV and provide a summary report showing: total crashes cleaned, missing values removed, and top 5 high-risk locations._
+  📁 Submit as: `quest1_2026-04-01.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data (contains messy location strings, missing values, inconsistent date formats). Write a Python script using pandas to: (1) Parse and standardise date columns, (2) Clean location data by extracting suburb/LGA from inconsistent text fields, (3) Handle missing values in severity and vehicle type columns using appropriate imputation, (4) Create a CSV summary by suburb showing total crashes, fatalities, and injuries per month, (5) Generate a data quality report showing % missing values before and after cleaning. Output two files: cleaned_crashes.csv and data_quality_report.txt._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-03-31.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Build a Python script that (1) reads Australian Bureau of Meteorology weather observations (temperature, rainfall, wind speed by station and date), (2) cleans the data (handle missing values, standardise units), (3) exports to a SQLite database. Then execute SQL queries to: (a) calculate 30-day rolling average temperature by station using window functions, (b) identify anomalies where temperature deviates >2 standard deviations from the 30-day average, (c) rank stations by anomaly frequency. Return results showing: station_name, anomaly_date, temperature, rolling_average, deviation_std, anomaly_rank. Combine Python and SQL results into a final summary CSV report._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-03-31.py`
+  📁 Submit as: `quest2_2026-04-01.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring: SQL Analysis + Python Reporting
+  _Using Great Barrier Reef monitoring data (containing sensor readings, coral health metrics, temperature logs): (1) PYTHON STEP: Load the raw dataset, clean date/time columns, handle missing coral_health_score values, convert temperature readings to standardised units (Celsius), remove duplicate sensor records. Save cleaned data to a database or CSV. (2) SQL STEP: Query the cleaned data to calculate rolling 12-month average temperature per reef_section using window functions (AVG() OVER with ROWS BETWEEN), identify sections with declining coral health trends using LAG(), rank sections by health status. (3) PYTHON STEP: Read SQL results, create a visualisation-ready summary CSV and a markdown report highlighting at-risk reef sections and temperature anomalies. Output files: reef_analysis_summary.csv, reef_health_report.md._
+  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
+  📁 Submit as: `quest3_2026-04-01.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
