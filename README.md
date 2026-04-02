@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-01 12:21 AEDT |
+| 📅 Last Sync | 2026-04-02 12:11 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking
-  _Using ASX 200 historical price data, write a query with window functions to: (1) Calculate the 30-day price change percentage for each stock using LAG, (2) Rank stocks by momentum within each sector using RANK() OVER (PARTITION BY sector ORDER BY price_change DESC), (3) Identify the top 3 performers and bottom 3 performers per sector, (4) Include a CTE to filter only stocks with at least 20 trading days of data in the last month. Output should show stock_code, sector, current_price, price_30d_ago, momentum_rank, and momentum_percentage._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-01.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download NSW Road Crash Data (contains messy location strings, missing values, inconsistent date formats). Write a Python script using pandas to: (1) Parse and standardise date columns, (2) Clean location data by extracting suburb/LGA from inconsistent text fields, (3) Handle missing values in severity and vehicle type columns using appropriate imputation, (4) Create a CSV summary by suburb showing total crashes, fatalities, and injuries per month, (5) Generate a data quality report showing % missing values before and after cleaning. Output two files: cleaned_crashes.csv and data_quality_report.txt._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Price Momentum Ranking
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 5-day moving average of closing price for each stock, (2) the daily price change percentage, (3) a rank of stocks by momentum (price change) within each date, and (4) identify the top 3 gainers and bottom 3 losers for the most recent date in the dataset. Use ROW_NUMBER and RANK functions. Return columns: date, ticker, close_price, moving_avg_5day, daily_change_pct, momentum_rank. Filter for the last trading date only in final result._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-04-02.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download the NSW Road Crash Data (contains crashes, vehicles, persons involved). Write a Python script using pandas to: (1) load all three CSV files, (2) handle missing values strategically (identify which columns have >30% nulls and decide whether to drop or impute), (3) standardise date formats to ISO 8601, (4) clean categorical columns (e.g. crash_type, road_user_type) by removing leading/trailing whitespace and converting to lowercase, (5) create a new feature 'severity_score' (0-10 scale) based on injury_level, (6) export cleaned data to a single consolidated CSV. Document your cleaning decisions in comments._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-01.py`
-- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring: SQL Analysis + Python Reporting
-  _Using Great Barrier Reef monitoring data (containing sensor readings, coral health metrics, temperature logs): (1) PYTHON STEP: Load the raw dataset, clean date/time columns, handle missing coral_health_score values, convert temperature readings to standardised units (Celsius), remove duplicate sensor records. Save cleaned data to a database or CSV. (2) SQL STEP: Query the cleaned data to calculate rolling 12-month average temperature per reef_section using window functions (AVG() OVER with ROWS BETWEEN), identify sections with declining coral health trends using LAG(), rank sections by health status. (3) PYTHON STEP: Read SQL results, create a visualisation-ready summary CSV and a markdown report highlighting at-risk reef sections and temperature anomalies. Output files: reef_analysis_summary.csv, reef_health_report.md._
-  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
-  📁 Submit as: `quest3_2026-04-01.py`
+  📁 Submit as: `quest2_2026-04-02.py`
+- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Trend Analysis
+  _Create an end-to-end pipeline: (1) Download AIHW health expenditure data (by state, year, and health service type). (2) Use Python/pandas to clean the dataset: standardise column names, convert currency values to numeric types, handle any inconsistent state abbreviations. (3) Load cleaned data into a local SQLite database. (4) Write SQL queries to: calculate year-over-year expenditure growth by state using LAG window function, identify which health service type had the highest spend growth over the 10-year period, and create a summary CTE showing total expenditure by state ranked by spend. (5) Export final analytical results to CSV. Include Python script and SQL file in your submission._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest3_2026-04-02.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
