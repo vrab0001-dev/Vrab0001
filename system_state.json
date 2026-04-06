@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-04-05 11:17 AEDT",
+  "last_sync": "2026-04-06 11:17 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Rolling Performance Analysis",
-      "description": "Using ASX 200 historical price data, write a SQL query with window functions to calculate: (1) the 30-day rolling average price for each stock, (2) the rank of stocks by daily percentage change within each date, and (3) the cumulative return from the first trading day to each subsequent day per stock. Use ROW_NUMBER() and LAG() to identify stocks that hit new 52-week highs on any given date. Return the top 10 stocks by cumulative return over the dataset period, ordered by date and stock symbol.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Daily Returns Ranking with Moving Average",
+      "description": "Using ASX 200 historical price data, write a query that calculates daily percentage returns for each stock, then uses window functions to rank stocks by returns within each date partition. Additionally, compute a 7-day moving average of closing prices for each stock ordered by date. Use a CTE to isolate high-volatility stocks (those ranking in top 10% by absolute return on any given day). Return: stock_code, trading_date, daily_return_pct, return_rank, moving_avg_7day, volatility_flag. Order by trading_date DESC, return_rank ASC.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Standardisation",
-      "description": "Download NSW Road Crash Data (contains crash location, vehicle details, injury severity, dates). Write a Python/pandas script to: (1) handle missing values in crash_type and injury_severity columns (document your strategy), (2) standardise location data (remove whitespace, convert to title case, validate suburb names against a reference list if available), (3) parse date columns and extract year/month/day/day_of_week, (4) create a new feature: crash_density_score based on frequency of crashes per suburb, (5) export cleaned data to CSV. Include data validation checks and a summary report showing rows dropped and data quality metrics.",
+      "title": "NSW Road Crash Data Cleaning & Feature Engineering",
+      "description": "Download NSW Road Crash Data (motor vehicle crashes from data.nsw.gov.au). Load the CSV into pandas and perform: (1) Handle missing values in crash_type, weather_condition, and severity columns using forward-fill within each local government area; (2) Create a new feature 'crash_hour_bin' grouping time_of_crash into 6-hour buckets (Night, Morning, Afternoon, Evening); (3) Remove outliers in speed_zone using IQR method; (4) Generate a summary DataFrame showing crashes per local_government_area, crash_hour_bin, and severity. Export cleaned data to CSV and summary stats to JSON. Include data quality report showing % missing before/after cleaning.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
-      "type": "Combined",
-      "title": "Australian Weather Anomaly Detection Pipeline",
-      "description": "Using Australian Weather observations dataset (Bureau of Meteorology on Kaggle), build an end-to-end pipeline: (1) Use Python/pandas to load weather data (temperature, rainfall, humidity), clean missing values, and calculate monthly aggregates (mean temp, total rainfall, mean humidity) by station and month. (2) Export cleaned aggregates to a CSV. (3) Load into SQL and create a CTE-based query that identifies weather anomalies: stations where monthly temperature was >2 standard deviations from the 10-year historical mean for that month, or rainfall was <10th percentile. (4) Rank anomaly severity using window functions (RANK() by magnitude of deviation). Return the top 20 anomalies with station name, date, observed value, expected range, and anomaly rank. Document any data quality issues encountered.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology (Kaggle: jsphyg dataset)",
-      "file_ext": ".py + .sql"
+      "type": "Python + SQL",
+      "title": "COVID-19 Australia Vaccination Trend Analysis Pipeline",
+      "description": "Build an end-to-end pipeline: (1) Extract COVID-19 Australia vaccination data (from Kaggle COVID-19 dataset or data.gov.au). (2) Use pandas to clean and transform: calculate daily vaccination rate (doses/100k population), resample to weekly averages, identify peaks and troughs. (3) Create a SQLite database with tables for raw_vaccinations and weekly_summaries. (4) Write SQL queries to find: the state with highest peak vaccination rate, weeks with >20% week-over-week growth, cumulative doses by state. (5) Export results showing state, week_ending_date, weekly_doses_per_100k, growth_rate_pct, rank_by_state. Validate data integrity: ensure no negative vaccination rates, dates are sequential, population figures are consistent.",
+      "dataset": "COVID-19 Australia Dataset \u2014 Kaggle or data.gov.au",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-04-05"
+  "last_quest_date": "2026-04-06"
 }
