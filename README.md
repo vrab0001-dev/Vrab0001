@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-08 11:16 AEDT |
+| 📅 Last Sync | 2026-04-09 11:06 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility Analysis
-  _Using ASX 200 historical stock price data, write a SQL query with window functions to calculate the 30-day rolling standard deviation of daily returns for the top 5 most volatile stocks. Use LAG() to compute daily percentage change, then ROW_NUMBER() to partition by stock symbol and calculate rolling volatility using a window frame. Return stock symbol, date, closing price, daily return %, and 30-day rolling volatility. Order by volatility descending, then by date ascending. Expected output: 5 stocks with their volatility metrics over time, showing how volatility changes across the rolling window._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using ASX 200 historical price data, calculate a 30-day rolling average and identify stocks that have gained >5% in the last 10 trading days. Use window functions (AVG() OVER, ROW_NUMBER() OVER) and a CTE to rank stocks by momentum. Return the top 10 stocks with highest 10-day gain percentage, including: ticker symbol, current price, 30-day average price, 10-day gain %, and rank. Filter for stocks with trading volume >1M shares on the latest date._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-08.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data (from data.nsw.gov.au). Build a Python pandas script to: (1) Load the CSV and inspect for missing values, duplicates, and data type mismatches; (2) Clean and standardise the 'crash date', 'crash time', and 'council area' columns; (3) Remove rows where critical fields (crash date, latitude, longitude) are null; (4) Create new features: 'hour_of_day' from crash time, 'season' from crash date, and 'crash_severity_score' (ordinal encoding of severity level); (5) Export the cleaned dataset to a new CSV. Print a summary report showing rows removed, missing values before/after, and sample of engineered features._
+  📁 Submit as: `quest1_2026-04-09.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Severity Pipeline
+  _Download NSW Road Crash Data (2020-2025). Clean the dataset by: (1) handling missing values in Severity, Speed_Limit, Weather_Condition columns using forward-fill or mode imputation, (2) standardising date formats and extracting hour-of-day from crash_time, (3) removing duplicate crash records based on Location + DateTime, (4) categorising crashes into Severity buckets (Fatal, Serious Injury, Other Injury), (5) exporting cleaned data to a CSV file with summary statistics showing crash count by Severity, Day_of_Week, and Hour. Use pandas and validate data quality (null counts, duplicates, data types) before export._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-08.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Patterns & Wildfire Risk Integration
-  _Combine Bureau of Meteorology weather observations with Australian Wildfire dataset. Task: (1) In Python/pandas, load both datasets and merge them by location (latitude/longitude proximity within 50km radius) and date range. Handle missing temperature, rainfall, and humidity values using forward-fill or interpolation. (2) Engineer features: 'fire_weather_index' (combine temperature, humidity, wind speed), 'days_since_rain' (running calculation). (3) Export merged cleaned data to SQLite. (4) Write SQL queries to: identify the top 10 dates/locations with highest fire risk scores, calculate average weather conditions 7 days before confirmed wildfires, and rank states by wildfire frequency vs. precipitation correlation. (5) Output: cleaned merged table, 3 SQL result tables with business insights on weather-fire relationships._
-  📦 Dataset: `Australian Weather Observations (Bureau of Meteorology / Kaggle), Australian Wildfire Dataset — Kaggle`
-  📁 Submit as: `quest3_2026-04-08.py`
+  📁 Submit as: `quest2_2026-04-09.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Hotspot Detection Pipeline
+  _Build an end-to-end pipeline: (1) Python: Load Australian Bureau of Meteorology weather observation data (temperature, humidity, rainfall). Clean dates, handle missing values, and aggregate daily max temperature by station. (2) SQL: Create a table from the cleaned CSV. Use window functions (LAG, ROW_NUMBER) to find stations with highest temperature increase over the last 7 days. Identify 'hotspots' where max_temp increased by >3°C in 7 days. (3) Export a final report (CSV) showing: station_name, location_state, last_7day_temp_increase, ranking_by_increase, current_max_temp. Include only stations from NSW, VIC, and QLD with complete 7-day records. Document the cleaning steps and assumptions made._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (Kaggle jsphyg dataset)`
+  📁 Submit as: `quest3_2026-04-09.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
