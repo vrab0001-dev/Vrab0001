@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-12 11:20 AEDT |
+| 📅 Last Sync | 2026-04-13 11:22 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility & Momentum Tracker
-  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation (volatility) and 14-day momentum (price change) for each stock. Use window functions ROW_NUMBER() and LAG() to identify the top 5 most volatile stocks and their price trends over the last quarter. Return: stock_code, current_price, volatility_30day, momentum_14day, rank_by_volatility, ordered by volatility descending. Use a CTE to stage the price movements before calculating window functions._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-12.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Risk Zone Mapper
-  _Download NSW Road Crash Data (contains collision records with location, severity, conditions). Clean the dataset by: (1) removing rows with missing latitude/longitude, (2) standardising speed_zone values (convert text variations to consistent format), (3) parsing crash_date into datetime and extracting hour_of_day, (4) creating a severity_category column mapping injury_count to 'minor', 'moderate', 'severe'. Export a cleaned CSV. Then identify the top 10 postcodes with highest crash frequency and average severity score. Output: postcode, crash_count, avg_severity, sorted by crash_count descending._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using ASX 200 historical stock price data, calculate a 30-day moving average and identify the top 10 stocks with the highest positive momentum (current price vs 30-day average). Use window functions (AVG() OVER) to compute rolling averages partitioned by ticker symbol ordered by date. Return ticker, date, closing price, 30-day moving average, and momentum percentage. Filter for the most recent trading month only and order by momentum descending._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-04-13.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
+  _Download NSW Road Crash Data (contains crash records with dates, locations, crash types, severity). Clean the dataset by: (1) handling missing values in severity and crash_type columns, (2) parsing date columns into datetime format, (3) extracting hour of day and day of week from crash timestamps, (4) standardizing location names (trim whitespace, convert to title case), (5) creating a binary 'fatal_crash' feature where severity = 'Fatal'. Export the cleaned dataset to a new CSV file with all transformations applied. Document any rows removed due to data quality issues._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-12.py`
+  📁 Submit as: `quest2_2026-04-13.py`
 - [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Part 1 (Python): Load Australian Bureau of Meteorology weather observations (temperature, rainfall, wind speed across multiple stations). Clean missing values using forward-fill method. Calculate monthly aggregates: mean_temp, total_rainfall, max_wind_speed per station. Export to CSV. Part 2 (SQL): Load the cleaned CSV into a database. Write a query using CTEs and window functions to: (1) calculate the 5-year rolling average temperature per station, (2) identify months where temp exceeded the rolling avg by >2 std devs (anomalies), (3) rank anomalies by severity within each station. Return: station_name, month, temperature, anomaly_flag, severity_rank. Order by station and severity_rank descending._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-04-12.py`
+  _Build an end-to-end data engineering workflow: (1) Use Python/pandas to load Australian Bureau of Meteorology weather observations dataset (temperature, rainfall, humidity by station and date). Clean the data: handle missing values, standardize units, remove outliers using IQR method. (2) Load cleaned data into a SQL database or create a CSV intermediate. (3) Write SQL query using CTEs to calculate: (a) monthly average temperature per station, (b) deviation from 10-year historical average, (c) rank stations by temperature anomaly. Return: station_name, month, avg_temp, historical_avg, anomaly_degrees, anomaly_rank. Focus on identifying stations with unusual weather patterns in the past 12 months._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg dataset)`
+  📁 Submit as: `quest3_2026-04-13.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
