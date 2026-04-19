@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-18 11:14 AEDT |
+| 📅 Last Sync | 2026-04-19 11:23 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Volatility Ranking with Window Functions
-  _Using the ASX 200 historical stock prices dataset, calculate the 30-day rolling standard deviation of closing prices for the top 10 most volatile stocks. Use window functions (specifically ROW_NUMBER and OVER clauses) to rank stocks by volatility. Your query should: (1) Calculate daily percentage change in closing price, (2) compute rolling 30-day standard deviation using window frames, (3) rank stocks by max volatility in descending order, (4) return stock symbol, current price, rolling volatility, and volatility rank. Expected output: 10 rows with stock symbols and their volatility metrics ordered by rank._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-18.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Time Series Aggregation
-  _Download the NSW Road Crash Data (contains crash incidents with dates, locations, severity). Clean the dataset by: (1) handling missing values in the 'Crash Severity' and 'Weather Condition' columns using appropriate imputation or removal, (2) converting date columns to datetime format, (3) removing duplicate crash records based on Crash ID, (4) standardising location names (trim whitespace, convert to title case). Then aggregate crashes by month and severity level to create a time series. Export the cleaned dataset to a new CSV file and a summary CSV showing monthly crash counts by severity. Expected output: two cleaned CSV files with no nulls in critical columns and consistent formatting._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Performance Rankings with Window Functions
+  _Using ASX 200 historical stock price data, write a query that calculates for each stock: (1) the 30-day moving average of closing price using a window function, (2) the rank of each stock by percentage gain over the last quarter using RANK(), and (3) the previous day's closing price using LAG(). Filter for the top 20 stocks by percentage gain. Output should include: ticker, company_name, current_close, 30day_moving_avg, rank_by_gain, previous_close, and pct_gain columns, ordered by rank ascending._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-04-19.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data (contains multiple CSV files with crash details, vehicle info, and casualties). Write a Python script using pandas that: (1) loads and merges crash records with casualty data, (2) handles missing values in 'speed_limit' and 'crash_type' columns (impute or drop as appropriate), (3) standardises date formats and extracts crash_hour from timestamp, (4) identifies and flags outlier crash severity scores, (5) produces a summary CSV showing crashes by local government area, hour of day, and severity level. Include data quality checks (row counts before/after cleaning)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-18.py`
-- [ ] ⚡ **Python + SQL Quest:** Australian Wine Production ETL: Load, Transform, Join with ABS Data
-  _Build a mini ETL pipeline combining Wine Australia production statistics with ABS demographic data for Australian wine regions. Steps: (1) Use Python/pandas to load wine production data (CSV or scrape from Wine Australia summary), clean vintage years and production volumes, handle missing regions, (2) download ABS Census 2021 data for regional population counts, (3) create a SQLite database with two tables: 'wine_production' (vintage, region, volume, variety) and 'region_demographics' (region, population, postcode), (4) write SQL queries to: calculate production per capita by region, identify the top 3 regions by volume growth year-on-year using window functions (LAG), and find regions where production exceeds 1 million litres but population is under 50k. Expected output: a SQLite .db file with clean tables and a summary CSV showing top growing regions with per-capita production metrics._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com and ABS Census 2021 — abs.gov.au`
-  📁 Submit as: `quest3_2026-04-18.py`
+  📁 Submit as: `quest2_2026-04-19.py`
+- [ ] ⚡ **Python + SQL Quest:** Australian Wine Production Analysis Pipeline
+  _Build an end-to-end data pipeline: (1) In Python, scrape or load Australian wine production statistics (by region and vintage year) from Wine Australia data or a Kaggle wine dataset. Clean the data: normalise region names, handle missing vintage years, and convert production volumes to a standard unit (tonnes or litres). (2) Load the cleaned data into a SQLite database with proper schema (regions table, production table with foreign keys). (3) Write SQL queries to find: the top 5 wine-producing regions by total production, year-over-year growth rate for each region using window functions, and regions with declining production trends. (4) Export results to CSV and create a summary report showing insights. Expected output: cleaned_wine_data.csv, wine_analysis.db, and summary_report.txt with query results._
+  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com or Wine Reviews Dataset (Kaggle)`
+  📁 Submit as: `quest3_2026-04-19.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
