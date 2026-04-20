@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-04-19 11:23 AEDT",
+  "last_sync": "2026-04-20 11:23 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Performance Rankings with Window Functions",
-      "description": "Using ASX 200 historical stock price data, write a query that calculates for each stock: (1) the 30-day moving average of closing price using a window function, (2) the rank of each stock by percentage gain over the last quarter using RANK(), and (3) the previous day's closing price using LAG(). Filter for the top 20 stocks by percentage gain. Output should include: ticker, company_name, current_close, 30day_moving_avg, rank_by_gain, previous_close, and pct_gain columns, ordered by rank ascending.",
+      "title": "ASX 200 Volatility Analysis with Window Functions",
+      "description": "Using ASX 200 historical price data, calculate the 7-day rolling standard deviation of daily returns for the top 10 most volatile stocks. Use window functions (specifically ROW_NUMBER and frame clauses) to rank stocks by volatility and identify which stocks had the highest volatility in the most recent trading week. Expected output: a table with stock ticker, date, closing price, daily return percentage, 7-day rolling volatility rank, and cumulative volatility score ordered by date descending.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Aggregation",
-      "description": "Download NSW Road Crash Data (contains multiple CSV files with crash details, vehicle info, and casualties). Write a Python script using pandas that: (1) loads and merges crash records with casualty data, (2) handles missing values in 'speed_limit' and 'crash_type' columns (impute or drop as appropriate), (3) standardises date formats and extracts crash_hour from timestamp, (4) identifies and flags outlier crash severity scores, (5) produces a summary CSV showing crashes by local government area, hour of day, and severity level. Include data quality checks (row counts before/after cleaning).",
+      "title": "NSW Road Crash Data Cleaning & Geocoding Pipeline",
+      "description": "Download NSW Road Crash Data (contains suburb names, crash severity, number of vehicles involved). Write a Python script using pandas to: (1) clean missing values in the 'Crash Date' and 'Suburb' columns, (2) standardise suburb names to title case, (3) create a new column categorising crashes into severity bins (Minor: 1 vehicle, Moderate: 2-3 vehicles, Major: 4+ vehicles), (4) export cleaned data to CSV with summary statistics showing crash counts by severity and top 5 affected suburbs. Expected output: cleaned CSV file plus a summary report printed to console.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
-      "type": "Python + SQL",
-      "title": "Australian Wine Production Analysis Pipeline",
-      "description": "Build an end-to-end data pipeline: (1) In Python, scrape or load Australian wine production statistics (by region and vintage year) from Wine Australia data or a Kaggle wine dataset. Clean the data: normalise region names, handle missing vintage years, and convert production volumes to a standard unit (tonnes or litres). (2) Load the cleaned data into a SQLite database with proper schema (regions table, production table with foreign keys). (3) Write SQL queries to find: the top 5 wine-producing regions by total production, year-over-year growth rate for each region using window functions, and regions with declining production trends. (4) Export results to CSV and create a summary report showing insights. Expected output: cleaned_wine_data.csv, wine_analysis.db, and summary_report.txt with query results.",
-      "dataset": "Australian Wine Production Statistics \u2014 wineaustralia.com or Wine Reviews Dataset (Kaggle)",
+      "type": "Combined",
+      "title": "Australian Weather Anomalies Detection Pipeline",
+      "description": "Using Bureau of Meteorology weather observation data (daily temperature, rainfall, humidity): (1) Write a Python script to load CSV data, calculate 30-day rolling average temperature by city, and flag anomalies where daily temperature deviates >2 standard deviations from the rolling mean. Save anomaly records to a new CSV. (2) Load this anomaly CSV into a database and write a SQL query using CTEs to: identify cities with the most anomalies in the last 90 days, calculate the anomaly frequency rate (anomalies per 30-day period), and rank cities by anomaly severity. Expected output: anomaly CSV file + SQL results showing top 10 cities ranked by anomaly frequency with anomaly counts and average temperature deviation magnitude.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-04-19"
+  "last_quest_date": "2026-04-20"
 }
