@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-04-21 11:20 AEDT",
+  "last_sync": "2026-04-22 11:19 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Top Movers: Window Functions Analysis",
-      "description": "Using ASX 200 historical prices data, write a SQL query with window functions to identify the top 5 performing stocks by percentage gain over the last 30 days. Use ROW_NUMBER() to rank stocks within each date, LAG() to calculate day-over-day changes, and a CTE to filter the final results. Your output should include: stock symbol, current price, price 30 days ago, percentage gain, and rank. Order by percentage gain descending.",
-      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
+      "title": "NSW Road Crash Severity Trends with Window Functions",
+      "description": "Using NSW Road Crash Data, write a SQL query with window functions to identify crash severity patterns. Calculate: (1) ROW_NUMBER() to rank crashes by severity within each Local Government Area, (2) LAG() to compare current month's crash count vs previous month, (3) RANK() to identify top 10 most dangerous intersections by injury count. Use a CTE to aggregate crashes by month, LGA, and severity level. Return LGA, month, crash_count, previous_month_count, month_over_month_change, and severity_rank. Filter for crashes from 2023 onwards only.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data: Cleaning and Severity Classification",
-      "description": "Download NSW Road Crash Data (injury type, speed zone, weather conditions). Use pandas to: (1) handle missing values in weather_condition and speed_zone columns (fill with 'Unknown'), (2) standardise date format to YYYY-MM-DD, (3) create a new 'severity_score' column based on injury_type (Fatal=3, Serious=2, Other=1), (4) remove duplicates based on crash_id, (5) export cleaned data to a new CSV file with filename 'nsw_crashes_cleaned_YYYYMMDD.csv' using today's date. Count and report how many rows were removed in each step.",
-      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "title": "Clean and Standardise Australian Weather Observations",
+      "description": "Download the Australian Bureau of Meteorology weather observations dataset (or equivalent Kaggle weather dataset for Australia). Write a pandas script to: (1) handle missing values in temperature, rainfall, and wind speed columns, (2) convert all temperature readings to Celsius, (3) remove duplicate records by station_id and timestamp, (4) standardise location names (strip whitespace, title case), (5) create a new column for season based on month, (6) export cleaned data to a new CSV file. Document any data quality issues found (e.g., outliers, inconsistent units). Aim for 90%+ data completeness in critical fields.",
+      "dataset": "Australian Weather Observations \u2014 Kaggle (jsphyg) or Bureau of Meteorology",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomalies: SQL + Python ETL Pipeline",
-      "description": "Create an end-to-end ETL pipeline: (1) Use Python/pandas to load Australian Weather observations (temperature, rainfall, pressure data), clean it (handle missing values, convert units if needed), and export to a CSV. (2) Load this cleaned CSV into a SQL database or create an in-memory SQLite table. (3) Write a SQL query using CTEs and window functions to: identify stations with temperature anomalies (values >2 standard deviations from 30-day rolling average), calculate the anomaly magnitude, and rank anomalies by severity. (4) Export results showing: station_id, date, temperature, rolling_avg, anomaly_magnitude, and rank. Provide both the Python script and SQL query.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
+      "title": "Australian Energy Demand Analysis Pipeline",
+      "description": "Build an end-to-end data engineering pipeline using AEMO electricity demand data: (1) In Python: load the CSV/JSON data, clean and validate timestamps, remove anomalies (demand spikes >3 std dev), aggregate hourly demand to daily peak/average, export to a temporary database-ready CSV. (2) In SQL: load cleaned data into a table, create a CTE to calculate 7-day and 30-day rolling averages using window functions, rank days by demand intensity, identify peak demand periods by state and season. (3) Output a summary table with: date, state, peak_demand, avg_demand, 7day_rolling_avg, demand_rank, and season. Expected output: cleaned dataset + SQL results showing seasonal demand patterns and top 5 peak demand days.",
+      "dataset": "AEMO Electricity Demand Data \u2014 aemo.com.au",
       "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-04-21"
+  "last_quest_date": "2026-04-22"
 }
