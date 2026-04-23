@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-22 11:19 AEDT |
+| 📅 Last Sync | 2026-04-23 11:24 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** NSW Road Crash Severity Trends with Window Functions
-  _Using NSW Road Crash Data, write a SQL query with window functions to identify crash severity patterns. Calculate: (1) ROW_NUMBER() to rank crashes by severity within each Local Government Area, (2) LAG() to compare current month's crash count vs previous month, (3) RANK() to identify top 10 most dangerous intersections by injury count. Use a CTE to aggregate crashes by month, LGA, and severity level. Return LGA, month, crash_count, previous_month_count, month_over_month_change, and severity_rank. Filter for crashes from 2023 onwards only._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Rankings
+  _Using ASX 200 historical price data, write a query with window functions to calculate the 30-day rolling return percentage for each stock symbol. Use ROW_NUMBER() to rank stocks by rolling return within each date partition, and LEAD() to compare current closing price with price 30 days ago. Return top 10 best and bottom 10 worst performers on the most recent date in the dataset. Include columns: symbol, date, close_price, price_30days_ago, rolling_return_pct, and rank_within_date._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-04-23.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download NSW Road Crash Data from the NSW government open data portal. Build a Python script using pandas that: (1) loads the CSV, (2) removes rows with missing crash_date or crash_type, (3) converts crash_date to datetime format, (4) standardises the crash_type column to title case, (5) creates a new column severity_category by binning injury_count into 'minor' (0-2), 'moderate' (3-5), 'severe' (6+), (6) exports the cleaned dataset as 'nsw_crashes_cleaned.csv'. Print a summary showing row count before/after cleaning and value counts for severity_category._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest1_2026-04-22.sql`
-- [ ] 🐍 **Python Quest:** Clean and Standardise Australian Weather Observations
-  _Download the Australian Bureau of Meteorology weather observations dataset (or equivalent Kaggle weather dataset for Australia). Write a pandas script to: (1) handle missing values in temperature, rainfall, and wind speed columns, (2) convert all temperature readings to Celsius, (3) remove duplicate records by station_id and timestamp, (4) standardise location names (strip whitespace, title case), (5) create a new column for season based on month, (6) export cleaned data to a new CSV file. Document any data quality issues found (e.g., outliers, inconsistent units). Aim for 90%+ data completeness in critical fields._
-  📦 Dataset: `Australian Weather Observations — Kaggle (jsphyg) or Bureau of Meteorology`
-  📁 Submit as: `quest2_2026-04-22.py`
-- [ ] ⚡ **Combined Quest:** Australian Energy Demand Analysis Pipeline
-  _Build an end-to-end data engineering pipeline using AEMO electricity demand data: (1) In Python: load the CSV/JSON data, clean and validate timestamps, remove anomalies (demand spikes >3 std dev), aggregate hourly demand to daily peak/average, export to a temporary database-ready CSV. (2) In SQL: load cleaned data into a table, create a CTE to calculate 7-day and 30-day rolling averages using window functions, rank days by demand intensity, identify peak demand periods by state and season. (3) Output a summary table with: date, state, peak_demand, avg_demand, 7day_rolling_avg, demand_rank, and season. Expected output: cleaned dataset + SQL results showing seasonal demand patterns and top 5 peak demand days._
-  📦 Dataset: `AEMO Electricity Demand Data — aemo.com.au`
-  📁 Submit as: `quest3_2026-04-22.py`
+  📁 Submit as: `quest2_2026-04-23.py`
+- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Trends: SQL + Python ETL
+  _Using Melbourne pedestrian counting data: (1) In Python, load the CSV, clean it (handle nulls, ensure datetime format for date column), group by sensor_name and month, and calculate average daily foot traffic per month. Export as 'pedestrian_monthly.csv'. (2) In SQL, load pedestrian_monthly.csv into a table, then write a query using CTEs to: identify sensors with highest peak month traffic, calculate month-over-month growth rate using LAG(), and rank sensors by average annual traffic. Return top 5 sensors with their peak month, traffic volume, and YoY growth trend._
+  📦 Dataset: `Melbourne Pedestrian Counting Data — Melbourne Open Data Portal`
+  📁 Submit as: `quest3_2026-04-23.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
