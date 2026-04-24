@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-04-23 11:24 AEDT",
+  "last_sync": "2026-04-24 11:24 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Rolling Performance Rankings",
-      "description": "Using ASX 200 historical price data, write a query with window functions to calculate the 30-day rolling return percentage for each stock symbol. Use ROW_NUMBER() to rank stocks by rolling return within each date partition, and LEAD() to compare current closing price with price 30 days ago. Return top 10 best and bottom 10 worst performers on the most recent date in the dataset. Include columns: symbol, date, close_price, price_30days_ago, rolling_return_pct, and rank_within_date.",
+      "title": "ASX 200 Daily Price Momentum Rankings",
+      "description": "Using ASX 200 historical price data, write a SQL query with window functions to rank stocks by their 30-day price momentum. Calculate the percentage change from 30 days ago to today for each stock using LAG() window function, then rank them with RANK() OVER (ORDER BY momentum DESC). Include columns: stock_symbol, current_price, price_30_days_ago, momentum_percentage, momentum_rank. Filter to show only top 20 gainers and bottom 20 losers. Use a CTE to calculate the 30-day lookback first.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
       "title": "NSW Road Crash Data Cleaning Pipeline",
-      "description": "Download NSW Road Crash Data from the NSW government open data portal. Build a Python script using pandas that: (1) loads the CSV, (2) removes rows with missing crash_date or crash_type, (3) converts crash_date to datetime format, (4) standardises the crash_type column to title case, (5) creates a new column severity_category by binning injury_count into 'minor' (0-2), 'moderate' (3-5), 'severe' (6+), (6) exports the cleaned dataset as 'nsw_crashes_cleaned.csv'. Print a summary showing row count before/after cleaning and value counts for severity_category.",
+      "description": "Download NSW Road Crash Data and build a Python pandas script to clean and standardise it for analysis. Tasks: (1) Handle missing values in crash location, severity, and vehicle type columns (use appropriate strategies: drop, forward-fill, or mode imputation). (2) Standardise date formats to ISO 8601. (3) Create a new column 'time_of_day' by binning hours into 'night', 'morning', 'afternoon', 'evening'. (4) Remove duplicate crash records based on date, location, and time. (5) Export the cleaned dataset as cleaned_crashes.csv. Include data quality report showing original vs cleaned row counts and missing value statistics.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Melbourne Pedestrian Trends: SQL + Python ETL",
-      "description": "Using Melbourne pedestrian counting data: (1) In Python, load the CSV, clean it (handle nulls, ensure datetime format for date column), group by sensor_name and month, and calculate average daily foot traffic per month. Export as 'pedestrian_monthly.csv'. (2) In SQL, load pedestrian_monthly.csv into a table, then write a query using CTEs to: identify sensors with highest peak month traffic, calculate month-over-month growth rate using LAG(), and rank sensors by average annual traffic. Return top 5 sensors with their peak month, traffic volume, and YoY growth trend.",
-      "dataset": "Melbourne Pedestrian Counting Data \u2014 Melbourne Open Data Portal",
-      "file_ext": ".py/.sql"
+      "title": "Australian Weather Patterns: Python ETL to SQL Analytics",
+      "description": "Build an end-to-end pipeline: (1) Use Python with pandas to read Australian Bureau of Meteorology weather observation data (or Kaggle's Australian Weather dataset). Clean temperature, rainfall, and humidity columns (handle missing values, outliers, unit conversions if needed). Aggregate daily observations by weather station into daily_weather.csv with columns: station_id, date, avg_temperature, total_rainfall, avg_humidity. (2) Load the cleaned CSV into a SQL database (SQLite or PostgreSQL). (3) Write a SQL query to find the top 10 weather stations with the highest average temperature variance (std dev) over the past year, and identify the month with the greatest temperature swings for each station. Use window functions and CTEs. Output: station_name, avg_variance, peak_variance_month.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-04-23"
+  "last_quest_date": "2026-04-24"
 }
