@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-25 11:17 AEDT |
+| 📅 Last Sync | 2026-04-26 11:26 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility Analysis
-  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for the top 10 most volatile stocks. Use a CTE to first calculate daily percentage returns, then apply a window function (ROW_NUMBER and frame clause) to compute rolling volatility. Return stock symbol, date, closing price, daily return %, and 30-day rolling volatility, ordered by volatility descending then date. Filter for the last 90 days of data only._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-25.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download NSW Road Crash Data (CSV format). Clean the dataset by: (1) handling missing values in injury_type and crash_severity columns, (2) standardising date formats to YYYY-MM-DD, (3) removing duplicate crash records based on crash_id, (4) converting speed_zone to numeric, replacing text values with median speed for that zone. Output a cleaned CSV with columns: crash_id, crash_date, locality, severity, injury_count, speed_zone_numeric. Then create a summary CSV showing crashes per locality, total injuries, and average severity score, sorted by injury_count descending._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Moving Average Crossover Detection
+  _Using ASX 200 historical stock price data, write a SQL query with window functions to calculate 20-day and 50-day moving averages for a single stock ticker. Identify all dates where the 20-day MA crosses above the 50-day MA (bullish signal) and crosses below (bearish signal). Use LAG or LEAD to detect the crossover points. Return a result set with date, close price, 20-day MA, 50-day MA, and signal type (BUY/SELL/HOLD). Order by date descending._
+  📦 Dataset: `ASX 200 historical prices — Kaggle`
+  📁 Submit as: `quest1_2026-04-26.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download NSW Road Crash Data and build a pandas cleaning script that: (1) handles missing values in crash location, severity, and vehicle count columns; (2) standardises date/time formats to ISO 8601; (3) categorises crashes by severity (fatal/serious injury/other injury/non-injury) based on the severity column; (4) removes duplicate records based on crash ID and timestamp; (5) exports cleaned data to a CSV file with a timestamp suffix. Log the number of rows removed at each step. Your script should be reusable and accept the input file path as a parameter._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-25.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Extremes Pipeline
-  _Build a data pipeline: (1) Use Python + pandas to extract Australian weather observations data (Bureau of Meteorology dataset), clean temperature and rainfall columns, handle missing values with forward-fill, and save to a local SQLite database. (2) In SQL, create a query using window functions (RANK, LAG) to identify: the top 5 hottest days by station for the past year, the previous day's temperature (using LAG), and the temperature change. (3) Return: station_name, observation_date, max_temp, prev_day_temp, temp_change, rank_by_station. Export results to CSV. Ensure your Python script handles file I/O and your SQL uses at least one CTE and one window function._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (via Kaggle jsphyg collection)`
-  📁 Submit as: `quest3_2026-04-25.py`
+  📁 Submit as: `quest2_2026-04-26.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Health Trend Analysis Pipeline
+  _Build an end-to-end pipeline: (1) In Python/pandas, load Great Barrier Reef monitoring data (coral cover %, bleaching events, temperature anomalies). Clean the data by handling missing values, standardising date formats, and aggregating by reef zone and year. Export to a CSV staging file. (2) In SQL, load the cleaned CSV into a temp table. Write a query using CTEs to calculate year-over-year changes in coral health metrics by zone, rank zones by health decline using RANK() OVER, and identify the top 3 zones needing intervention. Return zone, year, coral_cover%, bleaching_event_count, yoy_change%, and danger_rank. Document your assumptions about data quality._
+  📦 Dataset: `Great Barrier Reef monitoring data — aims.gov.au`
+  📁 Submit as: `quest3_2026-04-26.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
