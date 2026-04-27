@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-26 11:26 AEDT |
+| 📅 Last Sync | 2026-04-27 11:27 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Moving Average Crossover Detection
-  _Using ASX 200 historical stock price data, write a SQL query with window functions to calculate 20-day and 50-day moving averages for a single stock ticker. Identify all dates where the 20-day MA crosses above the 50-day MA (bullish signal) and crosses below (bearish signal). Use LAG or LEAD to detect the crossover points. Return a result set with date, close price, 20-day MA, 50-day MA, and signal type (BUY/SELL/HOLD). Order by date descending._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-26.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data and build a pandas cleaning script that: (1) handles missing values in crash location, severity, and vehicle count columns; (2) standardises date/time formats to ISO 8601; (3) categorises crashes by severity (fatal/serious injury/other injury/non-injury) based on the severity column; (4) removes duplicate records based on crash ID and timestamp; (5) exports cleaned data to a CSV file with a timestamp suffix. Log the number of rows removed at each step. Your script should be reusable and accept the input file path as a parameter._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using ASX 200 historical prices dataset, calculate 20-day and 50-day moving averages for each stock using window functions. Identify stocks where the 20-day MA crossed above the 50-day MA (bullish signal) in the last 30 days. Use a CTE to calculate both moving averages in one pass, then filter for crossover events. Return stock ticker, date of crossover, price at crossover, and the two MA values. Order by date descending._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-04-27.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleanup and Feature Engineering
+  _Download NSW Road Crash Data from data.nsw.gov.au. Clean the dataset by: (1) removing rows with >40% missing values, (2) standardizing date formats and extracting day of week + hour of day, (3) handling categorical variables (crash type, severity) by filling missing values with mode, (4) removing duplicate crash records based on location + datetime. Create a new feature: 'crash_severity_score' (1-5 scale based on injury count). Export cleaned data to CSV. Document all transformations applied._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-26.py`
-- [ ] ⚡ **Combined Quest:** Great Barrier Reef Health Trend Analysis Pipeline
-  _Build an end-to-end pipeline: (1) In Python/pandas, load Great Barrier Reef monitoring data (coral cover %, bleaching events, temperature anomalies). Clean the data by handling missing values, standardising date formats, and aggregating by reef zone and year. Export to a CSV staging file. (2) In SQL, load the cleaned CSV into a temp table. Write a query using CTEs to calculate year-over-year changes in coral health metrics by zone, rank zones by health decline using RANK() OVER, and identify the top 3 zones needing intervention. Return zone, year, coral_cover%, bleaching_event_count, yoy_change%, and danger_rank. Document your assumptions about data quality._
-  📦 Dataset: `Great Barrier Reef monitoring data — aims.gov.au`
-  📁 Submit as: `quest3_2026-04-26.py`
+  📁 Submit as: `quest2_2026-04-27.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring: Data Pipeline from Download to Insights
+  _Download coral bleaching monitoring data from AIMS (Australian Institute of Marine Science). (Python) Clean the dataset: parse observation dates, standardize location coordinates, handle missing bleaching percentages using interpolation by location. Load cleaned data into a local SQLite database with two tables: 'sites' (location metadata) and 'observations' (bleaching records). (SQL) Write a query using window functions (ROW_NUMBER, LAG) to identify the worst bleaching events per site—show the top 5 sites by maximum bleaching percentage, the date of worst event, and month-over-month bleaching change. Return results ordered by severity. Document your pipeline in a short README._
+  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
+  📁 Submit as: `quest3_2026-04-27.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
