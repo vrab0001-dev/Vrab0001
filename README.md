@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-04-30 11:49 AEDT |
+| 📅 Last Sync | 2026-05-01 11:51 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Ranking with Window Functions
-  _Using the ASX 200 historical prices dataset, calculate the 20-day price momentum for each stock. Create a query that: (1) uses ROW_NUMBER() to rank stocks by momentum within each trading week; (2) uses LAG() to compare current close price with price 20 days ago; (3) filters for only the top 10 momentum gainers in the most recent trading week; (4) returns stock symbol, current price, 20-day return percentage, and ranking. Order by momentum descending. This tests your understanding of window functions and time-series analysis._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-04-30.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download the NSW Road Crash Data (contains crash reports with timestamps, locations, severity, vehicle types). Write a Python script using pandas to: (1) load the CSV and inspect for missing values, duplicates, and data type mismatches; (2) clean datetime columns and extract hour-of-day and day-of-week features; (3) standardise location names (remove whitespace, convert to title case); (4) create a severity category column (convert numeric codes to 'Fatal', 'Serious Injury', 'Other Injury', 'Non-Injury'); (5) export the cleaned dataset to a new CSV. Document any data quality issues found. Expected output: cleaned CSV with 8+ columns including engineered features._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query that ranks each stock by its percentage gain over the last 90 days within each sector. Use ROW_NUMBER() and LAG() window functions to calculate the price change from 90 days ago to the most recent closing price. Return: stock_code, sector, current_price, price_90_days_ago, percentage_gain, rank_in_sector. Order by sector and rank. This tests your understanding of window functions, date arithmetic, and partitioning._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-05-01.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation
+  _Download the NSW Road Crash Data (CSV format) from the NSW open data portal. Write a Python script using pandas to: (1) Handle missing values in the 'Injury Level' column by imputing with the mode per Local Government Area; (2) Standardise the 'Road Type' column by converting to title case and removing leading/trailing whitespace; (3) Create a new column 'crash_severity_score' based on injury level (Fatal=5, Serious injury=4, Other injury=2, Non-injury=1); (4) Export a cleaned CSV and a summary report showing crash counts by Local Government Area and severity score. Ensure your script is reproducible and includes comments._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-04-30.py`
-- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Analysis: Trend Detection Pipeline
-  _Build an end-to-end data engineering workflow: (1) Download AIHW health expenditure data (annual spending by state and service type); (2) Use Python/pandas to load, clean, and reshape the data into a tall format (state, year, service_type, expenditure); (3) Load the cleaned data into a SQL database (SQLite is fine); (4) Write a SQL query with CTEs to: calculate year-on-year expenditure change by state and service type, rank states by growth rate, identify the top 3 fastest-growing service categories nationally. (5) Export results showing state, service_type, expenditure_2024, expenditure_2023, growth_percentage, and growth_rank. Document your data pipeline steps in comments._
-  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
-  📁 Submit as: `quest3_2026-04-30.py`
+  📁 Submit as: `quest2_2026-05-01.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Anomalies Pipeline: Python ETL + SQL Analytics
+  _Build an end-to-end pipeline using Australian Bureau of Meteorology weather observations: (1) Python: Load the weather CSV, clean temperature and rainfall columns (remove outliers beyond 3 standard deviations, handle missing values with linear interpolation), group by station and month, calculate monthly averages, and export to a clean CSV. (2) SQL: Load the cleaned data into a database table. Write a CTE-based query that identifies months where temperature was in the top 10% warmest and rainfall was in the bottom 10% driest (i.e., drought-like conditions) for each station. Return station_name, month, avg_temp, avg_rainfall, and a flag 'anomaly_detected'. (3) Python: Read the SQL results and generate a simple text report listing all anomalies by state. This quest integrates file I/O, data cleaning, window functions, and reporting._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest3_2026-05-01.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
