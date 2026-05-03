@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-02 11:28 AEDT |
+| 📅 Last Sync | 2026-05-03 11:44 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum with Window Functions
-  _Using ASX 200 historical prices dataset, calculate the 20-day moving average and identify stocks that have gained >5% in the last 10 trading days. Use window functions (ROW_NUMBER, LAG) to rank stocks by momentum within each sector. Return the top 10 stocks by percentage gain, including: stock symbol, current price, 20-day moving average, percentage gain over 10 days, and sector rank. Use a CTE to calculate the 10-day change first, then join to sector data._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-02.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download NSW Road Crash Data (contains crash records with location, severity, vehicle type, injuries). Clean the dataset by: (1) handling missing values in injury counts and crash type columns, (2) standardising location names (remove extra whitespace, lowercase), (3) converting date columns to datetime format, (4) filtering out records with severity='Unknown'. Then aggregate crashes by local government area (LGA) and crash type, counting incidents and total injuries. Export a cleaned CSV with LGA, crash type, incident count, and total injuries. Bonus: Create a second CSV ranking LGAs by total injuries._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Detection with Window Functions
+  _Using ASX 200 historical price data, write a SQL query with window functions to identify momentum shifts. Calculate a 5-day moving average of closing prices using AVG() OVER (ORDER BY date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW). Then use LAG() to compare each day's price to the previous day, and identify days where the price crossed above the 5-day MA (bullish signal). Return: date, closing_price, moving_avg_5day, price_change, and a signal column ('BULLISH_CROSS', 'BEARISH_CROSS', or 'NEUTRAL'). Filter for the last 90 days of data. Sort by date descending._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-05-03.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Risk Scoring
+  _Download NSW Road Crash Data (from data.nsw.gov.au). Load the CSV into pandas. Clean the dataset: (1) Remove rows with missing values in critical columns (crash_date, severity, location). (2) Convert crash_date to datetime format. (3) Standardise the 'severity' column (map variations like 'Fatal', 'fatal', 'FATAL' to consistent casing). (4) Extract suburb from location string if it contains commas. (5) Create a new 'risk_score' column: assign scores 1-5 based on severity (1=other, 5=fatal), then multiply by the count of vehicles involved. (6) Export the cleaned dataset to a new CSV file with '_cleaned' suffix. Print summary statistics: total rows processed, rows removed, unique suburbs, top 5 suburbs by average risk_score._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-02.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Patterns & Anomaly Detection
-  _Task: (1) In Python, load Australian Weather observations dataset (Bureau of Meteorology). Clean temperature and rainfall columns (handle -999 missing values, outliers). Calculate monthly averages for temperature and rainfall by station. Export cleaned monthly aggregates to CSV. (2) In SQL, import the cleaned data and identify temperature anomalies: for each station, find months where temperature deviated >2 standard deviations from the station's historical mean. Return station name, month, recorded temperature, station mean, deviation in std devs, and anomaly flag. Use a window function (AVG, STDDEV_POP) over station partitions. (3) Combine results: create a Python script that reads the SQL output and generates a summary report showing which stations had the most anomalies in the past 5 years._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (Kaggle by jsphyg)`
-  📁 Submit as: `quest3_2026-05-02.py`
+  📁 Submit as: `quest2_2026-05-03.py`
+- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Trend Analysis Pipeline
+  _Build an end-to-end pipeline: (1) Download AIHW health expenditure data (CSV format, by health service or state). (2) Use Python/pandas to load, clean, and aggregate total expenditure by state and year. (3) Calculate year-over-year percentage change and identify states with fastest growth. (4) Export the cleaned aggregated data to a SQL-ready CSV (with columns: state, year, total_expenditure, yoy_change_percent). (5) Create a SQL query using CTEs: first CTE ranks states by average 5-year expenditure growth (newest 5 years available), second CTE calculates cumulative expenditure per state since 2015. Final SELECT should return: state, rank_by_growth, cumulative_expenditure_since_2015, latest_year_total. (6) Document your Python script with comments explaining each transformation step._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest3_2026-05-03.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
