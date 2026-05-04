@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-05-03 11:44 AEDT",
+  "last_sync": "2026-05-04 11:45 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Momentum Detection with Window Functions",
-      "description": "Using ASX 200 historical price data, write a SQL query with window functions to identify momentum shifts. Calculate a 5-day moving average of closing prices using AVG() OVER (ORDER BY date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW). Then use LAG() to compare each day's price to the previous day, and identify days where the price crossed above the 5-day MA (bullish signal). Return: date, closing_price, moving_avg_5day, price_change, and a signal column ('BULLISH_CROSS', 'BEARISH_CROSS', or 'NEUTRAL'). Filter for the last 90 days of data. Sort by date descending.",
+      "title": "ASX 200 Price Momentum with Window Functions",
+      "description": "Using ASX 200 historical stock price data, calculate a 30-day rolling average price and identify momentum shifts. Write a query using window functions (ROW_NUMBER, LAG) to: (1) rank stocks by daily price change within each ticker, (2) calculate the price difference from the previous day using LAG, (3) identify the date when each stock crossed above its 30-day moving average. Return ticker, date, closing_price, price_change_from_previous_day, and momentum_signal (1 if above 30-day MA, 0 otherwise). Use a CTE to pre-calculate the 30-day moving average.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Risk Scoring",
-      "description": "Download NSW Road Crash Data (from data.nsw.gov.au). Load the CSV into pandas. Clean the dataset: (1) Remove rows with missing values in critical columns (crash_date, severity, location). (2) Convert crash_date to datetime format. (3) Standardise the 'severity' column (map variations like 'Fatal', 'fatal', 'FATAL' to consistent casing). (4) Extract suburb from location string if it contains commas. (5) Create a new 'risk_score' column: assign scores 1-5 based on severity (1=other, 5=fatal), then multiply by the count of vehicles involved. (6) Export the cleaned dataset to a new CSV file with '_cleaned' suffix. Print summary statistics: total rows processed, rows removed, unique suburbs, top 5 suburbs by average risk_score.",
+      "title": "NSW Road Crash Data Cleaning and Risk Scoring",
+      "description": "Download NSW Road Crash Data and clean it for analysis. Tasks: (1) Load the CSV and handle missing values in crash_severity, vehicle_type, and weather_condition columns (document your strategy), (2) standardise date formats and extract crash_hour from timestamp, (3) create a risk_score column (0-100) based on severity level, number of vehicles involved, and whether pedestrians were present, (4) remove duplicate records based on crash_id and timestamp, (5) export the cleaned dataset as a new CSV. Document any data quality issues found (e.g., impossible times, negative vehicle counts).",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "AIHW Health Expenditure Trend Analysis Pipeline",
-      "description": "Build an end-to-end pipeline: (1) Download AIHW health expenditure data (CSV format, by health service or state). (2) Use Python/pandas to load, clean, and aggregate total expenditure by state and year. (3) Calculate year-over-year percentage change and identify states with fastest growth. (4) Export the cleaned aggregated data to a SQL-ready CSV (with columns: state, year, total_expenditure, yoy_change_percent). (5) Create a SQL query using CTEs: first CTE ranks states by average 5-year expenditure growth (newest 5 years available), second CTE calculates cumulative expenditure per state since 2015. Final SELECT should return: state, rank_by_growth, cumulative_expenditure_since_2015, latest_year_total. (6) Document your Python script with comments explaining each transformation step.",
-      "dataset": "AIHW Health Expenditure Data \u2014 aihw.gov.au",
+      "title": "Melbourne Pedestrian Traffic Analysis Pipeline",
+      "description": "Build an end-to-end pipeline: (1) Use Python to fetch or load Melbourne pedestrian count data, clean hourly counts (handle nulls, outliers, duplicates), and aggregate to daily totals by sensor location, (2) Load cleaned data into a SQLite database with tables for sensors and daily_counts, (3) Write SQL queries to find: top 5 busiest sensors by average daily count, day-of-week patterns (which days have highest traffic), and sensors with unusual spikes (counts > 2 standard deviations from their mean), (4) Export the top 10 anomalous days as a CSV. Provide both Python script and SQL queries.",
+      "dataset": "Melbourne Pedestrian Counting System \u2014 Melbourne Open Data Portal",
       "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-05-03"
+  "last_quest_date": "2026-05-04"
 }
