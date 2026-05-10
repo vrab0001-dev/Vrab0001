@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-09 11:46 AEDT |
+| 📅 Last Sync | 2026-05-10 11:47 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Average Momentum
-  _Using ASX 200 historical prices dataset, calculate a 20-day rolling average for the top 5 companies by trading volume. Use window functions (AVG() OVER with ROWS BETWEEN) to compute the rolling average, then identify days where the closing price exceeded the rolling average by more than 2%. Return company name, date, closing price, rolling average, and percentage difference, ordered by company and date. This tests your mastery of window functions with frame specifications and analytical queries._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-09.sql`
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
+  _Using ASX 200 historical price data, write a SQL query with window functions to calculate 30-day moving average and identify stocks where the closing price has risen for 5+ consecutive trading days. Use ROW_NUMBER() and LAG() to detect consecutive gains. Return stock ticker, date, closing price, 30-day MA, and consecutive gain streak count. Filter for streaks of 5+ days only._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-05-10.sql`
 - [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data (contains crash records with missing values, inconsistent date formats, and categorical encoding issues). Build a Python script using pandas to: (1) parse datetime columns correctly, (2) handle missing values in injury_severity and crash_type columns using appropriate strategies, (3) standardize location data (remove leading/trailing spaces, convert to title case), (4) create a new feature crash_hour_category binning time_of_crash into 'peak' (7-9am, 4-6pm) vs 'off-peak', (5) export cleaned data to CSV. Document your decisions for handling missing values._
+  _Download NSW Road Crash Data. Write a Python script using pandas to: (1) handle missing values in crash severity and location columns (impute or drop as appropriate); (2) standardise datetime formats; (3) extract hour of day and day of week from crash timestamp; (4) create a severity category column (map numeric codes to 'Fatal', 'Serious Injury', 'Other Injury', 'Non-Injury'); (5) remove duplicate records based on crash ID and timestamp; (6) export cleaned dataset to CSV. Document all transformations applied._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-09.py`
-- [ ] ⚡ **Combined Quest:** Great Barrier Reef Health Monitoring Pipeline
-  _Integrate Python and SQL to analyze Great Barrier Reef monitoring data. Step 1 (Python): Download AIMS coral health monitoring dataset; clean it by removing incomplete records, standardizing site names, and converting water temperature to Celsius if needed. Save to a local SQLite database using pandas.to_sql(). Step 2 (SQL): Query the database to find the top 3 reef sites with the highest average coral bleaching percentage over the last 5 years; use a CTE to calculate yearly averages, then rank sites by the most recent year's severity. Return site_name, year, bleaching_percentage, and a rank. Step 3: Write a short summary showing which reefs are degrading fastest._
-  📦 Dataset: `AIMS Great Barrier Reef Monitoring Data — aims.gov.au`
-  📁 Submit as: `quest3_2026-05-09.py`
+  📁 Submit as: `quest2_2026-05-10.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
+  _Using Bureau of Meteorology temperature and rainfall observations dataset: (1) Load CSV data with pandas, clean missing values and outliers using IQR method; (2) Calculate monthly mean temperature and total rainfall by station; (3) Load cleaned data into SQLite database with station metadata; (4) Write SQL query using CTEs to identify stations where current month's temperature is >2 standard deviations above the 10-year historical average; (5) Return station name, location (state), current month temp, historical mean, and anomaly magnitude. Document the entire workflow from raw CSV to final anomaly report._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (Kaggle jsphyg collection)`
+  📁 Submit as: `quest3_2026-05-10.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
