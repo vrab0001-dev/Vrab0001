@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-12 11:51 AEDT |
+| 📅 Last Sync | 2026-05-13 11:56 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Performance Rankings with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query that calculates for each trading day in 2025: (1) the daily percentage change for each stock, (2) the rank of each stock by performance that day using RANK(), (3) a 5-day rolling average of the closing price using a window frame, and (4) the cumulative return since the start of the year using SUM() OVER. Filter to show only the top 10 performing stocks on the last trading day of the dataset. Your output should include: stock_code, trading_date, daily_pct_change, rank_that_day, rolling_5day_avg, cumulative_return_ytd._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-12.sql`
+- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Momentum Rankings
+  _Using ASX 200 historical price data, write a query with window functions to: (1) Calculate the 5-day price change percentage for each stock using LAG(), (2) Rank stocks daily by momentum using RANK() OVER (PARTITION BY date ORDER BY price_change DESC), (3) Use a CTE to identify the top 10 and bottom 10 momentum stocks for the most recent trading date. Return: stock_code, date, close_price, 5day_change_pct, momentum_rank. Sort by momentum_rank ascending._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-05-13.sql`
 - [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download the NSW Road Crash Data dataset. Write a Python script using pandas that: (1) loads the CSV file, (2) handles missing values in the 'Crash Severity' and 'Crash Type' columns by filling with 'Unknown', (3) removes duplicate crash records based on Crash ID, (4) converts date columns to datetime format, (5) extracts the year and month from the crash date, (6) creates a new column 'is_fatal' (1 if severity is 'Fatal', 0 otherwise), and (7) exports a cleaned CSV with summary statistics showing crash counts by severity and month for 2024. Print the first 5 rows and data types to verify correctness._
+  _Download NSW Road Crash Data (contains multiple CSV files with crash details, vehicles, persons involved). Write a Python/pandas script to: (1) Load and inspect all CSV files, (2) Clean: handle missing values in severity/crash_type columns (document your strategy), standardise date formats, remove duplicates on crash_id, (3) Merge crash and persons tables on crash_id, (4) Create a summary CSV with crashes grouped by local_govt_area, severity, and year. Output: LGA, severity, year, crash_count, injury_count. Save as 'nsw_crashes_summary.csv'._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-12.py`
-- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Counting: Python ETL + SQL Analysis
-  _Using the Melbourne pedestrian counting dataset (from Melbourne Open Data Portal): (1) Write a Python script to download/load the dataset and clean it: remove rows with null counts, convert timestamp to datetime, extract hour and day_of_week, and export to a CSV named 'pedestrian_clean.csv'. (2) Create a SQL query that loads this cleaned CSV into a temporary table, then calculates: the average pedestrian count by hour of day and sensor location, identifies the peak hour for each sensor, and uses a CTE to rank sensors by total daily foot traffic. (3) Output the top 5 busiest sensors, their peak hour, and average counts. Ensure your Python script documents each step and your SQL uses at least one CTE and one window function._
-  📦 Dataset: `Melbourne pedestrian counting — Melbourne Open Data Portal`
-  📁 Submit as: `quest3_2026-05-12.py`
+  📁 Submit as: `quest2_2026-05-13.py`
+- [ ] ⚡ **Combined Quest:** Australian Wildfire Risk Score Pipeline
+  _Build a data pipeline combining wildfire incident data with Bureau of Meteorology observations: (1) In Python: load Australian Wildfire dataset (Kaggle) and weather observations CSV. Clean wildfire data (standardise state names, handle missing coordinates). Merge on date and location (nearest station within 50km). (2) In SQL: create a temp table from the merged CSV, calculate a risk_score = (fire_frequency_last_30days * 10) + (max_temp_anomaly) + (days_since_rain), rank locations by risk_score using ROW_NUMBER() for each state. (3) Export top 20 highest-risk locations with state, location, risk_score, last_fire_date, current_temp_anomaly to 'wildfire_risk_report.csv'._
+  📦 Dataset: `Australian Wildfire Dataset — Kaggle; Bureau of Meteorology observations — Bureau of Meteorology`
+  📁 Submit as: `quest3_2026-05-13.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
