@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-15 11:57 AEDT |
+| 📅 Last Sync | 2026-05-16 11:50 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Tracker
-  _Using ASX 200 historical price data, write a SQL query with window functions to calculate for each stock: (1) the 30-day rolling average closing price, (2) the rank of each stock by trading volume within each date, and (3) the day-over-day price change using LAG(). Filter for the top 10 most volatile stocks (highest standard deviation of daily returns) in the last 90 days. Return columns: stock_code, date, close_price, rolling_30d_avg, volume_rank, price_change, volatility_rank. Use CTEs to break down the calculation into logical steps._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-15.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data (2020–2026) and build a pandas data cleaning script that: (1) handles missing values in crash_location, severity, and vehicle_type columns by imputation or removal with justification, (2) standardises date formats and converts to datetime, (3) removes duplicate crash records based on crash_id and timestamp, (4) validates that latitude/longitude fall within NSW bounds (approximately -28° to -34° lat, 141° to 154° long), (5) creates a new column 'hour_of_day' from the crash timestamp, and (6) exports a cleaned CSV. Log all data quality issues (missing counts, duplicates removed, invalid coordinates) to a summary report._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Rankings
+  _Using ASX 200 historical price data, write a query that calculates the 30-day rolling average price for each stock, then ranks stocks by their current price relative to their rolling average (price / rolling_avg). Include a window function to show the rank change from the previous day for each stock. Return: stock_code, date, close_price, rolling_avg_30d, price_to_avg_ratio, current_rank, rank_change. Filter for the top 10 best and bottom 10 worst performers in the last 7 days._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-05-16.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Enrichment
+  _Download NSW Road Crash Data (contains crashes, vehicles, persons involved). Clean the dataset by: (1) removing rows with >40% missing values per row, (2) standardising date/time formats, (3) handling missing values in numeric columns (speed_zone, posted_speed_limit) using median by crash_type, (4) categorising crash severity into 'Fatal', 'Serious', 'Non-serious' based on injury_type, (5) creating a new feature 'time_of_day' (Morning 06-12, Afternoon 12-18, Evening 18-00, Night 00-06). Output a clean CSV with these transformations applied. Include a summary report showing % of rows removed, missing value patterns before/after, and top 5 crash locations._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-15.py`
+  📁 Submit as: `quest2_2026-05-16.py`
 - [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Build an end-to-end pipeline: (1) Use Python/pandas to load Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) for a single Australian city over 5+ years, clean the data (handle missing values, convert units if needed), and calculate monthly aggregates (mean temp, total rainfall, mean humidity). (2) Load the aggregated data into SQLite. (3) Write SQL queries to identify anomalies: using window functions, calculate the 5-year monthly average and standard deviation for each month (e.g. all Januaries), then flag months where the current value exceeds mean + 2 standard deviations. (4) Export results showing month, actual value, expected range, and anomaly flag. Produce a final summary: How many anomalies detected? Which months/metrics show the most deviation?_
+  _Using Bureau of Meteorology Australian Weather Observations dataset: (1) Write a Python script to load, clean, and transform daily temperature & rainfall observations (handle missing values, standardise units). (2) Create a SQL query that calculates monthly mean temperature and total rainfall by station. (3) Use a window function (LAG) in SQL to find temperature/rainfall anomalies (days exceeding 2 standard deviations from 30-day rolling mean). (4) Python: merge the SQL results back, flag anomalies, and export a report showing top 10 most extreme weather events in the past year by station and state. Include visualisation: bar chart of anomaly counts by state, line chart of temperature trends for 3 major cities._
   📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-05-15.py`
+  📁 Submit as: `quest3_2026-05-16.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
