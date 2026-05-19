@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-18 12:03 AEDT |
+| 📅 Last Sync | 2026-05-19 12:03 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
-  _Using ASX 200 historical price data, calculate the 10-day moving average and identify momentum shifts. Write a query using window functions (ROW_NUMBER, LAG, AVG OVER) to: 1) Compute the 10-day moving average closing price for each stock, 2) Calculate the day-over-day price change percentage using LAG, 3) Rank stocks by momentum (price change) within each trading day, 4) Filter for only days where momentum shifted from positive to negative or vice versa. Return stock symbol, date, closing price, 10-day MA, price change %, and momentum rank. Use a CTE to structure the calculation stages._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Moving Averages
+  _Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate a 20-day moving average of closing prices for each stock symbol, (2) Rank stocks by their price momentum (current price vs. 20-day MA) within each trading week, (3) Use LAG to find the day-over-day percentage change, (4) Filter only stocks where the current price is >5% above their 20-day MA. Return stock symbol, trading date, close price, 20-day MA, momentum rank, and daily % change. Order by trading date DESC and momentum rank ASC._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-18.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download NSW Road Crash Data and perform comprehensive data cleaning: 1) Identify and handle missing values (document your strategy for each column), 2) Standardise date/time formats and extract hour-of-day and day-of-week features, 3) Parse location data and create a severity classification column (Critical/Serious/Minor based on injury counts), 4) Remove duplicate records based on crash ID and timestamp, 5) Export cleaned dataset as CSV with a data quality report showing record counts before/after cleaning and missing value percentages. Write your script in pandas with clear comments explaining each transformation step._
+  📁 Submit as: `quest1_2026-05-19.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Severity Classification
+  _Download NSW Road Crash Data (accident-level records). Create a Python/pandas script to: (1) Load the CSV and inspect for missing values, duplicates, and data type mismatches, (2) Clean the 'crash_date' column and extract year, month, day_of_week, (3) Handle missing injury severity codes by imputing with the mode for that crash type, (4) Create a new 'severity_category' column mapping injury counts to labels (Fatal, Serious, Other), (5) Remove rows with incomplete location data (null latitude/longitude), (6) Export cleaned data to a new CSV with columns: crash_id, crash_date, year, month, day_of_week, severity_category, location_suburb, latitude, longitude. Print summary statistics: total crashes, crashes by severity, missing data counts before/after cleaning._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-18.py`
-- [ ] ⚡ **Combined Quest:** AFL Match Performance Pipeline: Python ETL to SQL Analytics
-  _Build a mini data pipeline: 1) Use Python/pandas to scrape or load AFL match results dataset (2023-2024 season), clean team names, standardise date formats, and calculate derived metrics (points differential, win/loss streak, home vs away performance), 2) Export to CSV, then load into a SQL database (SQLite or PostgreSQL), 3) Write a SQL query using window functions to rank teams by current win streak and calculate their season statistics (wins, losses, points for/against, win percentage), 4) Identify the top 3 teams with the highest momentum (best recent form using LAG/LEAD over last 5 matches). Output a final summary table showing team rank, name, win streak, season win%, and momentum score._
-  📦 Dataset: `AFL Match Results — Kaggle (afltables.com historical data)`
-  📁 Submit as: `quest3_2026-05-18.py`
+  📁 Submit as: `quest2_2026-05-19.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Anomalies Pipeline: Extract, Transform, Load
+  _Build an end-to-end data engineering pipeline using Python and SQL: (1) In Python, download Australian Weather Observations data (Bureau of Meteorology / Kaggle jsphyg dataset) and clean it: standardize temperature/rainfall columns, handle missing values via forward-fill, remove duplicate timestamps per station, (2) Calculate rolling 30-day mean temperature and total rainfall per weather station using pandas, (3) Identify temperature anomalies as values >2 standard deviations from the 30-day mean, (4) Export cleaned data and anomalies to CSV, then load both into SQLite (or your chosen database), (5) Write a SQL query to find the top 10 weather stations with highest anomaly frequency in the past 6 months, including station name, state, anomaly count, and average anomaly magnitude. Return results sorted by anomaly count DESC._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest3_2026-05-19.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
