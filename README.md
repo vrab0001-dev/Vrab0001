@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-22 12:03 AEDT |
+| 📅 Last Sync | 2026-05-23 11:53 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** RBA Interest Rate Trend Analysis with Window Functions
-  _Using RBA interest rate decisions dataset, write a SQL query with window functions to: (1) Calculate the monthly average interest rate, (2) Use ROW_NUMBER() to rank each decision chronologically, (3) Use LAG() to find the previous month's rate and calculate the month-on-month change in basis points, (4) Use a CTE to filter only decisions where the rate changed by more than 25 basis points, and (5) Return the decision date, rate, change in basis points, and rank ordered by date. Expected output: 15-30 rows showing significant rate movements since 2020._
-  📦 Dataset: `RBA Interest Rate Decisions — rba.gov.au`
-  📁 Submit as: `quest1_2026-05-22.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
-  _Download the NSW Road Crash Data (CSV format). Write a Python/pandas script to: (1) Load the dataset and identify missing values in crash_severity, day_of_week, and weather columns, (2) Handle missing values using forward-fill for time-series columns and mode-fill for categorical columns, (3) Create new features: hour_of_day from crash_time, is_weekend from day_of_week, and severity_risk_score (ordinal encoding of crash_severity), (4) Remove rows where crash_latitude or crash_longitude are null, (5) Export the cleaned dataset to a new CSV file. Expected output: Cleaned CSV with 10+ additional features and <5% missing data._
+- [ ] 🗄️ **SQL Quest:** NSW Road Crash Severity Trends with Window Functions
+  _Using NSW Road Crash Data, write a query that ranks each crash by severity (injury count) within each Local Government Area (LGA) per month. Use ROW_NUMBER() to identify the top 3 most severe crashes per LGA per month. Then use LAG() to compare each crash's severity to the previous crash in that LGA (ordered by date). Finally, create a CTE that calculates the 3-month rolling average of total injuries per LGA. Output: LGA, Month, Crash_Rank, Severity_vs_Previous_Crash, Rolling_Avg_Injuries. Expected outcome: identify crash hotspots and trends within your state._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-22.py`
-- [ ] ⚡ **Combined Quest:** AFL Match Performance Trends: Python ETL + SQL Analytics
-  _Using AFL match results dataset (Kaggle): (1) Python task: Write a pandas script to load the AFL CSV, clean team names (standardise case, remove trailing spaces), convert dates to datetime, and calculate rolling 5-match average points for each team. Export to a new CSV with columns: match_date, team, opponent, points, points_for, points_against, rolling_avg_points. (2) SQL task: Load the cleaned CSV into a database table. Write a query using CTEs and window functions to: Find the top 3 teams by average points scored in 2024, rank their performances by round using RANK(), calculate their win percentage (matches where points_for > points_against), and return team name, avg_points, win_percentage, and rank. Expected output: Table showing top 3 teams with season performance metrics._
-  📦 Dataset: `AFL Match Results — Kaggle`
-  📁 Submit as: `quest3_2026-05-22.py`
+  📁 Submit as: `quest1_2026-05-23.sql`
+- [ ] 🐍 **Python Quest:** AIHW Health Expenditure Data Cleaning & Aggregation
+  _Download or load the AIHW health expenditure dataset (by state and service type). The data likely contains missing values, inconsistent formatting, and duplicate records. Task: (1) Clean the data by handling nulls, standardising state names to title case, converting expenditure columns to numeric type; (2) Remove duplicate rows; (3) Use pandas to aggregate total expenditure by state and service type; (4) Calculate year-over-year percentage change for each service type; (5) Export the cleaned and aggregated dataset to a new CSV file with clear column names. Expected output: a production-ready CSV with 6-8 columns including State, Service_Type, Total_Expenditure, YoY_Percent_Change._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest2_2026-05-23.py`
+- [ ] ⚡ **Combined Quest:** AFL Match Performance Pipeline: Extract, Clean, Analyse
+  _End-to-end task: (1) Load AFL match results dataset (Kaggle or afltables.com). (2) Use Python/pandas to clean the data: standardise team names, convert scores to numeric, handle any missing date fields, create a new column 'margin' (points difference). (3) Export the cleaned data to a CSV. (4) Load the cleaned CSV into a SQL database or query it directly. (5) Write a SQL query using window functions to: calculate cumulative wins per team across seasons, rank teams by win percentage in each season, and use LAG to identify consecutive losses for each team. (6) Output: Team, Season, Wins, Win_Percentage, Season_Rank, Consecutive_Losses. Expected outcome: a dataset ready for sports analytics dashboards._
+  📦 Dataset: `AFL Match Results — Kaggle or afltables.com`
+  📁 Submit as: `quest3_2026-05-23.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
