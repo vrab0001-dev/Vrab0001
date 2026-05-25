@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-24 12:00 AEDT |
+| 📅 Last Sync | 2026-05-25 12:07 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Performance Rankings with Running Averages
-  _Using ASX 200 historical prices data, write a SQL query with window functions to: (1) Calculate the 20-day moving average for each stock's closing price using a window frame, (2) Rank stocks by their latest closing price within each sector using ROW_NUMBER(), (3) Use LAG() to calculate daily percentage change, (4) Filter for only stocks where the current price exceeds the 20-day moving average. Output should show: stock symbol, sector, latest close, 20-day moving average, daily % change, and rank within sector. Use a CTE to structure the moving average calculation separately._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-24.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
-  _Download NSW Road Crash Data and write a Python script using pandas to: (1) Load the dataset and identify missing values, inconsistent date formats, and invalid location records, (2) Standardise all date columns to datetime format and extract year, month, day-of-week as new columns, (3) Clean location data by removing nulls and duplicates, (4) Create a new feature 'severity_score' (1-5) based on injury count and crash type, (5) Group crashes by local government area (LGA) and month, calculating mean severity and crash frequency, (6) Export cleaned data to a CSV file with summary statistics printed to console. Output should include data quality report._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Returns Ranking with Window Functions
+  _Using ASX 200 historical price data, calculate the daily percentage return for each stock. Then use window functions to rank stocks by return within each date, and add a column showing the 5-day moving average of returns for each stock. Use ROW_NUMBER() OVER (PARTITION BY date ORDER BY return DESC) to rank daily performers, and LAG() to calculate the moving average. Filter for stocks that ranked in the top 10 on any given day in the last 30 days of data. Output should include: stock_code, date, closing_price, daily_return_pct, rank_by_date, five_day_avg_return._
+  📦 Dataset: `ASX 200 Historical Stock Data — Kaggle`
+  📁 Submit as: `quest1_2026-05-25.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download NSW Road Crash Data from data.nsw.gov.au. Load the CSV and perform the following: (1) Handle missing values in injury severity and crash type columns using forward fill within date groups; (2) Create a new feature 'time_of_day' that categorizes crash_time into 'early_morning' (0-6), 'morning_peak' (6-10), 'afternoon' (10-17), 'evening_peak' (17-19), 'night' (19-24); (3) Remove duplicate crash records based on crash_id and date; (4) Create a summary CSV with: count of crashes by time_of_day and suburb, average injured_count by severity level. Use pandas and ensure output is clean, sorted, and saved as 'nsw_crash_summary.csv'._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-24.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: SQL Aggregation + Python Reporting
-  _Build an end-to-end data pipeline using Australian wine production statistics: (1) In SQL, write a query using GROUP BY and HAVING to identify regions where total production across all years exceeds 50,000 tonnes, rank regions by average production volume, and calculate year-over-year growth using window functions (LAG). Export results to CSV. (2) In Python, load the SQL output and create a pandas script that: calculates rolling 3-year average production by region, creates a new column for production volatility (std dev), identifies outlier years using IQR method, and generates a summary report showing top 5 regions by stability and top 5 by growth. (3) Visualise the results by exporting a final summary CSV with region, avg_production, volatility_score, and trend_direction (Up/Down/Stable)._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com`
-  📁 Submit as: `quest3_2026-05-24.py`
+  📁 Submit as: `quest2_2026-05-25.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Trends: Load, Clean, Aggregate & Query
+  _Work with Australian Weather observations dataset. Step 1 (Python): Load the raw CSV, clean temperature and rainfall columns (convert to numeric, handle missing values), filter for the 5 major Australian cities (Sydney, Melbourne, Brisbane, Perth, Adelaide), and resample daily data to monthly averages. Save the cleaned monthly data to a SQLite database in a table named 'monthly_weather'. Step 2 (SQL): Query the SQLite database to find: (1) The month with the highest average temperature in each city (2024 onwards); (2) Cities with a rainfall trend (using LAG and comparing current month to previous month) increasing in the last 6 months; (3) A CTE that calculates the 3-month rolling average of temperature for each city, then identify anomalies (temperatures exceeding 2 standard deviations from the rolling average). Output all three result sets._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (via Kaggle jsphyg)`
+  📁 Submit as: `quest3_2026-05-25.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
