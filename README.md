@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-27 12:07 AEDT |
+| 📅 Last Sync | 2026-05-28 11:50 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query that calculates for each stock: (1) the 30-day moving average of closing price using LAG, (2) the rank of each stock by year-to-date percentage return using RANK() OVER, (3) identify stocks that hit a new 52-week high in the last trading day using ROW_NUMBER and window functions. Return stock ticker, date, closing price, 30-day MA, YTD rank, and a boolean flag indicating new 52-week high. Filter for the top 20 performers only._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 5-day moving average of closing prices for each stock, (2) the day-over-day percentage change ranked by volatility within each stock, and (3) identify stocks where the closing price crossed above their 10-day moving average. Use CTEs to structure the query. Return stock symbol, date, closing price, 5-day MA, percentage change, and a flag indicating crossover events. Order by stock symbol and date._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-27.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Enrichment Pipeline
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas that: (1) loads the raw CSV, (2) identifies and handles missing values (document strategy for each column), (3) standardises date formats and location names, (4) removes duplicate records based on crash ID and timestamp, (5) creates new features: day_of_week, hour_of_day (if time available), severity_category (from injury counts), (6) validates data integrity (no negative values, dates within reasonable range), (7) exports cleaned dataset to a new CSV with a summary report showing rows before/after cleaning and missing value counts._
-  📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-05-27.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection & Trend Analysis
-  _Combine Python and SQL to analyse Bureau of Meteorology weather observations. (1) In Python: load the CSV dataset, clean temperature and rainfall columns (handle missing values, remove outliers beyond 3 standard deviations), create monthly aggregates (mean temp, total rainfall, station ID), and export to a clean CSV. (2) In SQL: load the cleaned data and write a query using CTEs and window functions to: identify months where temperature was in the top 10% warmest for that station historically, calculate 12-month rolling average rainfall, rank stations by temperature volatility (std dev), and flag any month where rainfall exceeded the 90th percentile. Return station_id, month, temp_rank, rolling_avg_rainfall, volatility_rank, and anomaly_flag._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (via Kaggle jsphyg dataset)`
-  📁 Submit as: `quest3_2026-05-27.py`
+  📁 Submit as: `quest1_2026-05-28.sql`
+- [ ] 🐍 **Python Quest:** Australian Weather Data Cleaning & Missing Value Imputation
+  _Download or load the Australian Weather observations dataset (Bureau of Meteorology). Write a Python/pandas script to: (1) identify missing values across temperature, rainfall, and wind speed columns, (2) remove rows where more than 30% of features are missing, (3) impute remaining missing values using forward-fill for time-series columns and median for cross-sectional columns, (4) detect and handle outliers in temperature (flag values >50°C or <-20°C), (5) validate data types and convert date columns to datetime. Output a cleaned CSV file with a data quality report showing before/after record counts and missing value percentages._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest2_2026-05-28.py`
+- [ ] ⚡ **Combined Quest:** NSW Crime Trends Pipeline: ETL & Analytical Query
+  _Build a mini data pipeline combining Python and SQL: (1) In Python, use pandas to load NSW Bureau of Crime Statistics data, clean offence descriptions (standardise case, remove duplicates), aggregate crimes by suburb and offence type for the last 12 months, and export to a CSV. (2) Create a SQL query that loads this CSV into a temporary table, then calculates: month-over-month crime rate change per suburb using LAG(), ranks suburbs by total crime volume, and identifies top 5 emerging crime types (highest growth rate). Use a CTE to compute growth rates. Output a final result set showing suburb name, offence type, total crimes, growth rate %, and rank. Expected runtime: 45 minutes._
+  📦 Dataset: `NSW Bureau of Crime Statistics — bocsar.nsw.gov.au`
+  📁 Submit as: `quest3_2026-05-28.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
