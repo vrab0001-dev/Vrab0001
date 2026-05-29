@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-05-28 11:50 AEDT |
+| 📅 Last Sync | 2026-05-29 12:00 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 5-day moving average of closing prices for each stock, (2) the day-over-day percentage change ranked by volatility within each stock, and (3) identify stocks where the closing price crossed above their 10-day moving average. Use CTEs to structure the query. Return stock symbol, date, closing price, 5-day MA, percentage change, and a flag indicating crossover events. Order by stock symbol and date._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-05-28.sql`
-- [ ] 🐍 **Python Quest:** Australian Weather Data Cleaning & Missing Value Imputation
-  _Download or load the Australian Weather observations dataset (Bureau of Meteorology). Write a Python/pandas script to: (1) identify missing values across temperature, rainfall, and wind speed columns, (2) remove rows where more than 30% of features are missing, (3) impute remaining missing values using forward-fill for time-series columns and median for cross-sectional columns, (4) detect and handle outliers in temperature (flag values >50°C or <-20°C), (5) validate data types and convert date columns to datetime. Output a cleaned CSV file with a data quality report showing before/after record counts and missing value percentages._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest2_2026-05-28.py`
-- [ ] ⚡ **Combined Quest:** NSW Crime Trends Pipeline: ETL & Analytical Query
-  _Build a mini data pipeline combining Python and SQL: (1) In Python, use pandas to load NSW Bureau of Crime Statistics data, clean offence descriptions (standardise case, remove duplicates), aggregate crimes by suburb and offence type for the last 12 months, and export to a CSV. (2) Create a SQL query that loads this CSV into a temporary table, then calculates: month-over-month crime rate change per suburb using LAG(), ranks suburbs by total crime volume, and identifies top 5 emerging crime types (highest growth rate). Use a CTE to compute growth rates. Output a final result set showing suburb name, offence type, total crimes, growth rate %, and rank. Expected runtime: 45 minutes._
-  📦 Dataset: `NSW Bureau of Crime Statistics — bocsar.nsw.gov.au`
-  📁 Submit as: `quest3_2026-05-28.py`
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using ASX 200 historical prices dataset, calculate a 7-day moving average of closing prices and identify the top 5 stocks by momentum (price change percentage over last 30 days). Use window functions ROW_NUMBER() and LAG() to rank stocks by momentum within each date partition. Return stock symbol, date, closing price, 7-day moving average, and 30-day momentum rank. Filter for the last trading date in your dataset only._
+  📦 Dataset: `ASX 200 historical prices — Kaggle`
+  📁 Submit as: `quest1_2026-05-29.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation Pipeline
+  _Load NSW Road Crash Data and perform the following: (1) Clean missing values in crash severity, location coordinates, and vehicle count columns using appropriate strategies (drop or impute). (2) Standardise location names to title case and remove duplicates. (3) Create a new feature: time_of_day (Morning 6-12, Afternoon 12-18, Evening 18-24, Night 0-6) from the crash time field. (4) Export cleaned data to a new CSV file with only crashes from the last 2 years. Log the data quality metrics (% missing before/after, row count reduction) to console._
+  📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
+  📁 Submit as: `quest2_2026-05-29.py`
+- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Insights: Python ETL + SQL Analytics
+  _Part 1 (Python): Download Melbourne pedestrian counting data. Clean the dataset by removing null sensor readings, standardising sensor location names, and converting timestamps to datetime format. Aggregate hourly foot traffic by sensor location and hour of day. Save to a local SQLite database in a table named 'pedestrian_traffic'. Part 2 (SQL): Query the SQLite database to find: (a) Top 3 sensors by average daily foot traffic, (b) Hour of day with highest traffic across all sensors (using GROUP BY and window functions), (c) Calculate percentage change in traffic for each sensor comparing peak hour to off-peak hour (0-6 AM). Return results as three separate result sets with clear labels._
+  📦 Dataset: `Melbourne Pedestrian Counting System — Melbourne Open Data Portal`
+  📁 Submit as: `quest3_2026-05-29.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
