@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-05-29 12:00 AEDT",
+  "last_sync": "2026-05-30 11:54 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis with Window Functions",
-      "description": "Using ASX 200 historical prices dataset, calculate a 7-day moving average of closing prices and identify the top 5 stocks by momentum (price change percentage over last 30 days). Use window functions ROW_NUMBER() and LAG() to rank stocks by momentum within each date partition. Return stock symbol, date, closing price, 7-day moving average, and 30-day momentum rank. Filter for the last trading date in your dataset only.",
-      "dataset": "ASX 200 historical prices \u2014 Kaggle",
+      "title": "ASX 200 Stock Performance Rankings with Moving Averages",
+      "description": "Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate a 30-day moving average of closing prices for each stock symbol, (2) Rank stocks by their current price relative to their 30-day moving average (highest performer first), (3) Use ROW_NUMBER to identify the top 5 performers and bottom 5 performers on 2026-05-30, (4) Include columns: symbol, current_close, moving_avg_30d, performance_rank, rank_category. Your output should show which stocks are trading furthest above/below their moving average.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Aggregation Pipeline",
-      "description": "Load NSW Road Crash Data and perform the following: (1) Clean missing values in crash severity, location coordinates, and vehicle count columns using appropriate strategies (drop or impute). (2) Standardise location names to title case and remove duplicates. (3) Create a new feature: time_of_day (Morning 6-12, Afternoon 12-18, Evening 18-24, Night 0-6) from the crash time field. (4) Export cleaned data to a new CSV file with only crashes from the last 2 years. Log the data quality metrics (% missing before/after, row count reduction) to console.",
+      "title": "NSW Road Crash Data Cleaning and Geo-Aggregation",
+      "description": "Download NSW Road Crash Data from data.nsw.gov.au. Write a Python pandas script to: (1) Load the CSV and inspect for missing values, duplicates, and data type inconsistencies, (2) Clean crash severity codes and location data (handle null/invalid entries), (3) Extract year and month from crash date column, (4) Aggregate total crashes by Local Government Area (LGA) and severity level, (5) Export a clean CSV with columns: lga, year, month, severity, crash_count, sorted by crash_count descending. Document any data quality issues found.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Melbourne Pedestrian Traffic Insights: Python ETL + SQL Analytics",
-      "description": "Part 1 (Python): Download Melbourne pedestrian counting data. Clean the dataset by removing null sensor readings, standardising sensor location names, and converting timestamps to datetime format. Aggregate hourly foot traffic by sensor location and hour of day. Save to a local SQLite database in a table named 'pedestrian_traffic'. Part 2 (SQL): Query the SQLite database to find: (a) Top 3 sensors by average daily foot traffic, (b) Hour of day with highest traffic across all sensors (using GROUP BY and window functions), (c) Calculate percentage change in traffic for each sensor comparing peak hour to off-peak hour (0-6 AM). Return results as three separate result sets with clear labels.",
-      "dataset": "Melbourne Pedestrian Counting System \u2014 Melbourne Open Data Portal",
+      "title": "Australian Weather Anomaly Detection Pipeline",
+      "description": "Build a Python + SQL pipeline using Bureau of Meteorology weather observations (Kaggle jsphyg dataset or similar): (1) In Python: Load daily temperature and rainfall CSV files, clean missing values, calculate monthly min/max/average temperatures and total rainfall by station, export to intermediate CSV, (2) In SQL: Create a temp table from the cleaned data, use window functions (LAG, LEAD) to calculate month-on-month temperature and rainfall changes, identify stations with anomalies (>2 standard deviations from 5-year average), (3) Generate a final report showing: station_id, month, temperature_anomaly_flag, rainfall_anomaly_flag, anomaly_magnitude. Focus on Australian stations only.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg dataset)",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-05-29"
+  "last_quest_date": "2026-05-30"
 }
