@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-02 12:29 AEDT |
+| 📅 Last Sync | 2026-06-03 12:35 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Ranking with Window Functions
-  _Using the ASX 200 historical prices dataset, calculate a 20-day rolling average price for each stock symbol. Then rank stocks within each trading week by their price momentum (current price minus 20-day rolling average), using ROW_NUMBER() to identify the top 3 momentum gainers each week. Include columns: symbol, trading_date, close_price, rolling_avg_20d, momentum, weekly_rank. Filter for the last 12 weeks of data and order by trading_date descending, then weekly_rank ascending._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Moving Average Ranking
+  _Using ASX 200 historical stock prices, calculate the 20-day and 50-day moving averages for each stock ticker. Use a CTE to define the moving averages, then use window functions (ROW_NUMBER and RANK) to rank stocks by their current price relative to both moving averages within each date. Return the top 10 stocks closest to their 50-day MA on the most recent date in the dataset, ordered by rank._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-06-02.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation
-  _Download the NSW Road Crash Data (from data.nsw.gov.au). The dataset contains multiple crash records with missing values, inconsistent date formats, and categorical variables. Write a pandas script to: (1) clean date columns and convert to datetime; (2) handle missing values in 'crash_severity' and 'crash_type' by filling with 'Unknown'; (3) standardise location names to title case; (4) create a summary CSV showing total crashes, injuries, and fatalities by Local Government Area (LGA) for the last 2 years of available data; (5) export the cleaned summary to 'nsw_crashes_summary.csv'. Include error handling for file I/O._
+  📁 Submit as: `quest1_2026-06-03.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download NSW Road Crash Data and build a pandas cleaning script that: (1) handles missing values in crash location and time columns; (2) standardises injury severity categories (case inconsistencies); (3) converts date/time columns to datetime format; (4) removes duplicate rows based on crash ID; (5) creates a new column for crash hour extracted from time; (6) exports the cleaned dataset to CSV. Document any data quality issues found in a summary report._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-02.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Patterns: ETL and Analytical Query
-  _Part A (Python): Download Australian Bureau of Meteorology weather observations (available on Kaggle via jsphyg). Write a pandas script to: extract data for 3 major Australian cities (Sydney, Melbourne, Brisbane), clean temperature and rainfall columns (handle missing values), and load the cleaned data into a SQLite database with a table named 'weather_observations' (columns: city, observation_date, max_temp_c, min_temp_c, rainfall_mm). Part B (SQL): Write a CTE-based query to find for each city: the average max temperature per month, the month with highest rainfall, and a running 7-day average of rainfall. Use window functions (AVG() OVER) to calculate the running average. Output: city, month, avg_max_temp, rainfall_total, rainfall_7day_avg, ranking of wettest months by city using RANK()._
-  📦 Dataset: `Australian Weather Observations — Kaggle (jsphyg) and Bureau of Meteorology`
-  📁 Submit as: `quest3_2026-06-02.py`
+  📁 Submit as: `quest2_2026-06-03.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Hotspot Analysis
+  _Combine Python and SQL to analyse Australian Bureau of Meteorology weather observations: (1) Use Python/pandas to load weather data (temperature, rainfall, location) and clean it (standardise location names, handle missing rainfall values, filter to last 12 months); (2) Save cleaned data to a local SQLite database; (3) Write SQL queries to identify the top 5 hottest locations by average maximum temperature, then use window functions (LAG/LEAD) to detect consecutive days of temperature spikes (>2°C increase day-on-day); (4) Create a summary report showing which regions experienced the most rapid temperature increases._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
+  📁 Submit as: `quest3_2026-06-03.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
