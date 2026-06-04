@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-03 12:35 AEDT |
+| 📅 Last Sync | 2026-06-04 12:31 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Moving Average Ranking
-  _Using ASX 200 historical stock prices, calculate the 20-day and 50-day moving averages for each stock ticker. Use a CTE to define the moving averages, then use window functions (ROW_NUMBER and RANK) to rank stocks by their current price relative to both moving averages within each date. Return the top 10 stocks closest to their 50-day MA on the most recent date in the dataset, ordered by rank._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-06-03.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data and build a pandas cleaning script that: (1) handles missing values in crash location and time columns; (2) standardises injury severity categories (case inconsistencies); (3) converts date/time columns to datetime format; (4) removes duplicate rows based on crash ID; (5) creates a new column for crash hour extracted from time; (6) exports the cleaned dataset to CSV. Document any data quality issues found in a summary report._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Analysis
+  _Using ASX 200 historical price data, write a query with window functions to calculate: (1) the 20-day rolling average price for each stock, (2) the rank of each stock by daily percentage change within its sector, (3) LAG and LEAD functions to show previous day's close and next day's open. Filter for the top 10 stocks by market cap and order results by date and stock ticker. Expected output: date, ticker, close_price, rolling_20day_avg, daily_pct_change, rank_in_sector, prev_day_close, next_day_open._
+  📦 Dataset: `ASX 200 historical prices — Kaggle`
+  📁 Submit as: `quest1_2026-06-04.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data. Write a Python/pandas script to: (1) clean missing values in crash_severity, crash_type, and location columns, (2) standardise date format to YYYY-MM-DD, (3) remove duplicate records based on crash_id, (4) parse suburb/postcode into separate columns, (5) flag and handle outliers in fatality counts, (6) generate a summary CSV showing crash count by suburb and severity level. Expected output: cleaned dataset as CSV and a summary report with top 10 crash-prone suburbs._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-03.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Hotspot Analysis
-  _Combine Python and SQL to analyse Australian Bureau of Meteorology weather observations: (1) Use Python/pandas to load weather data (temperature, rainfall, location) and clean it (standardise location names, handle missing rainfall values, filter to last 12 months); (2) Save cleaned data to a local SQLite database; (3) Write SQL queries to identify the top 5 hottest locations by average maximum temperature, then use window functions (LAG/LEAD) to detect consecutive days of temperature spikes (>2°C increase day-on-day); (4) Create a summary report showing which regions experienced the most rapid temperature increases._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
-  📁 Submit as: `quest3_2026-06-03.py`
+  📁 Submit as: `quest2_2026-06-04.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Health Monitoring Pipeline
+  _Build an end-to-end data engineering pipeline: (1) Use Python/pandas to load Great Barrier Reef monitoring data (coral health observations, temperature, bleaching events), clean it (handle missing values, validate date ranges, standardise location names), and export to a SQL-ready CSV. (2) Create a SQL schema with tables for monitoring_sites, observations, and bleaching_events. (3) Write an INSERT query to load cleaned data, then a complex analytical query using CTEs and window functions to: calculate the 12-month rolling average temperature per site, rank sites by bleaching risk (count of bleaching events / observation frequency), identify sites with worsening trends (LAG function to compare year-on-year health scores). Expected output: cleaned data file, schema definition, and analytical query results showing risk-ranked sites with trend analysis._
+  📦 Dataset: `Great Barrier Reef monitoring data — aims.gov.au`
+  📁 Submit as: `quest3_2026-06-04.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
