@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-13 12:06 AEDT |
+| 📅 Last Sync | 2026-06-14 12:28 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using the ASX 200 historical prices dataset, calculate a 10-day moving average and identify momentum shifts for each stock. Create a CTE that ranks stocks by their price change velocity (current price vs 10-day MA). Use window functions ROW_NUMBER() and LAG() to detect when a stock crosses above or below its moving average. Output the top 5 stocks with strongest upward momentum and bottom 5 with downward momentum for the most recent trading date. Include columns: stock_code, current_price, ma_10day, price_velocity, momentum_rank._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
+  _Using ASX 200 historical price data, write a SQL query with window functions to calculate a 20-day moving average and identify the top 5 stocks by momentum (price change % over last 20 days). Use ROW_NUMBER() or RANK() to rank stocks within each date partition, and LAG() to calculate day-over-day percentage changes. Return stock symbol, date, closing price, 20-day moving average, and momentum rank. Filter for the last 90 days of data only._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-06-13.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download the NSW Road Crash Data and perform comprehensive data cleaning. Tasks: (1) Handle missing values in severity and crash type columns using appropriate strategies; (2) Parse datetime columns and extract hour-of-day, day-of-week, and season features; (3) Standardise location data by removing duplicates and fixing inconsistent suburb names; (4) Create a new feature 'crash_severity_score' by encoding severity levels numerically; (5) Filter crashes from 2023-2025 only and export cleaned dataset to CSV. Produce a data quality report showing null counts before/after cleaning and value distributions for key features._
+  📁 Submit as: `quest1_2026-06-14.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaner & Aggregator
+  _Download NSW Road Crash Data (CSV format). Write a Python/pandas script to: (1) identify and handle missing values in crash severity and location columns, (2) standardise postcode format to 4 digits, (3) parse crash datetime strings into separate date and time columns, (4) remove duplicate crash records based on crash ID, (5) create a new column for crash severity category (minor/moderate/severe based on injury count), and (6) export a cleaned CSV with summary statistics showing crashes by LGA and severity. Include data quality checks (row count before/after, missing value counts)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-13.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Analysis: Data Pipeline End-to-End
-  _Build a mini data pipeline: (1) In Python/pandas, download or load Australian wine production statistics (regions, varieties, vintage years, production volume). Clean the data: handle missing vintage years, standardise region names, convert production volumes to consistent units (tonnes). (2) Create a SQLite database and load the cleaned data into a 'wine_production' table. (3) Write SQL queries to: identify the top 3 wine regions by total production across all years, calculate year-over-year growth rate for the largest producer using window functions (LAG), rank wine varieties by volume for vintage 2023. (4) Export results to CSV. Document your schema design and data transformations. Expected output: cleaned CSV, SQLite DB file, 3 result CSVs from SQL queries._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com / Kaggle`
-  📁 Submit as: `quest3_2026-06-13.py`
+  📁 Submit as: `quest2_2026-06-14.py`
+- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Pipeline: Clean, Load & Analyse
+  _Build a mini data pipeline using Python and SQL: (1) Use pandas to load AIHW health expenditure data (by state and category), clean column names (lowercase, remove spaces), handle any missing or mixed-type values in spending amounts, and export to a clean CSV. (2) Create a SQLite database and load the cleaned CSV into a table called 'health_spending'. (3) Write a SQL query with CTEs to calculate: total spending by state, year-over-year growth rate (%), and identify the top 3 spending categories per state. Return results showing state, category, total spending, and YoY growth %. Expected output: a SQL result set ranked by growth rate descending._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest3_2026-06-14.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
