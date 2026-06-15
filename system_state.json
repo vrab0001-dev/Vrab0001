@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-06-14 12:28 AEDT",
+  "last_sync": "2026-06-15 12:32 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis",
-      "description": "Using ASX 200 historical price data, write a SQL query with window functions to calculate a 20-day moving average and identify the top 5 stocks by momentum (price change % over last 20 days). Use ROW_NUMBER() or RANK() to rank stocks within each date partition, and LAG() to calculate day-over-day percentage changes. Return stock symbol, date, closing price, 20-day moving average, and momentum rank. Filter for the last 90 days of data only.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Top Performers: Rank Daily Gainers with Running Average",
+      "description": "Using the ASX 200 historical prices dataset, write a query that ranks stocks by daily percentage gain (Close - Open) / Open * 100 for each trading date. Use a CTE to calculate daily gains, then apply ROW_NUMBER() OVER (PARTITION BY date ORDER BY daily_gain DESC) to rank stocks per day. Include a second window function LAG() to calculate the 5-day moving average of each stock's closing price. Filter for the top 10 gainers on the most recent trading date in your dataset. Expected output: stock_code, date, daily_gain_percent, rank_for_day, five_day_moving_avg.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaner & Aggregator",
-      "description": "Download NSW Road Crash Data (CSV format). Write a Python/pandas script to: (1) identify and handle missing values in crash severity and location columns, (2) standardise postcode format to 4 digits, (3) parse crash datetime strings into separate date and time columns, (4) remove duplicate crash records based on crash ID, (5) create a new column for crash severity category (minor/moderate/severe based on injury count), and (6) export a cleaned CSV with summary statistics showing crashes by LGA and severity. Include data quality checks (row count before/after, missing value counts).",
-      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "title": "Clean & Standardise Australian Weather Data for Analysis",
+      "description": "Download or load the Australian Weather observations dataset (Bureau of Meteorology historical data). Your task: (1) Handle missing values in temperature, rainfall, and wind speed columns using appropriate imputation (mean for temp/wind, zero for no-rain days); (2) Standardise date formats to ISO 8601 (YYYY-MM-DD); (3) Remove duplicate rows based on station_id + date; (4) Convert temperature from Celsius to Fahrenheit in a new column; (5) Create a new column 'weather_category' that bins rainfall into 'Dry' (<1mm), 'Light' (1-10mm), 'Moderate' (10-50mm), 'Heavy' (>50mm); (6) Export cleaned data to cleaned_weather_au.csv. Document any data quality issues found (% missing, duplicates removed, outliers detected).",
+      "dataset": "Australian Weather observations \u2014 Bureau of Meteorology / Kaggle (jsphyg weather dataset)",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "AIHW Health Expenditure Pipeline: Clean, Load & Analyse",
-      "description": "Build a mini data pipeline using Python and SQL: (1) Use pandas to load AIHW health expenditure data (by state and category), clean column names (lowercase, remove spaces), handle any missing or mixed-type values in spending amounts, and export to a clean CSV. (2) Create a SQLite database and load the cleaned CSV into a table called 'health_spending'. (3) Write a SQL query with CTEs to calculate: total spending by state, year-over-year growth rate (%), and identify the top 3 spending categories per state. Return results showing state, category, total spending, and YoY growth %. Expected output: a SQL result set ranked by growth rate descending.",
-      "dataset": "AIHW Health Expenditure Data \u2014 aihw.gov.au",
-      "file_ext": ".py"
+      "title": "NSW Road Crash Analysis: Load, Clean, Aggregate & Rank by Risk",
+      "description": "End-to-end data engineering task: (1) Use Python/pandas to load NSW Road Crash Data from data.nsw.gov.au. Clean the dataset: standardise location names (remove extra whitespace, uppercase consistency), convert date columns to datetime, remove rows with missing severity or location data, flag and count invalid coordinates (outside NSW bounds). Export to crashes_cleaned.csv. (2) In SQL, import the cleaned CSV and write a query using CTEs and window functions: calculate crash frequency, injury rate (injuries / crash_count), and fatality rate by local government area (LGA). Use ROW_NUMBER() to rank LGAs by fatality rate (highest risk first). Include a CASE statement to flag high-risk areas (fatality_rate > state average). Return: LGA, crash_count, injury_count, fatality_count, injury_rate, fatality_rate, risk_flag, rank_by_fatality. (3) Document the data pipeline: how many rows were cleaned/removed in Python, and which LGAs are flagged as high-risk in SQL output.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "file_ext": ".py, .sql"
     }
   ],
-  "last_quest_date": "2026-06-14"
+  "last_quest_date": "2026-06-15"
 }

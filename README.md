@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-14 12:28 AEDT |
+| 📅 Last Sync | 2026-06-15 12:32 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
-  _Using ASX 200 historical price data, write a SQL query with window functions to calculate a 20-day moving average and identify the top 5 stocks by momentum (price change % over last 20 days). Use ROW_NUMBER() or RANK() to rank stocks within each date partition, and LAG() to calculate day-over-day percentage changes. Return stock symbol, date, closing price, 20-day moving average, and momentum rank. Filter for the last 90 days of data only._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-06-14.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaner & Aggregator
-  _Download NSW Road Crash Data (CSV format). Write a Python/pandas script to: (1) identify and handle missing values in crash severity and location columns, (2) standardise postcode format to 4 digits, (3) parse crash datetime strings into separate date and time columns, (4) remove duplicate crash records based on crash ID, (5) create a new column for crash severity category (minor/moderate/severe based on injury count), and (6) export a cleaned CSV with summary statistics showing crashes by LGA and severity. Include data quality checks (row count before/after, missing value counts)._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Top Performers: Rank Daily Gainers with Running Average
+  _Using the ASX 200 historical prices dataset, write a query that ranks stocks by daily percentage gain (Close - Open) / Open * 100 for each trading date. Use a CTE to calculate daily gains, then apply ROW_NUMBER() OVER (PARTITION BY date ORDER BY daily_gain DESC) to rank stocks per day. Include a second window function LAG() to calculate the 5-day moving average of each stock's closing price. Filter for the top 10 gainers on the most recent trading date in your dataset. Expected output: stock_code, date, daily_gain_percent, rank_for_day, five_day_moving_avg._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-06-15.sql`
+- [ ] 🐍 **Python Quest:** Clean & Standardise Australian Weather Data for Analysis
+  _Download or load the Australian Weather observations dataset (Bureau of Meteorology historical data). Your task: (1) Handle missing values in temperature, rainfall, and wind speed columns using appropriate imputation (mean for temp/wind, zero for no-rain days); (2) Standardise date formats to ISO 8601 (YYYY-MM-DD); (3) Remove duplicate rows based on station_id + date; (4) Convert temperature from Celsius to Fahrenheit in a new column; (5) Create a new column 'weather_category' that bins rainfall into 'Dry' (<1mm), 'Light' (1-10mm), 'Moderate' (10-50mm), 'Heavy' (>50mm); (6) Export cleaned data to cleaned_weather_au.csv. Document any data quality issues found (% missing, duplicates removed, outliers detected)._
+  📦 Dataset: `Australian Weather observations — Bureau of Meteorology / Kaggle (jsphyg weather dataset)`
+  📁 Submit as: `quest2_2026-06-15.py`
+- [ ] ⚡ **Combined Quest:** NSW Road Crash Analysis: Load, Clean, Aggregate & Rank by Risk
+  _End-to-end data engineering task: (1) Use Python/pandas to load NSW Road Crash Data from data.nsw.gov.au. Clean the dataset: standardise location names (remove extra whitespace, uppercase consistency), convert date columns to datetime, remove rows with missing severity or location data, flag and count invalid coordinates (outside NSW bounds). Export to crashes_cleaned.csv. (2) In SQL, import the cleaned CSV and write a query using CTEs and window functions: calculate crash frequency, injury rate (injuries / crash_count), and fatality rate by local government area (LGA). Use ROW_NUMBER() to rank LGAs by fatality rate (highest risk first). Include a CASE statement to flag high-risk areas (fatality_rate > state average). Return: LGA, crash_count, injury_count, fatality_count, injury_rate, fatality_rate, risk_flag, rank_by_fatality. (3) Document the data pipeline: how many rows were cleaned/removed in Python, and which LGAs are flagged as high-risk in SQL output._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-14.py`
-- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Pipeline: Clean, Load & Analyse
-  _Build a mini data pipeline using Python and SQL: (1) Use pandas to load AIHW health expenditure data (by state and category), clean column names (lowercase, remove spaces), handle any missing or mixed-type values in spending amounts, and export to a clean CSV. (2) Create a SQLite database and load the cleaned CSV into a table called 'health_spending'. (3) Write a SQL query with CTEs to calculate: total spending by state, year-over-year growth rate (%), and identify the top 3 spending categories per state. Return results showing state, category, total spending, and YoY growth %. Expected output: a SQL result set ranked by growth rate descending._
-  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
-  📁 Submit as: `quest3_2026-06-14.py`
+  📁 Submit as: `quest3_2026-06-15.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
