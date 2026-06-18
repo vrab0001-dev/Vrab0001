@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-17 12:32 AEDT |
+| 📅 Last Sync | 2026-06-18 12:30 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
-  _Using ASX 200 historical price data, calculate the 20-day and 50-day moving averages for each stock using window functions. Then identify stocks where the 20-day MA crossed above the 50-day MA in the last 30 days (a bullish signal). Use a CTE to calculate the moving averages, then another CTE to detect crossovers using LAG() to compare consecutive rows. Return the stock symbol, date of crossover, closing price at crossover, and the difference between the two moving averages. Order by most recent crossover first._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-06-17.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Injury Classification
-  _Download NSW Road Crash Data from data.nsw.gov.au. Load the CSV and perform the following: (1) Handle missing values in Crash Severity and Injuries columns by filling with 'Unknown' and 0 respectively. (2) Create a new column 'injury_category' that classifies crashes as 'Fatal' (deaths > 0), 'Serious' (serious injuries > 5), 'Moderate' (injuries 1-5), or 'Minor' (injuries = 0). (3) Remove duplicates based on Crash ID. (4) Filter for crashes in the last 5 years. (5) Export the cleaned dataset to a new CSV file with a timestamp in the filename. Print summary statistics showing counts per injury category._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Trading Volume Leaders with Ranking
+  _Using ASX 200 historical price data, write a query that: (1) calculates the average daily trading volume for each stock over the last 90 days, (2) ranks stocks by volume using ROW_NUMBER() and RANK() window functions to identify the top 10 most actively traded securities, (3) includes a CTE to filter only stocks with a closing price above $10, and (4) returns columns: stock_code, company_name, avg_daily_volume, volume_rank, and price_rank. Order by volume_rank ascending. Explain the difference between ROW_NUMBER() and RANK() in your result comments._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-06-18.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Time Series Preparation
+  _Download NSW Road Crash Data (contains crash severity, location, datetime, vehicle types). Using pandas: (1) load the CSV and inspect for missing values and data types, (2) clean the datetime column and extract year, month, day_of_week as separate columns, (3) standardise location names (remove extra whitespace, convert to title case), (4) filter crashes with severity='Fatal' or 'Serious Injury' only, (5) create a new column 'time_period' categorising crashes as 'peak_hours' (7-9am, 4-6pm weekdays) or 'off_peak', (6) export the cleaned dataset to a new CSV file. Print summary statistics before and after cleaning (row counts, null counts, unique values)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-17.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomalies Detection Pipeline
-  _Download Australian Weather observations data (Bureau of Meteorology dataset on Kaggle). Using Python: (1) Load the CSV, parse dates, and group by station and month. (2) Calculate the 30-year average temperature and rainfall for each month. (3) Create a new column flagging months where temperature deviates by >2 standard deviations from the 30-year mean as 'anomaly'. (4) Export the results (station, date, temp, rainfall, anomaly_flag) to a SQLite database with two tables: 'weather_observations' and 'climate_normals'. Using SQL: (5) Query the database to find the top 10 stations with the most temperature anomalies in the last decade. (6) Calculate the average temperature during anomaly months vs non-anomaly months for each station. Return station name, anomaly_count, avg_temp_anomaly_months, avg_temp_normal_months, and the difference._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
-  📁 Submit as: `quest3_2026-06-17.py`
+  📁 Submit as: `quest2_2026-06-18.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: ETL & Analytics
+  _Create an end-to-end data engineering workflow: (1) In Python, fetch/load Australian wine production statistics data (by region and vintage year), clean inconsistent vintage labels (e.g., '2023' vs '23'), handle missing production volumes by forward-filling or interpolating where appropriate, and export to a staging CSV. (2) Load the cleaned CSV into a SQL database (SQLite or PostgreSQL). (3) Write SQL queries to: calculate year-on-year production change by region using LAG() window function, identify the top 5 regions by total production over the last 10 years using a CTE, and rank regions by production growth trend. (4) Export results to a summary CSV with columns: region, total_production, yoy_change_percent, growth_rank. Document your assumptions about missing data handling._
+  📦 Dataset: `Australian Wine Production Statistics — Wine Australia (wineaustralia.com) or Kaggle`
+  📁 Submit as: `quest3_2026-06-18.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
