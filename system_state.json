@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-06-18 12:30 AEDT",
+  "last_sync": "2026-06-19 12:46 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Trading Volume Leaders with Ranking",
-      "description": "Using ASX 200 historical price data, write a query that: (1) calculates the average daily trading volume for each stock over the last 90 days, (2) ranks stocks by volume using ROW_NUMBER() and RANK() window functions to identify the top 10 most actively traded securities, (3) includes a CTE to filter only stocks with a closing price above $10, and (4) returns columns: stock_code, company_name, avg_daily_volume, volume_rank, and price_rank. Order by volume_rank ascending. Explain the difference between ROW_NUMBER() and RANK() in your result comments.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Daily Returns & Moving Averages",
+      "description": "Using ASX 200 historical prices, calculate daily percentage returns for each stock using LAG(). Then, compute a 20-day and 50-day moving average of closing prices using window functions. Finally, identify stocks where the 20-day MA crossed above the 50-day MA (bullish signal) on the most recent date. Use a CTE to structure the moving averages, and return stock_code, date, close_price, ma_20, ma_50, and a flag indicating if a crossover occurred. Order by stock_code.",
+      "dataset": "ASX 200 historical stock prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Time Series Preparation",
-      "description": "Download NSW Road Crash Data (contains crash severity, location, datetime, vehicle types). Using pandas: (1) load the CSV and inspect for missing values and data types, (2) clean the datetime column and extract year, month, day_of_week as separate columns, (3) standardise location names (remove extra whitespace, convert to title case), (4) filter crashes with severity='Fatal' or 'Serious Injury' only, (5) create a new column 'time_period' categorising crashes as 'peak_hours' (7-9am, 4-6pm weekdays) or 'off_peak', (6) export the cleaned dataset to a new CSV file. Print summary statistics before and after cleaning (row counts, null counts, unique values).",
+      "title": "NSW Road Crash Data Cleaning & Summary Export",
+      "description": "Download NSW Road Crash Data (CSV format from data.nsw.gov.au). Load it into pandas and perform: (1) Remove or fill missing values in critical columns (crash_type, severity, number_of_vehicles). (2) Standardise date formats and ensure consistency. (3) Create a new column 'year_month' from the crash date. (4) Generate a summary CSV showing crashes by severity and year_month. (5) Identify and flag rows with anomalies (e.g., more vehicles than occupants). Save the cleaned dataset and summary report as separate CSVs with timestamps in filenames.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
-      "type": "Combined",
-      "title": "Australian Wine Production Pipeline: ETL & Analytics",
-      "description": "Create an end-to-end data engineering workflow: (1) In Python, fetch/load Australian wine production statistics data (by region and vintage year), clean inconsistent vintage labels (e.g., '2023' vs '23'), handle missing production volumes by forward-filling or interpolating where appropriate, and export to a staging CSV. (2) Load the cleaned CSV into a SQL database (SQLite or PostgreSQL). (3) Write SQL queries to: calculate year-on-year production change by region using LAG() window function, identify the top 5 regions by total production over the last 10 years using a CTE, and rank regions by production growth trend. (4) Export results to a summary CSV with columns: region, total_production, yoy_change_percent, growth_rank. Document your assumptions about missing data handling.",
-      "dataset": "Australian Wine Production Statistics \u2014 Wine Australia (wineaustralia.com) or Kaggle",
-      "file_ext": ".py/.sql"
+      "type": "Python + SQL",
+      "title": "Australian Weather Anomaly Detection Pipeline",
+      "description": "Download Australian Bureau of Meteorology weather observations (daily temperature, rainfall, wind speed data from Kaggle or BoM). Use Python to: (1) Load CSV and clean data (handle missing values, convert data types). (2) Calculate rolling 30-day mean and standard deviation for temperature by location. (3) Flag days where temperature deviated >2 standard deviations from the mean (anomalies). (4) Export cleaned data with anomaly flags to SQLite database. Then, use SQL to: (1) Rank locations by anomaly frequency using DENSE_RANK(). (2) Use a CTE to identify weeks with the most anomalies per location. (3) Return top 10 location-week combinations ordered by anomaly count. Output should include location, week, anomaly_count, and rank.",
+      "dataset": "Australian Weather observations (daily data) \u2014 Bureau of Meteorology via Kaggle (jsphyg dataset)",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-06-18"
+  "last_quest_date": "2026-06-19"
 }
