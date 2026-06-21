@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-20 12:07 AEDT |
+| 📅 Last Sync | 2026-06-21 12:30 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Volatility Ranking with Window Functions
-  _Using the ASX 200 historical prices dataset, calculate the 30-day rolling standard deviation of daily returns for the top 10 companies by market cap. Use window functions (ROW_NUMBER, LAG) to compute daily percentage returns, then rank stocks by volatility. Your output should show: Company symbol, date, closing price, daily return %, 30-day rolling volatility, and volatility rank. Filter for the last 6 months of data and order by date descending then volatility rank ascending._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-06-20.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Incident Categorisation
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Load the CSV and perform the following: (1) Handle missing values in the 'Severity' and 'Crash Type' columns by investigating patterns—use mode imputation where appropriate, document nulls elsewhere; (2) Standardise location data by converting all suburb names to title case and removing leading/trailing whitespace; (3) Create a new 'Time_of_Day' column that categorises 'Crash Time' into 'Night' (20:00-05:59), 'Morning' (06:00-11:59), 'Afternoon' (12:00-17:59), 'Evening' (18:00-19:59); (4) Export the cleaned dataset to a new CSV with a timestamp suffix. Document data quality issues found (row count before/after, % missing per column)._
+- [ ] 🗄️ **SQL Quest:** AFL Momentum: Win Streaks and Form Ranking
+  _Using AFL match results data, write a query with window functions to: (1) Calculate a rolling 5-game win/loss streak for each team using ROW_NUMBER and PARTITION BY team, (2) Rank teams by their current form (last 10 games win percentage) using RANK() and CTE, (3) Identify the longest consecutive win streak in the entire dataset using LAG() to detect streak breaks. Return: team name, current streak length, current streak type (W/L), form rank, and all-time longest streak. Order by form rank ascending._
+  📦 Dataset: `AFL match results — Kaggle (search: AFL tables Australia)`
+  📁 Submit as: `quest1_2026-06-21.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Risk Scoring
+  _Download NSW Road Crash Data (2020-2025). Using pandas: (1) Handle missing values in crash severity, vehicle count, and injury columns (document your strategy), (2) Standardise location names (remove extra spaces, fix case inconsistencies), (3) Create a new 'crash_risk_score' column (0-100) based on: severity (40% weight), number of vehicles involved (30%), number of injuries (30%). (4) Group by local government area (LGA) and calculate mean risk score, crash frequency, and injury rate per 1000 crashes. (5) Export cleaned dataset and LGA summary to CSV files. Print the top 5 highest-risk LGAs._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-20.py`
+  📁 Submit as: `quest2_2026-06-21.py`
 - [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Build a Python + SQL pipeline using Australian Weather observations (Bureau of Meteorology data on Kaggle). Step 1 (Python): Load monthly temperature and rainfall CSV data. Clean by removing duplicates on (station_id, date), handle missing temps/rainfall with forward-fill method. Create a 'Month_Year' column and calculate 30-year climatological normals (1990-2020 average) per station per month. Export cleaned data and normals to two separate CSVs. Step 2 (SQL): Load both CSVs into a local SQLite database. Write a query using CTEs to identify anomalies: months where actual temperature >2°C above normal OR rainfall >150% of normal. Your output should show: station_id, month_year, actual_temp, normal_temp, deviation, actual_rainfall, normal_rainfall, anomaly_type, ranked by severity (largest deviation first). Include only the last 5 years of data._
-  📦 Dataset: `Australian Weather Observations (1990-2024) — Bureau of Meteorology / Kaggle`
-  📁 Submit as: `quest3_2026-06-20.py`
+  _Using Bureau of Meteorology historical weather observations (or Kaggle equivalent): (1) In Python/pandas: load daily temperature and rainfall data for a single Australian city (e.g. Sydney, Melbourne, Perth) from 2015-2025, handle missing values via forward fill, calculate 30-day rolling mean and standard deviation for temperature. (2) Flag anomalies: any day where temperature is >2 std devs from rolling mean OR rainfall is in top 5% for the month. Export anomaly dataset to CSV. (3) In SQL: load the anomaly CSV, create a query to: count anomalies by year and month, calculate the percentage of anomalous days per month, use a CTE to identify months with >15% anomalies. Return: year, month, anomaly count, anomaly percentage, anomaly_severity (high/medium/low based on percentage thresholds). Output ordered by year DESC, month DESC._
+  📦 Dataset: `Australian Weather observations — Bureau of Meteorology or Kaggle (search: Australian weather data)`
+  📁 Submit as: `quest3_2026-06-21.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
