@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-06-21 12:30 AEDT |
+| 📅 Last Sync | 2026-06-22 12:34 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** AFL Momentum: Win Streaks and Form Ranking
-  _Using AFL match results data, write a query with window functions to: (1) Calculate a rolling 5-game win/loss streak for each team using ROW_NUMBER and PARTITION BY team, (2) Rank teams by their current form (last 10 games win percentage) using RANK() and CTE, (3) Identify the longest consecutive win streak in the entire dataset using LAG() to detect streak breaks. Return: team name, current streak length, current streak type (W/L), form rank, and all-time longest streak. Order by form rank ascending._
-  📦 Dataset: `AFL match results — Kaggle (search: AFL tables Australia)`
-  📁 Submit as: `quest1_2026-06-21.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Risk Scoring
-  _Download NSW Road Crash Data (2020-2025). Using pandas: (1) Handle missing values in crash severity, vehicle count, and injury columns (document your strategy), (2) Standardise location names (remove extra spaces, fix case inconsistencies), (3) Create a new 'crash_risk_score' column (0-100) based on: severity (40% weight), number of vehicles involved (30%), number of injuries (30%). (4) Group by local government area (LGA) and calculate mean risk score, crash frequency, and injury rate per 1000 crashes. (5) Export cleaned dataset and LGA summary to CSV files. Print the top 5 highest-risk LGAs._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Rankings
+  _Using ASX 200 historical price data, write a query that calculates the 30-day rolling average closing price for each stock, then ranks stocks by their rolling average performance within each month. Use window functions ROW_NUMBER() OVER (PARTITION BY month ORDER BY rolling_avg DESC) to identify the top 5 performers each month. Include the stock symbol, date, closing price, rolling average, and rank. Filter results to show only the top 10 ranked stocks per month for the last 12 months. Expected output: a result set showing monthly performance rankings with 120 rows (10 stocks × 12 months)._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-06-22.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Severity Pipeline
+  _Download NSW Road Crash Data from the official source. Your task: (1) Load the CSV into pandas and identify missing values in key columns (crash_date, severity, suburb, vehicle_count). (2) Handle missing severity values by imputing with the mode per suburb. (3) Create a new column 'crash_hour' by extracting the hour from the timestamp. (4) Remove duplicate crash records based on crash_id. (5) Filter to crashes occurring in the last 2 years. (6) Export three cleaned CSVs: crashes_by_severity.csv, crashes_by_suburb.csv (top 20 suburbs), and crashes_by_hour.csv (hourly distribution). Validate row counts at each step and print a data quality report showing null counts before and after cleaning._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-06-21.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Using Bureau of Meteorology historical weather observations (or Kaggle equivalent): (1) In Python/pandas: load daily temperature and rainfall data for a single Australian city (e.g. Sydney, Melbourne, Perth) from 2015-2025, handle missing values via forward fill, calculate 30-day rolling mean and standard deviation for temperature. (2) Flag anomalies: any day where temperature is >2 std devs from rolling mean OR rainfall is in top 5% for the month. Export anomaly dataset to CSV. (3) In SQL: load the anomaly CSV, create a query to: count anomalies by year and month, calculate the percentage of anomalous days per month, use a CTE to identify months with >15% anomalies. Return: year, month, anomaly count, anomaly percentage, anomaly_severity (high/medium/low based on percentage thresholds). Output ordered by year DESC, month DESC._
-  📦 Dataset: `Australian Weather observations — Bureau of Meteorology or Kaggle (search: Australian weather data)`
-  📁 Submit as: `quest3_2026-06-21.py`
+  📁 Submit as: `quest2_2026-06-22.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather & Wildfire Correlation Analysis
+  _Combine two datasets: Australian Weather Observations (daily temperature, rainfall, humidity) and Australian Wildfire incidents (date, location, area burned). (1) In Python: load both CSVs, clean date formats to YYYY-MM-DD, merge on nearest date within 3 days using pandas merge_asof(), aggregate weather metrics by week and state. (2) In SQL: create a temp table from the merged Python output, then write a query using CTEs to calculate: (a) average temperature and rainfall per state per month, (b) total area burned per state per month, (c) correlation score (simple: normalized temperature difference × rainfall deficit) against burned area. Rank states by correlation strength using ROW_NUMBER(). (3) Output: a final CSV showing month, state, avg_temp, total_rainfall, area_burned, and correlation_rank. Expected insight: identify which states show strongest weather-to-wildfire relationships._
+  📦 Dataset: `Australian Weather Observations (Bureau of Meteorology / Kaggle) + Australian Wildfire Dataset — Kaggle`
+  📁 Submit as: `quest3_2026-06-22.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
