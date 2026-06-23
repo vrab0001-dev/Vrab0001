@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-06-22 12:34 AEDT",
+  "last_sync": "2026-06-23 12:00 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Rolling Performance Rankings",
-      "description": "Using ASX 200 historical price data, write a query that calculates the 30-day rolling average closing price for each stock, then ranks stocks by their rolling average performance within each month. Use window functions ROW_NUMBER() OVER (PARTITION BY month ORDER BY rolling_avg DESC) to identify the top 5 performers each month. Include the stock symbol, date, closing price, rolling average, and rank. Filter results to show only the top 10 ranked stocks per month for the last 12 months. Expected output: a result set showing monthly performance rankings with 120 rows (10 stocks \u00d7 12 months).",
+      "title": "ASX 200 Moving Averages & Ranking",
+      "description": "Using the ASX 200 historical prices dataset, write a query with window functions to calculate the 20-day and 50-day moving averages for the top 5 stocks by trading volume. Use ROW_NUMBER() to rank each stock's daily returns within its own partition, and LEAD() to show the next day's closing price. Filter for the last 90 days of data and order by stock symbol and date. Output should include: date, stock_symbol, close_price, volume, moving_avg_20, moving_avg_50, daily_return_rank, next_day_close.",
       "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Severity Pipeline",
-      "description": "Download NSW Road Crash Data from the official source. Your task: (1) Load the CSV into pandas and identify missing values in key columns (crash_date, severity, suburb, vehicle_count). (2) Handle missing severity values by imputing with the mode per suburb. (3) Create a new column 'crash_hour' by extracting the hour from the timestamp. (4) Remove duplicate crash records based on crash_id. (5) Filter to crashes occurring in the last 2 years. (6) Export three cleaned CSVs: crashes_by_severity.csv, crashes_by_suburb.csv (top 20 suburbs), and crashes_by_hour.csv (hourly distribution). Validate row counts at each step and print a data quality report showing null counts before and after cleaning.",
+      "title": "NSW Road Crash Data Cleaning & CSV Export",
+      "description": "Download the NSW Road Crash Data from the NSW Open Data portal. Load the dataset into pandas and perform the following cleaning tasks: (1) handle missing values in the 'Crash Severity' column by forward-filling within each Local Government Area; (2) standardise the 'Crash Type' column to title case and remove leading/trailing whitespace; (3) convert date columns to datetime format; (4) create a new column 'Crash_Year' extracting the year from the crash date; (5) identify and remove duplicate rows based on all columns; (6) generate summary statistics (mean, median, count) for numeric columns grouped by Crash_Year and export to a new CSV file named 'crash_summary_cleaned.csv'. Print the shape before and after cleaning.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
-      "type": "Combined",
-      "title": "Australian Weather & Wildfire Correlation Analysis",
-      "description": "Combine two datasets: Australian Weather Observations (daily temperature, rainfall, humidity) and Australian Wildfire incidents (date, location, area burned). (1) In Python: load both CSVs, clean date formats to YYYY-MM-DD, merge on nearest date within 3 days using pandas merge_asof(), aggregate weather metrics by week and state. (2) In SQL: create a temp table from the merged Python output, then write a query using CTEs to calculate: (a) average temperature and rainfall per state per month, (b) total area burned per state per month, (c) correlation score (simple: normalized temperature difference \u00d7 rainfall deficit) against burned area. Rank states by correlation strength using ROW_NUMBER(). (3) Output: a final CSV showing month, state, avg_temp, total_rainfall, area_burned, and correlation_rank. Expected insight: identify which states show strongest weather-to-wildfire relationships.",
-      "dataset": "Australian Weather Observations (Bureau of Meteorology / Kaggle) + Australian Wildfire Dataset \u2014 Kaggle",
+      "type": "Python + SQL",
+      "title": "Bureau of Meteorology Weather Data Pipeline",
+      "description": "Build a data engineering pipeline: (1) Download or load Australian Bureau of Meteorology weather observations (temperature, rainfall, wind speed) for the past 12 months; (2) Use pandas to clean the data: remove outliers (e.g., temperatures >50\u00b0C or <-20\u00b0C), handle missing values by interpolation, and aggregate daily readings into weekly summaries (mean temp, total rainfall, max wind speed) by location; (3) Create a SQLite database with two tables: 'raw_weather' (original data) and 'weekly_weather' (aggregated data); (4) Write SQL queries to find: the top 5 locations by average temperature, locations with rainfall > 90th percentile, and a CTE-based query showing consecutive weeks where temperature increased; (5) Export results to CSV and document the data quality issues found.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-06-22"
+  "last_quest_date": "2026-06-23"
 }
