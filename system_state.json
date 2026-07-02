@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-07-01 12:09 AEDT",
+  "last_sync": "2026-07-02 12:02 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis with Window Functions",
-      "description": "Using ASX 200 historical stock price data, write a query that calculates a 30-day rolling average price and identifies momentum shifts. For each stock symbol and date, compute: (1) the closing price, (2) a 30-day LAG of the closing price, (3) ROW_NUMBER() partitioned by symbol ordered by date, (4) the percentage change from 30 days ago. Then use a CTE to filter only dates where the percentage change exceeds 5% (either direction) and rank these momentum events by magnitude within each stock. Return symbol, date, closing_price, pct_change, and momentum_rank. Order by symbol and date.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Monthly Performance Ranking with Window Functions",
+      "description": "Using ASX 200 historical stock price data, write a SQL query with window functions to: (1) Calculate the monthly percentage change for each stock (closing price end of month vs start of month), (2) Rank stocks by performance within each month using RANK() or ROW_NUMBER(), (3) Identify the top 5 and bottom 5 performers each month, (4) Use a CTE to calculate the 3-month rolling average of monthly returns for the top 10 stocks. Output should show stock symbol, month, percentage change, rank within month, and 3-month rolling average. Expected output: 15-20 rows per month showing ranked stocks with rolling metrics.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Feature Engineering",
-      "description": "Download NSW Road Crash Data (2020-2026). Load the CSV into a pandas DataFrame and perform the following: (1) Handle missing values in crash severity, location, and injury count columns (document your strategy). (2) Parse datetime columns correctly and extract day_of_week and hour_of_day features. (3) Standardise location data by removing leading/trailing whitespace and converting to title case. (4) Create a severity_category column mapping numeric codes to 'Fatal', 'Serious Injury', 'Other Injury', 'Non-Injury'. (5) Remove duplicate crash records based on crash ID and timestamp. (6) Save the cleaned dataset to a new CSV file. Output a summary report showing: original row count, cleaned row count, missing values per column before/after, and the first 5 rows of cleaned data.",
-      "dataset": "NSW Road Crash Data \u2014 NSW Open Data Portal (data.nsw.gov.au)",
+      "title": "Australian Weather Data Cleaning and Seasonal Aggregation",
+      "description": "Download or load Australian Bureau of Meteorology weather observations data (daily temperature, rainfall, humidity for multiple cities). Create a Python/pandas script to: (1) Clean the data by handling missing values, outliers, and data type conversions, (2) Extract date components and assign seasons (winter/spring/summer/autumn based on Southern Hemisphere), (3) Group by city and season to calculate mean temperature, total rainfall, and humidity statistics, (4) Identify anomalous days (temperature > 2 standard deviations from seasonal mean), (5) Export cleaned data to a new CSV with a data quality report (% missing, % outliers removed). Expected output: cleaned CSV with seasonal metrics and a summary text file showing data quality statistics.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology (Kaggle: jsphyg collection)",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomaly Detection Pipeline",
-      "description": "Build an end-to-end data engineering pipeline: (1) In Python, load Australian weather observations data (temperature, rainfall, pressure from Bureau of Meteorology or Kaggle jsphyg dataset). Clean the data: handle missing values via interpolation, standardise station names, validate temperature ranges (-10\u00b0C to 50\u00b0C for Australia). (2) Create a CSV output with clean records including: station_id, date, temperature, rainfall, pressure. (3) Load this cleaned CSV into a SQL database (SQLite or PostgreSQL). (4) Write a SQL query using window functions to detect temperature anomalies: compute a 7-day rolling average temperature per station, then flag any day where actual temp deviates more than 2 standard deviations from the rolling average. (5) Return: station_id, date, actual_temp, rolling_avg_temp, z_score, is_anomaly. Export anomaly results to a final CSV. Document your anomaly detection logic in comments.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology or Kaggle (jsphyg dataset)",
+      "title": "NSW Road Crash Analysis: Data Pipeline with Python ETL and SQL Analytics",
+      "description": "Build a complete data engineering pipeline using NSW Road Crash Data: (1) Use Python/pandas to extract, clean, and validate crash records (handle missing values in crash type, location, injury severity), standardise location coordinates, and remove duplicates, (2) Load the cleaned data into a SQLite or PostgreSQL database with appropriate schema (crashes table with crash_id, date, location, severity, vehicle_count, etc.), (3) Write SQL queries to answer: What are the top 10 crash hotspots (by coordinate clustering)? What is the monthly trend in crash severity over the past 2 years? Which day of week has the highest crash frequency? Which crash types result in the most injuries? (4) Use a SQL CTE to calculate a 'risk score' for each location based on frequency and severity, (5) Export the top 20 high-risk locations back to Python as a CSV. Expected output: populated database, 4 analytical query results, risk score CSV with location details and rankings.",
+      "dataset": "NSW Road Crash Data \u2014 NSW Open Data Portal (data.nsw.gov.au)",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-07-01"
+  "last_quest_date": "2026-07-02"
 }
