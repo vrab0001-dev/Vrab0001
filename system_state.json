@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-07-03 11:46 AEDT",
+  "last_sync": "2026-07-04 11:45 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Rolling Volatility with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for each stock. Use window functions (specifically ROW_NUMBER and LAG) to compute daily percentage change, then apply a rolling window to calculate volatility. Filter for the top 10 most volatile stocks in the last quarter of available data. Expected output: stock_code, date, daily_return_pct, rolling_volatility_30day, ranked by volatility descending.",
-      "dataset": "ASX 200 historical prices \u2014 Kaggle",
+      "title": "ASX 200 Monthly Performance Rankings with Window Functions",
+      "description": "Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate monthly returns for each stock using LAG to compare closing prices month-over-month, (2) Rank stocks within each month by return percentage using RANK(), (3) Identify the top 5 and bottom 5 performers per month, (4) Add a running average of closing price over the previous 3 months using a window frame. Return columns: stock_code, month, closing_price, monthly_return_pct, rank_in_month, 3month_avg_price. Filter for 2025 data only.",
+      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Aggregation",
-      "description": "Download NSW Road Crash Data and perform comprehensive data cleaning: handle missing values (fill crash severity nulls with 'Unknown', drop rows with null latitude/longitude), standardise datetime formats, remove duplicate crash records (identified by location + timestamp), and convert speed limit to numeric. Then aggregate by local government area (LGA) and crash severity to produce a summary showing total crashes, injury count, and fatality count per LGA. Export cleaned data to CSV and provide a top-10 most dangerous LGAs report.",
-      "dataset": "NSW Road Crash Data \u2014 NSW Data Portal (data.nsw.gov.au)",
+      "title": "NSW Road Crash Data Cleaning & Severity Classification",
+      "description": "Download NSW Road Crash Data from data.nsw.gov.au. Write a pandas script to: (1) Load the CSV and identify missing values, data types, and anomalies, (2) Clean location data by removing null coordinates and standardizing suburb names to title case, (3) Handle datetime columns (crash_date, crash_time) by parsing and extracting day_of_week and hour_of_day, (4) Create a severity_category column using pd.cut() based on injury_count (0=property_only, 1-2=minor, 3+=serious), (5) Remove duplicate rows based on unique crash identifiers, (6) Export the cleaned dataset to cleaned_nsw_crashes_2025.csv. Print a summary report: row counts before/after, missing value percentages, and value counts for severity_category.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomalies Detection Pipeline",
-      "description": "Build a Python + SQL pipeline: (1) Load Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) from CSV. (2) In Python/pandas, clean the data\u2014remove outliers using IQR method for temperature, interpolate missing rainfall values. (3) Load cleaned data into SQLite. (4) Write SQL queries using CTEs and window functions to identify temperature anomalies: calculate monthly average temp, then compare each observation to its station's 10-year historical average using a window function. (5) Flag observations >2 standard deviations from the mean as anomalies. Export anomaly report grouped by station and month, showing anomaly count and average deviation magnitude.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg dataset)",
+      "title": "Australian Weather Anomaly Detection Pipeline",
+      "description": "Build an end-to-end pipeline using Bureau of Meteorology Australian weather observations data: (1) In Python, load the CSV (temperatures, rainfall, wind speed by station and date), clean missing values using forward-fill within each station, and standardize units (convert Fahrenheit to Celsius if needed), (2) Create a feature-engineered dataset with rolling 7-day average temperature and total rainfall per station, (3) Write the cleaned data to a SQLite database with two tables: raw_observations and processed_features, (4) In SQL, write a CTE-based query to identify temperature anomalies: calculate mean and std_dev per station using window functions, flag days where temp deviates >2 std_dev from the mean, (5) Return: station_id, observation_date, actual_temp, mean_temp, anomaly_flag, days_since_last_anomaly (use LAG). Export results showing which stations had the most anomalies in the past year.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology (Kaggle: Australian Weather by jsphyg)",
       "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-07-03"
+  "last_quest_date": "2026-07-04"
 }
