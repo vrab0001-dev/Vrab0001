@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-06 11:57 AEDT |
+| 📅 Last Sync | 2026-07-07 11:53 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Ranking
-  _Using ASX 200 historical price data, write a query with window functions to calculate: (1) the 30-day price change percentage for each stock using LAG, (2) rank stocks by momentum within each sector using RANK(), and (3) identify stocks that hit a new 52-week high in the last 30 days. Return the top 10 momentum gainers with their sector, current price, 52-week high, and momentum rank. Use a CTE to pre-calculate the 52-week high for performance._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-06.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download NSW Road Crash Data (contains crash records with datetime, location, vehicle type, severity). Clean the dataset by: (1) handling missing values in crash severity and location fields (document your strategy), (2) parsing datetime columns correctly, (3) creating new features: hour of day, day of week, and a binary flag for severe crashes (fatality or hospitalisation). Export the cleaned dataset to CSV. Provide a summary report showing before/after row counts, missing data percentages, and the distribution of your new features._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
+  _Using the ASX 200 historical prices dataset, write a query that ranks stocks by their year-to-date percentage gain. For each stock, calculate: (1) the closing price on the most recent date, (2) the closing price on 2026-01-01, (3) the percentage change, (4) a rank among all stocks by percentage gain using ROW_NUMBER(), and (5) a running cumulative count of stocks by sector ordered by gain descending. Use a CTE to calculate the start-of-year and end-of-period prices separately, then JOIN them. Return the top 20 performing stocks with all calculated columns. Expected output: stock symbol, sector, start price, end price, % gain, rank, cumulative count._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-07-07.sql`
+- [ ] 🐍 **Python Quest:** Clean and Standardise NSW Road Crash Data
+  _Download or load the NSW Road Crash Data (contains crash severity, vehicle types, weather conditions, postcodes). Your task: (1) Handle missing values in the 'Weather Condition' column by replacing with 'Unknown'; (2) Standardise all text columns (Severity, Vehicle_Type) to title case; (3) Extract the year and month from the crash date into separate columns; (4) Remove duplicate rows based on Crash_ID; (5) Create a new column 'Speed_Zone_Category' that bins speed zones into 'Low' (<=50), 'Medium' (51-80), 'High' (81+); (6) Export the cleaned dataset to a CSV file with timestamp in filename. Validate the output by printing row counts before/after cleaning and checking for remaining nulls in critical columns._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-06.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Build an end-to-end pipeline: (1) Use Python to load Australian Weather observations data (temperature, rainfall, pressure by station and date). Clean missing values using forward-fill for time series, then calculate 30-day rolling averages per station. (2) Load the cleaned data into a local SQLite database. (3) Write a SQL query with window functions (ROW_NUMBER, LAG) to identify temperature anomalies: flag any day where temperature deviates >2 standard deviations from the 30-day rolling average for that station. (4) Return the top 20 anomalies ranked by severity with station name, date, actual temp, rolling avg, and deviation. Export results to CSV._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-07-06.py`
+  📁 Submit as: `quest2_2026-07-07.py`
+- [ ] ⚡ **Combined Quest:** Energy Demand Peak Analysis Pipeline
+  _Build an end-to-end pipeline using AEMO electricity demand data: (1) In Python, load the AEMO electricity demand CSV, clean column names (remove spaces, standardise to snake_case), and parse timestamps. Group by date and state, calculate daily peak demand and average demand. Save to a cleaned CSV. (2) Load the cleaned CSV into a SQL database (SQLite or similar). (3) Write a SQL query that identifies for each state: the date with highest peak demand in 2026, the average daily peak demand per month, and a LAG() window function showing month-over-month peak demand change. (4) Export results showing state, month, peak demand, monthly average, and month-over-month change. Expected output: 6-8 rows per state showing trends across available months in 2026._
+  📦 Dataset: `AEMO Electricity Demand Data — aemo.com.au`
+  📁 Submit as: `quest3_2026-07-07.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
