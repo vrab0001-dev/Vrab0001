@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-07 11:53 AEDT |
+| 📅 Last Sync | 2026-07-08 11:24 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
-  _Using the ASX 200 historical prices dataset, write a query that ranks stocks by their year-to-date percentage gain. For each stock, calculate: (1) the closing price on the most recent date, (2) the closing price on 2026-01-01, (3) the percentage change, (4) a rank among all stocks by percentage gain using ROW_NUMBER(), and (5) a running cumulative count of stocks by sector ordered by gain descending. Use a CTE to calculate the start-of-year and end-of-period prices separately, then JOIN them. Return the top 20 performing stocks with all calculated columns. Expected output: stock symbol, sector, start price, end price, % gain, rank, cumulative count._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Moving Averages
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) a 20-day moving average of closing price for each stock, (2) the rank of each stock by price change percentage within each month, (3) identify stocks that hit new 52-week highs. Use CTEs to structure your query clearly. Expected output: a result set showing stock ticker, date, close price, 20-day MA, monthly rank, and a boolean flag for 52-week high. Filter for the last 6 months of data._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-07.sql`
-- [ ] 🐍 **Python Quest:** Clean and Standardise NSW Road Crash Data
-  _Download or load the NSW Road Crash Data (contains crash severity, vehicle types, weather conditions, postcodes). Your task: (1) Handle missing values in the 'Weather Condition' column by replacing with 'Unknown'; (2) Standardise all text columns (Severity, Vehicle_Type) to title case; (3) Extract the year and month from the crash date into separate columns; (4) Remove duplicate rows based on Crash_ID; (5) Create a new column 'Speed_Zone_Category' that bins speed zones into 'Low' (<=50), 'Medium' (51-80), 'High' (81+); (6) Export the cleaned dataset to a CSV file with timestamp in filename. Validate the output by printing row counts before/after cleaning and checking for remaining nulls in critical columns._
+  📁 Submit as: `quest1_2026-07-08.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python/pandas script to: (1) handle missing values in crash severity, location, and vehicle type columns using appropriate strategies (drop, forward-fill, or mode), (2) create new features: crash_hour from timestamp, severity_category (group severity levels), day_of_week, (3) detect and flag outliers in crash count by location using IQR method, (4) export a cleaned CSV with consistent column naming (snake_case). Document your data quality decisions with comments. Expected output: a cleaned CSV file ready for analysis._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-07.py`
-- [ ] ⚡ **Combined Quest:** Energy Demand Peak Analysis Pipeline
-  _Build an end-to-end pipeline using AEMO electricity demand data: (1) In Python, load the AEMO electricity demand CSV, clean column names (remove spaces, standardise to snake_case), and parse timestamps. Group by date and state, calculate daily peak demand and average demand. Save to a cleaned CSV. (2) Load the cleaned CSV into a SQL database (SQLite or similar). (3) Write a SQL query that identifies for each state: the date with highest peak demand in 2026, the average daily peak demand per month, and a LAG() window function showing month-over-month peak demand change. (4) Export results showing state, month, peak demand, monthly average, and month-over-month change. Expected output: 6-8 rows per state showing trends across available months in 2026._
-  📦 Dataset: `AEMO Electricity Demand Data — aemo.com.au`
-  📁 Submit as: `quest3_2026-07-07.py`
+  📁 Submit as: `quest2_2026-07-08.py`
+- [ ] ⚡ **Combined Quest:** ABARES Crop Production Analytics Pipeline
+  _Build a data engineering pipeline combining Python and SQL: (1) In Python, fetch or load the ABARES crop production data (wheat, barley, canola, etc. by state and year), clean column names, handle missing production values, and load it into a SQLite database. (2) In SQL, write a query using window functions to calculate year-over-year production change percentage by crop and state, identify the top 3 growing crops nationally, and rank states by total production using RANK(). (3) Export results as a CSV showing crop, state, year, production, YoY change %, and national rank. Expected output: a complete Python script + SQL query + output CSV demonstrating full ETL workflow._
+  📦 Dataset: `ABARES Crop Production Data — agriculture.gov.au`
+  📁 Submit as: `quest3_2026-07-08.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
