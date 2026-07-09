@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-08 11:24 AEDT |
+| 📅 Last Sync | 2026-07-09 11:45 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Moving Averages
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) a 20-day moving average of closing price for each stock, (2) the rank of each stock by price change percentage within each month, (3) identify stocks that hit new 52-week highs. Use CTEs to structure your query clearly. Expected output: a result set showing stock ticker, date, close price, 20-day MA, monthly rank, and a boolean flag for 52-week high. Filter for the last 6 months of data._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-08.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python/pandas script to: (1) handle missing values in crash severity, location, and vehicle type columns using appropriate strategies (drop, forward-fill, or mode), (2) create new features: crash_hour from timestamp, severity_category (group severity levels), day_of_week, (3) detect and flag outliers in crash count by location using IQR method, (4) export a cleaned CSV with consistent column naming (snake_case). Document your data quality decisions with comments. Expected output: a cleaned CSV file ready for analysis._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
+  _Using ASX 200 historical stock price data, write a SQL query with window functions to calculate: (1) the 20-day moving average price for each stock, (2) the price rank within each trading day (highest to lowest), and (3) the day-over-day percentage change using LAG(). Filter for stocks where the 20-day moving average increased by more than 2% over the last 10 days. Output: stock_code, trading_date, close_price, moving_avg_20day, price_rank_daily, pct_change_daily, sorted by trading_date DESC and price_rank_daily ASC._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-07-09.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data (from data.nsw.gov.au). Clean the dataset by: (1) removing duplicate rows, (2) handling missing values in severity and crash_type columns (drop rows where >30% data missing in critical columns), (3) standardising date formats to YYYY-MM-DD, (4) correcting geocoordinates (filter out invalid lat/long outside NSW bounds: -28.0 to -34.5, 140.0 to 154.0). Then aggregate crashes by Local Government Area (LGA) and severity level. Output a CSV with columns: lga_name, severity, crash_count, avg_casualty_count, sorted by crash_count DESC. Include a data quality report showing rows removed at each step._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-08.py`
-- [ ] ⚡ **Combined Quest:** ABARES Crop Production Analytics Pipeline
-  _Build a data engineering pipeline combining Python and SQL: (1) In Python, fetch or load the ABARES crop production data (wheat, barley, canola, etc. by state and year), clean column names, handle missing production values, and load it into a SQLite database. (2) In SQL, write a query using window functions to calculate year-over-year production change percentage by crop and state, identify the top 3 growing crops nationally, and rank states by total production using RANK(). (3) Export results as a CSV showing crop, state, year, production, YoY change %, and national rank. Expected output: a complete Python script + SQL query + output CSV demonstrating full ETL workflow._
-  📦 Dataset: `ABARES Crop Production Data — agriculture.gov.au`
-  📁 Submit as: `quest3_2026-07-08.py`
+  📁 Submit as: `quest2_2026-07-09.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Trends Data Pipeline
+  _Build a Python + SQL pipeline using Australian Bureau of Meteorology weather observations (available on Kaggle as 'Australian Weather'): (1) In Python, load the CSV, clean temperature and rainfall columns (remove outliers >3 standard deviations, handle nulls with forward-fill), convert date strings to datetime, and export to a staging CSV. (2) In SQL, create a table from the staging CSV and write a CTE-based query to: identify the top 5 weather stations with highest average temperature increase (using window functions to calculate 30-day rolling avg), find months with anomalous rainfall (>2 std devs from station's historical mean), and rank stations by data completeness. Output: station_name, location_state, avg_temp_trend, anomaly_count, data_completeness_pct, ranked by avg_temp_trend DESC._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
+  📁 Submit as: `quest3_2026-07-09.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
