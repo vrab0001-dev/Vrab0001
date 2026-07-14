@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-13 11:26 AEDT |
+| 📅 Last Sync | 2026-07-14 11:15 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using ASX 200 historical price data, calculate a 20-day moving average and identify stocks that have exceeded their moving average by more than 5% in the last 30 days. Use window functions (AVG() OVER, ROW_NUMBER()) to rank stocks by momentum strength. Your output should show: stock_code, current_price, moving_avg_20day, momentum_percentage, and momentum_rank. Filter for only the top 10 momentum gainers._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Analysis with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query that calculates a 10-day moving average price and ranks each stock by its percentage gain over the last 30 days. Use window functions (ROW_NUMBER, AVG OVER, LAG) to compute: (1) the 10-day moving average closing price for each stock, (2) the percentage change from 30 days ago to today, (3) a rank of stocks by percentage gain (highest first). Filter for only the top 10 performing stocks. Expected output: stock_code, current_price, moving_avg_10d, pct_gain_30d, gain_rank. Order by gain_rank ascending._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-13.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
-  _Download NSW Road Crash Data and clean it for analysis: (1) Handle missing values in injury_type and crash_type columns using appropriate strategies; (2) Standardise datetime columns to ISO format; (3) Remove duplicate crash records based on crash_id and date; (4) Create new features: time_of_day (morning/afternoon/night), severity_category (minor/moderate/severe), and weekday name; (5) Export cleaned dataset to CSV with consistent naming conventions. Provide a data quality report showing row counts before/after cleaning and missing value percentages._
+  📁 Submit as: `quest1_2026-07-14.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation Pipeline
+  _Download the NSW Road Crash Data (CSV format). Write a Python script using pandas to: (1) handle missing values in injury_type and crash_type columns (drop rows where both are null, forward-fill others), (2) parse crash_date as datetime, (3) extract hour from crash_time and categorise into shift periods (night 00-06, morning 06-12, afternoon 12-18, evening 18-24), (4) remove duplicate rows based on crash_id, (5) aggregate crashes by local government area (LGA) and shift_period to count total crashes and average fatalities, (6) export the cleaned aggregated data to a CSV file with columns: lga, shift_period, total_crashes, avg_fatalities. Print a summary showing the LGA with the highest crash count._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-13.py`
-- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Foot Traffic Trend Analysis Pipeline
-  _Build an end-to-end pipeline: (1) Using Python, download Melbourne Pedestrian Counting data and clean it (handle nulls, validate date ranges, ensure sensor_id consistency); (2) Aggregate hourly counts to daily totals by sensor location using pandas; (3) Load cleaned data into a SQL database or create a temporary table; (4) Write SQL queries to: find the top 5 busiest locations by average daily foot traffic, calculate week-over-week percentage change for each sensor in the last 30 days, identify anomalies (days with traffic >2 standard deviations from monthly average); (5) Export results showing location_name, avg_daily_traffic, wow_change_percent, and anomaly_flag. Provide documentation of your data pipeline decisions._
-  📦 Dataset: `Melbourne Pedestrian Counting Data — Melbourne Open Data Portal`
-  📁 Submit as: `quest3_2026-07-13.py`
+  📁 Submit as: `quest2_2026-07-14.py`
+- [ ] ⚡ **Combined Quest:** Bureau of Meteorology Temperature Anomaly Detection Pipeline
+  _Create a Python script that: (1) loads Australian Weather observations (daily min/max temperatures by station and date from Kaggle or BOM), (2) cleans the data (remove nulls, validate temperature ranges -20°C to 50°C), (3) calculates a 30-day rolling average temperature for each weather station, (4) exports the cleaned and enriched data (with rolling average) to a SQLite database table called 'weather_daily', (5) then write a SQL query against that database that identifies temperature anomalies: find all days where the actual max_temp exceeds the 30-day rolling average by more than 3°C, grouped by station_name, and ranked by anomaly magnitude. Output: station_name, anomaly_date, max_temp, rolling_avg_30d, anomaly_magnitude_c, anomaly_rank. Expected to reveal heatwave patterns._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg dataset)`
+  📁 Submit as: `quest3_2026-07-14.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
