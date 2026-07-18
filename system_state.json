@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-07-17 11:25 AEDT",
+  "last_sync": "2026-07-18 11:17 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Momentum Analysis with Window Functions",
-      "description": "Using the ASX 200 historical prices dataset, calculate the 20-day moving average and 50-day moving average for the top 5 most traded stocks. Use window functions (AVG() OVER) to compute these rolling averages. Then identify stocks where the 20-day MA crossed above the 50-day MA in the last 30 days of your dataset. Return the stock symbol, date of crossover, closing price, and both moving average values. Order by date descending.",
-      "dataset": "ASX 200 Historical Stock Data \u2014 Kaggle",
+      "title": "ASX 200 Daily Price Momentum with Window Functions",
+      "description": "Using ASX 200 historical price data, calculate the 5-day moving average and momentum (percentage change) for each stock using window functions. Write a query that: (1) ranks stocks by their latest momentum score using ROW_NUMBER() partitioned by stock symbol, (2) uses LAG() to compare current price against previous day's close, (3) filters for stocks in the top 10 gainers over the last 30 days, and (4) returns symbol, date, close price, 5-day moving average, and momentum percentage. Use a CTE to organize the window function logic.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Incident Severity Pipeline",
-      "description": "Download the NSW Road Crash Data from data.nsw.gov.au. The dataset contains messy crash records with missing values, inconsistent date formats, and categorical fields. Write a Python script using pandas to: (1) standardise date columns to ISO format, (2) fill missing speed limits with the median for each road type, (3) create a new 'severity_category' column by binning injury counts into 'Minor' (1-2), 'Moderate' (3-5), and 'Severe' (6+), (4) remove duplicate records based on crash ID and timestamp, and (5) export the cleaned dataset as a CSV. Print summary statistics (row count before/after, missing values by column) before and after cleaning.",
+      "title": "NSW Road Crash Data Cleaning and Aggregation Pipeline",
+      "description": "Download NSW Road Crash Data from the open data portal. Write a Python script using pandas that: (1) loads the CSV and identifies missing values, duplicates, and data type inconsistencies, (2) cleans date/time columns and standardizes categorical values (e.g., crash type, severity), (3) creates a new derived column for crash severity category (minor/moderate/severe) based on injury counts, (4) removes outliers (e.g., crash records with implausible coordinates), and (5) exports a cleaned dataset to a new CSV. Document all transformations in comments. Expected output: clean CSV with no null values in critical columns and consistent data types.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Wine Production ETL: Extract, Clean, Analyse",
-      "description": "Retrieve Australian wine production statistics data (by region and vintage year). Using Python, load the raw CSV, clean it (handle missing regions, standardise vintage formats, remove invalid production volumes), and insert the cleaned records into a SQLite database with a schema: wines(id, region, vintage, production_volume_litres, wine_type, quality_rating). Then write a SQL query using CTEs and window functions to: (1) rank regions by total production volume, (2) calculate year-over-year growth in production for each region, (3) identify the vintage year with highest average quality rating per region. Return region, vintage, production_volume, yoy_growth_percent, and region_rank. Save both the cleaned CSV and the SQL results to separate output files.",
-      "dataset": "Australian Wine Production Statistics \u2014 Wine Australia or Kaggle",
+      "title": "Melbourne Pedestrian Traffic Analysis: Peak Hours Detection",
+      "description": "Combine Python and SQL to analyze Melbourne pedestrian counting data. Step 1 (Python): Load the pedestrian sensor data CSV, clean timestamps, handle missing values, and create hourly aggregated counts per sensor location. Save to a local SQLite database using pandas.to_sql(). Step 2 (SQL): Query the database to identify peak traffic hours (top 3 hours by volume) for each sensor location using ROW_NUMBER() and window functions. Calculate the percentage contribution of peak hours to total daily traffic. Return: sensor_id, location, peak_hour, hourly_count, and percentage_of_daily_total. Combine results back into a Python script that exports a summary report (CSV) ranking sensors by peak hour traffic intensity.",
+      "dataset": "Melbourne Pedestrian Counting System \u2014 Melbourne Open Data Portal",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-07-17"
+  "last_quest_date": "2026-07-18"
 }
