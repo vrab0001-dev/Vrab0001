@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-21 11:23 AEDT |
+| 📅 Last Sync | 2026-07-22 11:21 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using ASX 200 historical stock price data, calculate a 20-day moving average and identify stocks with the strongest momentum. Use window functions (ROW_NUMBER, LAG) to: 1) Calculate the 20-day moving average price for each stock, 2) Rank stocks by percentage change from their 20-day average (highest to lowest), 3) Identify the top 10 stocks with largest positive divergence from moving average on the latest date. Return stock symbol, current price, 20-day MA, percentage divergence, and rank. Use a CTE to structure the moving average calculation, then apply ranking in the main query._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Rankings
+  _Using ASX 200 historical price data, write a SQL query with window functions to calculate: (1) the 30-day rolling average price for each stock, (2) the rank of each stock by price change percentage within each month, and (3) identify the top 5 best-performing stocks (by percentage gain) in the most recent month. Use ROW_NUMBER() and LAG() to compare current price against price 30 days prior. Return columns: ticker, date, price, 30day_avg, monthly_rank, pct_change. Filter only for stocks in the ASX 200 index._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-21.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Severity Classification
-  _Download NSW Road Crash Data and perform comprehensive data cleaning: 1) Handle missing values in crash location, severity, and vehicle type columns (document your strategy for each), 2) Standardise date/time formats and extract hour-of-day and day-of-week features, 3) Create a severity score (1-5 scale) based on injury count and crash type, 4) Remove duplicate records based on crash ID and timestamp, 5) Generate a summary report showing crash frequency by severity, time of day, and top 5 locations. Export cleaned dataset as CSV and severity summary as JSON._
+  📁 Submit as: `quest1_2026-07-22.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data (contains raw incident records with messy formatting). Write a Python pandas script to: (1) handle missing values in crash severity, location, and time columns, (2) standardise datetime formats, (3) remove duplicate records based on crash ID, (4) create new features: hour_of_day (from time), is_weekend (from date), severity_category (map numeric codes to High/Medium/Low), (5) aggregate crashes by Local Government Area (LGA) and severity, counting incidents per category. Export cleaned data to CSV with summary statistics printed (total crashes, crashes by severity, top 5 LGAs by incident count)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-21.py`
-- [ ] ⚡ **Combined Quest:** AEMO Electricity Demand Anomaly Detection Pipeline
-  _Build a data pipeline combining Python and SQL: 1) In Python, fetch or load AEMO hourly electricity demand data for the last 90 days, clean missing values using forward-fill, and calculate rolling 7-day average and standard deviation using pandas, 2) Identify anomalies where demand exceeds mean + 2.5*std_dev, flag these records with anomaly_score, and export to CSV, 3) Load the CSV into a SQL database, 4) In SQL, use window functions (LAG, LEAD) to identify consecutive anomaly hours, calculate duration of anomaly clusters, and rank the top 10 most severe anomaly clusters by maximum demand spike. Return cluster ID, start time, end time, duration (hours), peak demand, and severity rank._
-  📦 Dataset: `AEMO Electricity Demand Data — aemo.com.au`
-  📁 Submit as: `quest3_2026-07-21.py`
+  📁 Submit as: `quest2_2026-07-22.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Extremes Pipeline
+  _Using Australian Bureau of Meteorology weather observation data (or Kaggle's jsphyg dataset): (1) Write a Python script using pandas to load raw weather CSV files, clean temperature and rainfall columns (handle unit conversions if needed, remove outliers >50°C or <-50°C), and aggregate daily readings to monthly summaries (min temp, max temp, mean temp, total rainfall) by station. (2) Load this cleaned data into a SQL database (SQLite or local PostgreSQL). (3) Write a SQL query with CTEs to identify: for each month in the dataset, which station recorded the highest temperature anomaly (actual max temp minus 10-year average max temp for that month), and rank the top 10 temperature anomalies across all months and stations. Return: month, station_name, actual_max_temp, historical_avg_temp, anomaly_value, anomaly_rank._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg dataset)`
+  📁 Submit as: `quest3_2026-07-22.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
