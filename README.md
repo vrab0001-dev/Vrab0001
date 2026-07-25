@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-24 11:25 AEDT |
+| 📅 Last Sync | 2026-07-25 11:25 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using ASX 200 historical price data, calculate a 30-day rolling average price and rank each stock by its momentum (current price vs 30-day average) within each trading date. Use window functions ROW_NUMBER() and LAG() to identify the top 5 gainers and losers each week. Your output should show: stock_code, trading_date, closing_price, 30day_avg, momentum_rank, and weekly_rank. Filter for the last 3 months of data and order by trading_date DESC, momentum_rank ASC._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Detection with Window Functions
+  _Using ASX 200 historical prices dataset, write a SQL query with window functions to identify momentum shifts. Calculate a 5-day moving average price using AVG() OVER (PARTITION BY symbol ORDER BY date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW). Then use LAG() to compare current price against the 5-day MA from the previous day. Flag rows where price crosses above the MA (bullish signal) or below (bearish signal). Return symbol, date, close_price, moving_avg_5day, prior_ma, and signal_type. Order by symbol and date. Expected output: 50-100 rows showing momentum shift events._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-24.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation Pipeline
-  _Download NSW Road Crash Data and build a Python script that: (1) loads the CSV, (2) handles missing values in crash_severity and road_type columns by forward-filling, (3) converts date columns to datetime format, (4) removes duplicate records based on crash_id, (5) creates a new column 'crash_year_month' by extracting year-month from the date, (6) exports a cleaned CSV with only crashes from 2023-2024 containing severity, location_suburb, road_type, and crash_year_month. Count and print the number of records removed in each cleaning step._
+  📁 Submit as: `quest1_2026-07-25.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Safety Hotspot Mapping
+  _Download NSW Road Crash Data from data.nsw.gov.au. Clean the dataset by: (1) removing rows with missing latitude/longitude coordinates, (2) converting date columns to datetime format, (3) standardising severity_level values to uppercase, (4) filtering crashes from 2022 onwards only, (5) removing duplicate records based on crash_id. Then create a summary CSV containing: suburb name, crash count, total injuries, total fatalities, and average severity score (1-5 scale). Sort by crash count descending. Save output as 'nsw_crash_hotspots_cleaned.csv'. Expected output: 50-150 suburbs ranked by crash frequency._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-24.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Trend Report with Python + SQL
-  _Use ABARES Australian wine production data. (1) In Python: load the CSV, clean vineyard_area and production_volume columns (handle missing values, convert to numeric), merge with vintage_year data, and export a staging table to a SQLite database. (2) In SQL: query the staged data to calculate year-over-year production growth by wine_region using LAG() and a CTE. Identify regions with >20% growth and <5% growth. Output: region_name, vintage_year, production_volume, yoy_growth_pct, and growth_category. Sort by yoy_growth_pct DESC. Expected runtime: join steps ~10 min, SQL analysis ~15 min._
-  📦 Dataset: `Australian Wine Production Statistics — Wine Australia / ABARES`
-  📁 Submit as: `quest3_2026-07-24.py`
+  📁 Submit as: `quest2_2026-07-25.py`
+- [ ] ⚡ **Python + SQL Quest:** AIHW Health Expenditure Trend Analysis Pipeline
+  _Build an end-to-end pipeline: (1) Download AIHW health expenditure data (CSV format). (2) Use Python/pandas to clean the dataset: remove null values in expenditure columns, convert currency to float, add a year-extracted column. (3) Create a SQLite database and load cleaned data into a table called 'health_expenditure'. (4) Write a SQL query using CTEs to: calculate year-over-year expenditure growth % by health service category (hospital, primary care, mental health, etc.). Use LAG() to get prior year values. (5) Return top 5 categories with highest growth rates. Export results to 'health_expenditure_growth.csv'. Expected output: 5 rows showing category, year, expenditure, prior_year_expenditure, and growth_percentage._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest3_2026-07-25.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
