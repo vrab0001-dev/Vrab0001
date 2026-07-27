@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-07-26 11:28 AEDT",
+  "last_sync": "2026-07-27 11:46 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Top Performers: Rank Stocks by Rolling 30-Day Returns",
-      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate each stock's rolling 30-day return (percentage change from close price 30 days ago to current close). Rank stocks daily by their rolling return using ROW_NUMBER() PARTITION BY date. Filter to show only the top 5 performers for each date in the last quarter of data. Include columns: date, ticker, close_price, rolling_30day_return, daily_rank. Use a CTE to calculate the rolling return, then a second CTE to rank. Expected output: 75-90 rows (assuming ~20-25 trading days per quarter \u00d7 5 top stocks).",
-      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
+      "title": "ASX 200 Momentum Tracker with Window Functions",
+      "description": "Using ASX 200 historical price data, calculate a 30-day rolling average price and identify stocks that have gained >5% over the last 30 days. Use window functions ROW_NUMBER() and LAG() to rank stocks by momentum within each sector. Return the top 10 stocks by momentum gain, showing: stock_code, sector, current_price, price_30_days_ago, momentum_pct, row_number_by_sector. Use a CTE to calculate the rolling average first, then a main query to rank and filter.",
+      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "Clean NSW Road Crash Data: Standardise Locations and Handle Missing Values",
-      "description": "Download the NSW Road Crash Data (data.nsw.gov.au). Load the CSV into pandas and perform comprehensive data cleaning: (1) Standardise the 'Suburb' and 'Local Government Area' columns to title case and remove leading/trailing whitespace. (2) Handle missing values in 'Speed Limit' by filling with the median speed limit grouped by road type. (3) Parse the 'Crash Date' column into a proper datetime format. (4) Remove duplicate rows based on crash ID. (5) Create a new column 'Severity_Category' by binning injury counts into 'Minor', 'Moderate', 'Severe'. Export the cleaned dataset to a new CSV file. Report: number of rows removed as duplicates, number of null values filled, and summary statistics of the cleaned data.",
+      "title": "NSW Road Crash Data Cleaning and Risk Score Automation",
+      "description": "Download NSW Road Crash Data (or use local CSV). Clean the dataset by: (1) handling missing values in Severity, Location_Latitude, Location_Longitude columns; (2) standardising date formats to YYYY-MM-DD; (3) removing duplicate crash records by Crash_ID; (4) creating a new Risk_Score column (0-100) based on Severity level and number of vehicles involved using pandas apply(); (5) exporting the cleaned dataset to a new CSV file. Document any data quality issues found in a summary report.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
-      "type": "Combined",
-      "title": "Energy Generation Mix Analysis: Python ETL + SQL Analytics",
-      "description": "Part 1 (Python): Download AEMO electricity demand and generation data. Use pandas to reshape the dataset from wide to long format (columns to rows), clean timestamp columns, and extract fuel source type. Handle missing values by forward-filling within each state and fuel source. Export to a clean CSV. Part 2 (SQL): Load the cleaned CSV into a database. Write a query using CTEs and window functions to: (1) Calculate each state's generation percentage by fuel source per month. (2) Use LAG() to find month-over-month percentage change for renewable energy (wind + solar combined). (3) Identify which state had the highest renewable generation growth rate over the dataset period. Include columns: state, month, renewable_pct, mom_change_pct, growth_rank. Expected output: 10-15 rows showing top-performing states.",
-      "dataset": "AEMO Electricity Demand and Generation Data \u2014 aemo.com.au",
-      "file_ext": ".py / .sql"
+      "type": "Python + SQL",
+      "title": "Australian Weather Anomaly Detection Pipeline",
+      "description": "Build a data pipeline: (1) In Python, load Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) from CSV; (2) use pandas to calculate monthly averages and detect anomalies (values >2 standard deviations from the mean) per location; (3) create a SQL table schema and insert cleaned data with anomaly flags into SQLite; (4) write a SQL query using window functions to find the top 5 locations with the most temperature anomalies in the last 12 months, ranked by anomaly frequency. Output: Python script + SQL file + anomaly report (CSV).",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
+      "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-07-26"
+  "last_quest_date": "2026-07-27"
 }
