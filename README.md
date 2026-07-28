@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-07-27 11:46 AEDT |
+| 📅 Last Sync | 2026-07-28 11:21 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Tracker with Window Functions
-  _Using ASX 200 historical price data, calculate a 30-day rolling average price and identify stocks that have gained >5% over the last 30 days. Use window functions ROW_NUMBER() and LAG() to rank stocks by momentum within each sector. Return the top 10 stocks by momentum gain, showing: stock_code, sector, current_price, price_30_days_ago, momentum_pct, row_number_by_sector. Use a CTE to calculate the rolling average first, then a main query to rank and filter._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-07-27.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Risk Score Automation
-  _Download NSW Road Crash Data (or use local CSV). Clean the dataset by: (1) handling missing values in Severity, Location_Latitude, Location_Longitude columns; (2) standardising date formats to YYYY-MM-DD; (3) removing duplicate crash records by Crash_ID; (4) creating a new Risk_Score column (0-100) based on Severity level and number of vehicles involved using pandas apply(); (5) exporting the cleaned dataset to a new CSV file. Document any data quality issues found in a summary report._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Analysis with Window Functions
+  _Using the ASX 200 historical prices dataset, calculate a 20-day moving average for the top 5 most traded stocks. Use window functions (AVG() OVER) to compute the moving average, then use ROW_NUMBER() to rank stocks by their latest price momentum (current price vs 20-day MA). Finally, use LAG() to compare each day's closing price with the previous day's close. Your output should show: stock_code, trade_date, close_price, moving_avg_20day, price_change_from_previous_day, momentum_rank. Filter for the last 90 days of data and order by trade_date DESC, momentum_rank ASC._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-07-28.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download the NSW Road Crash Data (CSV format). Your task: (1) Clean the dataset by handling missing values in the 'Speed Limit', 'Road Type', and 'Weather Condition' columns using appropriate imputation; (2) Create a new feature 'crash_severity_score' (0-100) based on number of persons injured and vehicles involved; (3) Convert date columns to datetime format and extract 'day_of_week', 'month', 'hour_of_crash'; (4) Remove duplicate records based on crash ID; (5) Export the cleaned dataset to a new CSV file. Document any data quality issues you find and your imputation strategy in a brief text summary._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-07-27.py`
-- [ ] ⚡ **Python + SQL Quest:** Australian Weather Anomaly Detection Pipeline
-  _Build a data pipeline: (1) In Python, load Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) from CSV; (2) use pandas to calculate monthly averages and detect anomalies (values >2 standard deviations from the mean) per location; (3) create a SQL table schema and insert cleaned data with anomaly flags into SQLite; (4) write a SQL query using window functions to find the top 5 locations with the most temperature anomalies in the last 12 months, ranked by anomaly frequency. Output: Python script + SQL file + anomaly report (CSV)._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-07-27.py`
+  📁 Submit as: `quest2_2026-07-28.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Patterns & Wildfire Risk Correlation
+  _Combine two datasets: (1) Australian Weather Observations (Bureau of Meteorology / Kaggle), and (2) Australian Wildfire Dataset (Kaggle). Use Python to clean both datasets, aggregate daily weather metrics (temperature, humidity, rainfall) by region/location, and merge with wildfire occurrence data. Then, using SQL, create a CTE that calculates: for each region, the average temperature 7 days before a wildfire event vs 7 days before non-fire days. Use window functions to lag weather data by 1-7 days. Output: region, avg_temp_before_fire, avg_temp_before_nofire, humidity_variance, rainfall_mm, fire_count. Identify which regions show the strongest correlation between temperature spikes and subsequent fire events. Present findings as a sorted table._
+  📦 Dataset: `Australian Weather Observations — Kaggle (jsphyg); Australian Wildfire Dataset — Kaggle`
+  📁 Submit as: `quest3_2026-07-28.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
