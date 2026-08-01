@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-07-31 11:29 AEDT",
+  "last_sync": "2026-08-01 11:30 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Momentum Rankings with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate a 20-day rolling average price for each stock symbol. Then rank stocks by their current price relative to this moving average (current price / MA20) in descending order. Use ROW_NUMBER() to assign a unique rank within each date partition, and LAG() to compare today's price against yesterday's price. Filter for the last 10 trading days and show: symbol, date, close_price, ma20, price_ratio, daily_change, and row_rank. This reveals momentum stocks outperforming their short-term trend.",
+      "title": "ASX 200 Stock Performance Ranking with Moving Averages",
+      "description": "Using the ASX 200 historical prices dataset, write a query that calculates the 20-day and 50-day moving averages for each stock symbol, then ranks stocks by their current price relative to the 50-day moving average (highest premium first). Use window functions ROW_NUMBER() or RANK() to assign rankings within each stock, and a CTE to pre-calculate the moving averages. Return: symbol, date, close_price, ma_20, ma_50, premium_percentage, and rank. Filter for the last 60 days of data only.",
       "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "Clean & Aggregate NSW Road Crash Data",
-      "description": "Download NSW Road Crash Data (2020\u20132025) and perform the following: (1) Handle missing values in injury severity and crash type columns by forward-filling or dropping as appropriate. (2) Standardise date formats to YYYY-MM-DD. (3) Remove duplicate crash records based on crash ID. (4) Create a new column 'month_year' from the date. (5) Aggregate crashes by local government area (LGA) and month, counting total crashes and summing fatalities. (6) Export cleaned data to a new CSV with columns: lga, month_year, crash_count, fatalities. Script should be reproducible and include comments explaining each step.",
+      "title": "NSW Road Crash Data Cleaning & Aggregation Pipeline",
+      "description": "Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas that: (1) loads the CSV, (2) handles missing values in Crash_Severity and Speed_Zone columns by filling with mode, (3) removes duplicate crash records based on Crash_ID, (4) creates a new column 'Day_Of_Week' from the Crash_Date, (5) filters for crashes in 2024-2025 only, (6) exports a cleaned CSV with summary statistics printed to console showing total crashes, crashes by severity, and crashes by day of week. Expected output: cleaned CSV file + console output with 5+ key metrics.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Melbourne Pedestrian Traffic Analysis Pipeline",
-      "description": "End-to-end task: (1) Use Python/pandas to load Melbourne pedestrian counting sensor data, resample hourly counts to daily totals, and clean outliers (remove days with counts > 3 standard deviations from mean). Export cleaned data to a staging CSV. (2) Load this CSV into a SQL database (SQLite or your choice). (3) Write a SQL query using CTEs to calculate: for each sensor location, the average daily foot traffic, the day of week with highest traffic, and a 7-day rolling average trend. (4) Return results ordered by average traffic (descending) and save to a final output file. This simulates a real data pipeline from raw source \u2192 cleaned staging \u2192 analytical queries.",
-      "dataset": "Melbourne Pedestrian Counting System \u2014 Melbourne Open Data Portal",
+      "title": "Melbourne Pedestrian Traffic Analysis: Peak Hours & Location Clustering",
+      "description": "Combine Python and SQL to analyze Melbourne pedestrian counting data. Step 1 (Python): Load the pedestrian counting CSV from Melbourne Open Data Portal, clean datetime columns, filter for 2024 data, and export a staging table as CSV with columns: sensor_id, sensor_name, date, hour, pedestrian_count. Step 2 (SQL): Load the staged CSV, use window functions LAG() and LEAD() to identify peak hours (top 10% traffic by hour for each sensor), use a CTE to calculate average hourly traffic per sensor, then write a query that returns the top 5 sensors with highest average traffic and their peak hours. Expected deliverable: Python script + SQL query + output showing top sensors ranked by average pedestrian volume with peak hour times.",
+      "dataset": "Melbourne Pedestrian Counting \u2014 Melbourne Open Data Portal",
       "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-07-31"
+  "last_quest_date": "2026-08-01"
 }
