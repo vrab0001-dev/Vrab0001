@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-01 11:30 AEDT |
+| 📅 Last Sync | 2026-08-02 11:27 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Ranking with Moving Averages
-  _Using the ASX 200 historical prices dataset, write a query that calculates the 20-day and 50-day moving averages for each stock symbol, then ranks stocks by their current price relative to the 50-day moving average (highest premium first). Use window functions ROW_NUMBER() or RANK() to assign rankings within each stock, and a CTE to pre-calculate the moving averages. Return: symbol, date, close_price, ma_20, ma_50, premium_percentage, and rank. Filter for the last 60 days of data only._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-08-01.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation Pipeline
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas that: (1) loads the CSV, (2) handles missing values in Crash_Severity and Speed_Zone columns by filling with mode, (3) removes duplicate crash records based on Crash_ID, (4) creates a new column 'Day_Of_Week' from the Crash_Date, (5) filters for crashes in 2024-2025 only, (6) exports a cleaned CSV with summary statistics printed to console showing total crashes, crashes by severity, and crashes by day of week. Expected output: cleaned CSV file + console output with 5+ key metrics._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking with Window Functions
+  _Using the ASX 200 historical stock prices dataset, write a query that calculates a 30-day rolling average price for each stock ticker, then ranks stocks by their momentum (current price vs 30-day average) using ROW_NUMBER() and RANK() window functions. Include columns: ticker, date, close_price, rolling_avg_30d, price_momentum_pct, momentum_rank (RANK), price_rank (ROW_NUMBER). Filter for dates in the last 90 days and order by momentum_rank ascending. Expected output: top 10 stocks with highest positive momentum._
+  📦 Dataset: `ASX 200 Historical Data — Kaggle`
+  📁 Submit as: `quest1_2026-08-02.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download NSW Road Crash Data. Write a Python/pandas script that: (1) loads the CSV and identifies missing values, duplicates, and data type inconsistencies; (2) cleans the dataset by handling nulls in 'Severity', 'Weather', and 'Light_Condition' columns with appropriate strategies (drop, fill, or flag); (3) creates new features: hour_of_day (from time), day_of_week (from date), is_night (if hour between 18-06), severity_score (numeric encoding); (4) exports cleaned data to a new CSV. Provide a summary report showing before/after row counts and data quality metrics._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-01.py`
-- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Analysis: Peak Hours & Location Clustering
-  _Combine Python and SQL to analyze Melbourne pedestrian counting data. Step 1 (Python): Load the pedestrian counting CSV from Melbourne Open Data Portal, clean datetime columns, filter for 2024 data, and export a staging table as CSV with columns: sensor_id, sensor_name, date, hour, pedestrian_count. Step 2 (SQL): Load the staged CSV, use window functions LAG() and LEAD() to identify peak hours (top 10% traffic by hour for each sensor), use a CTE to calculate average hourly traffic per sensor, then write a query that returns the top 5 sensors with highest average traffic and their peak hours. Expected deliverable: Python script + SQL query + output showing top sensors ranked by average pedestrian volume with peak hour times._
-  📦 Dataset: `Melbourne Pedestrian Counting — Melbourne Open Data Portal`
-  📁 Submit as: `quest3_2026-08-01.py`
+  📁 Submit as: `quest2_2026-08-02.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
+  _Create an end-to-end pipeline using Python and SQL: (1) In Python, load Australian weather observations (Bureau of Meteorology dataset from Kaggle), filter for 2024 data only, and clean temperature/rainfall columns. (2) Calculate monthly aggregates (avg_temp, total_rainfall, max_wind_speed) grouped by station_id and month. (3) Load cleaned data into a SQLite database. (4) Write a SQL query using LAG() window function to calculate month-on-month temperature change for each station. (5) Identify anomalies where temperature change exceeds 5°C or rainfall exceeds 150mm using a CTE. Output: station_id, month, temp_change_moc, rainfall, is_anomaly flag, ranked by anomaly severity._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest3_2026-08-02.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
