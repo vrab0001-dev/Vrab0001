@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-02 11:27 AEDT |
+| 📅 Last Sync | 2026-08-03 11:28 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking with Window Functions
-  _Using the ASX 200 historical stock prices dataset, write a query that calculates a 30-day rolling average price for each stock ticker, then ranks stocks by their momentum (current price vs 30-day average) using ROW_NUMBER() and RANK() window functions. Include columns: ticker, date, close_price, rolling_avg_30d, price_momentum_pct, momentum_rank (RANK), price_rank (ROW_NUMBER). Filter for dates in the last 90 days and order by momentum_rank ascending. Expected output: top 10 stocks with highest positive momentum._
-  📦 Dataset: `ASX 200 Historical Data — Kaggle`
-  📁 Submit as: `quest1_2026-08-02.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download NSW Road Crash Data. Write a Python/pandas script that: (1) loads the CSV and identifies missing values, duplicates, and data type inconsistencies; (2) cleans the dataset by handling nulls in 'Severity', 'Weather', and 'Light_Condition' columns with appropriate strategies (drop, fill, or flag); (3) creates new features: hour_of_day (from time), day_of_week (from date), is_night (if hour between 18-06), severity_score (numeric encoding); (4) exports cleaned data to a new CSV. Provide a summary report showing before/after row counts and data quality metrics._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Volatility Analysis with Window Functions
+  _Using ASX 200 historical prices, write a SQL query with window functions to calculate: (1) the 20-day moving average of closing prices for each stock, (2) the daily percentage change ranked by magnitude within each stock, and (3) identify the date each stock hit its 52-week high. Use ROW_NUMBER() or RANK() to handle ties, and LAG() to compute percentage changes. Output should show stock symbol, date, closing price, 20-day moving average, percentage change rank, and 52-week high date. Filter for the top 10 ASX 200 stocks by market cap._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-08-03.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation
+  _Download NSW Road Crash data and write a Python/pandas script to: (1) handle missing values in the 'Injury Level' and 'Speed Zone' columns by imputing with mode, (2) standardise the 'Local Government Area' column (trim whitespace, convert to title case), (3) create a new feature 'crash_hour' extracted from the datetime column, (4) remove duplicate crash records based on crash ID and timestamp, and (5) aggregate crashes by LGA and hour to produce a summary CSV showing total crashes, injuries, and fatalities per LGA-hour combination. Export the cleaned dataset and summary to CSV files._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-02.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
-  _Create an end-to-end pipeline using Python and SQL: (1) In Python, load Australian weather observations (Bureau of Meteorology dataset from Kaggle), filter for 2024 data only, and clean temperature/rainfall columns. (2) Calculate monthly aggregates (avg_temp, total_rainfall, max_wind_speed) grouped by station_id and month. (3) Load cleaned data into a SQLite database. (4) Write a SQL query using LAG() window function to calculate month-on-month temperature change for each station. (5) Identify anomalies where temperature change exceeds 5°C or rainfall exceeds 150mm using a CTE. Output: station_id, month, temp_change_moc, rainfall, is_anomaly flag, ranked by anomaly severity._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-08-02.py`
+  📁 Submit as: `quest2_2026-08-03.py`
+- [ ] ⚡ **Combined Quest:** Australian Wildfire Severity Pipeline
+  _Build an end-to-end data pipeline: (1) In Python, load Australian Wildfire dataset (from Kaggle) and use pandas to clean the data: remove rows with missing fire duration, standardise location names, and convert date columns to datetime format. Create a feature 'fire_severity_score' = (acres burned / 1000) * (duration in days). (2) Export cleaned data to a CSV. (3) In SQL, load the CSV into a table and write a query using CTEs to: (i) rank fires by severity score within each Australian state using RANK(), (ii) calculate the cumulative burned acres by state ordered by date using SUM() window function, (iii) identify the top 5 most severe fire seasons (group by year) and include fire count and total acres burned. Output final results showing state, year, fire rank, cumulative acres, and seasonal metrics._
+  📦 Dataset: `Australian Wildfire Dataset — Kaggle`
+  📁 Submit as: `quest3_2026-08-03.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
