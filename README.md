@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-05 11:22 AEDT |
+| 📅 Last Sync | 2026-08-06 11:19 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Price Momentum Ranking
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their 7-day price momentum. Calculate the percentage change from 7 days ago using LAG(), then rank companies within each date partition by momentum (descending). Include columns: company_code, date, close_price, price_7_days_ago, momentum_pct, momentum_rank. Filter for the last 30 days of data and return top 10 performers. Use a CTE to calculate momentum first, then rank in the main query._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Returns & Moving Averages
+  _Using the ASX 200 historical prices dataset, write a query that calculates the daily percentage return for each stock, then uses a window function to compute the 20-day moving average of returns. Rank stocks by their most recent moving average return (highest to lowest). Include columns: date, stock_code, daily_return_pct, ma_20_day_return, rank. Filter for the top 10 stocks by rank on the most recent date in the dataset. Use a CTE to calculate returns first, then a second CTE for the moving average._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-08-05.sql`
+  📁 Submit as: `quest1_2026-08-06.sql`
 - [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download the NSW Road Crash Data from data.nsw.gov.au and use pandas to: (1) Load the CSV and identify missing values by column; (2) Clean the data by removing rows where critical fields (crash_date, severity, location) are null; (3) Standardise the severity column (convert to uppercase and strip whitespace); (4) Create a new column crash_month from crash_date; (5) Aggregate crashes by crash_month and severity, counting incidents; (6) Export a cleaned summary CSV showing monthly crash counts by severity level. Expected output: a cleaned CSV with at least 12 rows (one per month) and 3 columns (month, severity, count)._
+  _Download the NSW Road Crash Data (available as CSV from NSW Open Data). Write a Python script using pandas that: (1) loads the crash data, (2) handles missing values in severity and injury_type columns by imputing with 'Unknown', (3) converts date columns to datetime format, (4) removes duplicate crash records based on crash_id, (5) creates a new column 'month_year' from the date field, (6) exports a cleaned CSV file. Then create a summary DataFrame grouping crashes by month_year and severity level, showing crash count and average number of vehicles involved. Save the summary as a separate CSV._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-05.py`
-- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Peak Hour Analysis Pipeline
-  _Build an end-to-end pipeline: (1) Use Python/pandas to load Melbourne pedestrian counting data from Melbourne Open Data Portal; (2) Parse the timestamp column and extract hour and day_of_week; (3) Clean any null sensor_id or count values; (4) Export cleaned data to a CSV file; (5) Load this CSV into SQLite or your local database; (6) Write SQL to find the top 5 sensors by average pedestrian count during peak hours (8–9am and 5–6pm) on weekdays only; (7) Include columns: sensor_id, sensor_name, peak_hour, avg_count, day_of_week. Return results sorted by avg_count descending. Document both the Python and SQL scripts._
-  📦 Dataset: `Melbourne Pedestrian Counting — Melbourne Open Data Portal`
-  📁 Submit as: `quest3_2026-08-05.py`
+  📁 Submit as: `quest2_2026-08-06.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Patterns: Data Pipeline
+  _Build an end-to-end pipeline: (1) Use Python/pandas to load the Australian Weather observations dataset (Bureau of Meteorology / Kaggle jsphyg version), clean temperature and rainfall columns (handle missing values, convert to numeric), and filter for observations from the last 5 years. Export to a local SQLite database. (2) Write SQL queries to: identify the station with the highest average daily temperature, calculate monthly total rainfall using window functions (LAG to compare month-over-month change), and rank the top 5 wettest months across all stations. (3) Export the final SQL results to CSV with columns: station_name, month, total_rainfall_mm, rainfall_change_pct, rank. Ensure your Python script and SQL queries are modular and documented._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (Kaggle jsphyg)`
+  📁 Submit as: `quest3_2026-08-06.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
