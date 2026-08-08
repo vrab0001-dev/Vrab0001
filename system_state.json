@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-08-07 12:00 AEDT",
+  "last_sync": "2026-08-08 10:43 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Stock Performance Rankings with Moving Averages",
-      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) a 20-day moving average of closing price for each stock, (2) the rank of each stock by daily percentage change within each trading date, and (3) the cumulative return from the first day in the dataset for each stock. Use CTEs to structure the query logically. Return the top 10 stocks by cumulative return over the entire period, showing date, stock symbol, closing price, 20-day moving average, daily rank, and cumulative return percentage.",
-      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
+      "title": "ASX 200 Daily Returns Ranking with Moving Averages",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate daily percentage returns for each stock, (2) Rank stocks by return within each date using ROW_NUMBER(), (3) Calculate a 7-day moving average of closing price for each stock using LAG(), (4) Identify the top 5 best and worst performing stocks on the most recent date in your dataset. Return columns: date, stock_code, close_price, daily_return_pct, return_rank, moving_avg_7day. Use a CTE to structure the window function logic clearly.",
+      "dataset": "ASX 200 historical stock prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Risk Score Calculation",
-      "description": "Download the NSW Road Crash Data (CSV format). Write a Python/pandas script to: (1) handle missing values in severity, vehicle type, and location columns, (2) standardize date/time formats, (3) remove duplicate crash records based on a composite key (date, location, vehicle count), (4) create a new 'crash_risk_score' column (1-10 scale) based on severity level and number of vehicles involved, (5) generate summary statistics by local government area (LGA), and (6) export a cleaned dataset with new columns to a new CSV file. Document your data quality decisions in code comments.",
+      "title": "NSW Road Crash Data Cleaning & Severity Scoring",
+      "description": "Download the NSW Road Crash Data (contains crash records with timestamps, locations, vehicle counts, injury severity). Write a Python script using pandas to: (1) Load the CSV and inspect for missing values, duplicates, and data type inconsistencies, (2) Handle missing values in critical columns (crash_type, severity, location_code) using appropriate imputation or removal, (3) Create a new 'severity_score' column (0-10 scale) derived from injury counts and crash type, (4) Filter for crashes in Greater Sydney area only, (5) Export cleaned data to a new CSV with datetime columns properly formatted. Document your cleaning decisions in comments.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomaly Detection Pipeline",
-      "description": "Using Australian Bureau of Meteorology weather observations dataset (available on Kaggle), build an end-to-end pipeline: (1) In Python/pandas, load the CSV, clean temperature and rainfall columns (handle missing values, outliers, unit conversions if needed), and calculate monthly averages by station. (2) Export cleaned monthly aggregates to a new CSV. (3) In SQL, load this CSV into a database table, then write a query using window functions (LAG, ROW_NUMBER) to identify: (a) months where temperature exceeded the 12-month rolling average by >2\u00b0C for that station, (b) rank stations by deviation severity, and (c) flag potential anomalies. Return results showing station name, month, temperature, rolling average, and anomaly flag. Explain your anomaly detection logic in a comment block.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle",
+      "title": "Australian Weather Trends: ETL Pipeline with SQL Analysis",
+      "description": "Build a mini ETL pipeline: (1) Use Python/pandas to load Australian Bureau of Meteorology observations (or Kaggle's Australian Weather dataset), clean temperature and rainfall columns (handle missing values, outliers, unit conversions if needed), and load into a local SQLite database with tables: weather_stations (station_id, location, state) and daily_observations (station_id, date, max_temp, min_temp, rainfall_mm). (2) In SQL, write a query using window functions to: Calculate rolling 30-day average temperature and rainfall for each station, identify the hottest and wettest days per station using RANK(), and find stations where the temperature trend is increasing month-over-month using LAG(). (3) Output a summary report: top 3 hottest stations, top 3 wettest regions, and stations with warming trends. Provide both the Python script (.py) and SQL query (.sql).",
+      "dataset": "Australian Weather observations \u2014 Bureau of Meteorology / Kaggle",
       "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-08-07"
+  "last_quest_date": "2026-08-08"
 }
