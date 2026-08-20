@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-19 10:32 AEDT |
+| 📅 Last Sync | 2026-08-20 10:32 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Price Momentum Analysis
-  _Using ASX 200 historical stock prices, calculate for each stock: (1) the daily percentage change, (2) a 5-day moving average of closing price using window functions, (3) rank stocks by momentum (% change) within each trading date, (4) identify stocks that crossed above their 5-day MA on any given day. Use CTEs to break down the logic. Return: date, stock_code, close_price, pct_change, ma_5day, momentum_rank, crossed_ma (boolean). Filter to top 20 movers by momentum rank per date._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-08-19.sql`
-- [ ] 🐍 **Python Quest:** Australian Weather Data Cleaning & Aggregation
-  _Download Australian Bureau of Meteorology observations (or use a weather dataset from Kaggle). Clean the dataset by: (1) handling missing temperature/rainfall values (document your imputation strategy), (2) converting date strings to datetime, (3) removing duplicate station records, (4) standardising column names to snake_case. Then aggregate daily data to monthly summaries per station: mean temp, max temp, total rainfall, observation count. Export cleaned daily data and monthly summary to separate CSV files. Document all cleaning decisions in comments._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
-  📁 Submit as: `quest2_2026-08-19.py`
-- [ ] ⚡ **Combined Quest:** NSW Road Crash Hotspot Pipeline
-  _Build a data pipeline: (1) In Python/pandas: load NSW Road Crash Data, clean injury severity codes, geocode suburb names, handle missing coordinates, create a crash severity score (0-10 based on injuries/fatalities). (2) In SQL: load cleaned data into a local database. Write a query using window functions to rank suburbs by crash frequency over rolling 12-month windows, identify trend (increasing/decreasing crashes YoY), and flag hotspots (top 10% by injury severity). (3) Output: CSV with suburb, crash_count, severity_score, rank, trend_direction, is_hotspot. Bonus: visualise top 5 hotspots as a simple text-based chart in Python._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Moving Averages
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their 30-day moving average performance. Calculate ROW_NUMBER() partitioned by stock ticker ordered by moving average gain/loss. Use a CTE to compute the 30-day moving average price for each stock, then rank them. Return the top 10 stocks with highest moving average gains and bottom 10 with losses, including columns: ticker, date, closing_price, 30day_moving_avg, price_vs_ma, and rank. This tests your understanding of window functions (ROW_NUMBER, AVG() OVER), CTEs, and analytical queries._
+  📦 Dataset: `ASX 200 historical prices — Kaggle`
+  📁 Submit as: `quest1_2026-08-20.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Severity Analysis
+  _Download the NSW Road Crash Data from data.nsw.gov.au. Use pandas to: (1) load the CSV and inspect for missing values and data types; (2) clean the dataset by handling nulls in crash_severity and location columns; (3) standardise the datetime column to YYYY-MM-DD format; (4) create a new feature called 'crash_hour' extracted from the time field; (5) filter crashes with injury_count > 0; (6) export a cleaned CSV with only relevant columns (crash_id, date, location, severity, injury_count, crash_hour). Write clear comments explaining each transformation step. Expected output: a cleaned CSV file ready for analysis._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest3_2026-08-19.py`
+  📁 Submit as: `quest2_2026-08-20.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Patterns: Python ETL to SQL Analytics
+  _Load the Australian Weather observations dataset (from Bureau of Meteorology via Kaggle). Step 1 (Python): Use pandas to extract temperature and rainfall data, group by month and state, calculate mean_temperature and total_rainfall per month. Clean any outliers (e.g., temperature > 50°C or < -20°C) by removing rows. Save the aggregated data to a CSV. Step 2 (SQL): Create a table from the CSV and write a query using window functions to identify the top 3 months with highest rainfall per state using RANK() OVER (PARTITION BY state ORDER BY total_rainfall DESC). Also calculate the month-over-month temperature change using LAG(). Return state, month, rainfall, temperature, and temp_change columns. This combines ETL pipeline design with advanced SQL analytics._
+  📦 Dataset: `Australian Weather observations — Bureau of Meteorology (Kaggle: jsphyg)`
+  📁 Submit as: `quest3_2026-08-20.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
