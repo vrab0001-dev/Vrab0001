@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-22 10:31 AEDT |
+| 📅 Last Sync | 2026-08-23 10:34 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Daily Momentum Tracker
-  _Using ASX 200 historical stock price data, write a query that calculates for each company: (1) the 5-day moving average of closing price using a window function, (2) the rank of companies by daily percentage change using RANK(), and (3) identify which companies had their highest closing price in the last 30 days using ROW_NUMBER(). Filter results to show only the top 10 companies by percentage gain on the most recent trading date. Return columns: company_code, date, close_price, moving_avg_5day, rank_by_pct_change, days_since_52week_high._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-08-22.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data from the open data portal. Write a Python script using pandas that: (1) loads the CSV and inspects for missing values and data types, (2) cleans crash location data by standardising suburb names (remove extra spaces, convert to title case), (3) converts date columns to datetime format and extracts day_of_week and hour_of_day, (4) removes duplicate crash records based on crash_id, (5) filters to only crashes in the last 5 years, and (6) exports a cleaned CSV with a summary report showing record count before/after cleaning, missing value percentages, and top 5 crash suburbs. Ensure your script is robust and handles edge cases._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Analysis with Window Functions
+  _Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate the 5-day moving average of closing prices for each stock using AVG() OVER a rolling window, (2) Rank stocks by their price momentum (current price vs 20-day average) using ROW_NUMBER() OVER, (3) Identify stocks that crossed above their 50-day moving average using LAG() to compare current close to previous 50-day average. Return stock ticker, date, close price, 5-day MA, momentum rank, and a flag indicating crossover events. Filter for top 20 stocks by momentum rank and order by date descending._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-08-23.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation
+  _Download NSW Road Crash Data (contains crash severity, location, vehicle count, etc.). Write a Python/pandas script to: (1) Handle missing values in severity and location columns (document your strategy), (2) Standardise date formats and extract year/month/day, (3) Remove duplicate crash records based on crash ID and timestamp, (4) Create a new feature: crash density per local government area (LGA) per month, (5) Export a cleaned CSV with crashes aggregated by LGA, severity level, and month, showing crash count and average vehicles involved. Include data quality checks (row counts before/after cleaning, null value summary)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-22.py`
-- [ ] ⚡ **Combined Quest:** AEMO Electricity Demand Analysis & Reporting
-  _Retrieve AEMO electricity demand data (30-minute or hourly interval data for the last 12 months). (1) Use Python/pandas to load, clean, and resample the data to daily totals by state and demand type. (2) Create a SQL database table from the cleaned data. (3) Write SQL queries to: identify peak demand dates for each state using window functions (RANK by demand), calculate month-on-month demand growth using LAG(), and detect anomalies (days where demand was >2 standard deviations above the 90-day rolling average). (4) Export final results showing state, date, total_demand_mwh, month_on_month_growth_pct, and anomaly_flag. Provide both Python script and SQL query files._
-  📦 Dataset: `AEMO Electricity Demand Data — aemo.com.au`
-  📁 Submit as: `quest3_2026-08-22.py`
+  📁 Submit as: `quest2_2026-08-23.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: SQL Analysis + Python ETL
+  _Using Australian Wine Production Statistics data: (1) Write a Python script to extract and clean wine production data by region and vintage year (handle missing/inconsistent region names, convert volume to standardised units). (2) Load cleaned data into a local SQLite database. (3) Write a SQL query using CTEs to: calculate total production by region, rank regions by production volume (using DENSE_RANK), calculate year-over-year growth using LAG(), and identify regions with >20% production increase. (4) Export results showing region, vintage, production volume, growth rate, and region rank. Automate the entire pipeline so it can accept a new CSV file and re-run end-to-end. Document assumptions about data quality._
+  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com`
+  📁 Submit as: `quest3_2026-08-23.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
