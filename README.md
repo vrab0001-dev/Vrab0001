@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-23 10:34 AEDT |
+| 📅 Last Sync | 2026-08-24 10:33 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Analysis with Window Functions
-  _Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate the 5-day moving average of closing prices for each stock using AVG() OVER a rolling window, (2) Rank stocks by their price momentum (current price vs 20-day average) using ROW_NUMBER() OVER, (3) Identify stocks that crossed above their 50-day moving average using LAG() to compare current close to previous 50-day average. Return stock ticker, date, close price, 5-day MA, momentum rank, and a flag indicating crossover events. Filter for top 20 stocks by momentum rank and order by date descending._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-08-23.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation
-  _Download NSW Road Crash Data (contains crash severity, location, vehicle count, etc.). Write a Python/pandas script to: (1) Handle missing values in severity and location columns (document your strategy), (2) Standardise date formats and extract year/month/day, (3) Remove duplicate crash records based on crash ID and timestamp, (4) Create a new feature: crash density per local government area (LGA) per month, (5) Export a cleaned CSV with crashes aggregated by LGA, severity level, and month, showing crash count and average vehicles involved. Include data quality checks (row counts before/after cleaning, null value summary)._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility Analysis with Window Functions
+  _Using ASX 200 historical price data, calculate the 20-day rolling standard deviation of daily returns for each stock. Use a CTE to first compute daily percentage changes (LAG function), then apply window functions to calculate rolling volatility across the window frame. Filter for stocks with volatility > 3% and rank them by volatility within each month. Expected output: stock_code, date, daily_return, rolling_volatility, volatility_rank, month. This demonstrates window frame specification and CTEs for financial analysis._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-08-24.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Injury Classification Pipeline
+  _Download NSW Road Crash Data and build a Python pandas script that: (1) handles missing values in 'Severity' and 'Speed Limit' columns using domain-appropriate strategies, (2) standardises location data (suburb names to title case, removes duplicate whitespace), (3) creates a new categorical column 'Injury_Risk' (Low/Medium/High) based on injury counts and speed limit, (4) exports cleaned data to CSV and logs data quality metrics (null counts before/after, unique values per categorical column). Expected output: cleaned CSV file + data_quality_report.txt with before/after comparisons._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-23.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: SQL Analysis + Python ETL
-  _Using Australian Wine Production Statistics data: (1) Write a Python script to extract and clean wine production data by region and vintage year (handle missing/inconsistent region names, convert volume to standardised units). (2) Load cleaned data into a local SQLite database. (3) Write a SQL query using CTEs to: calculate total production by region, rank regions by production volume (using DENSE_RANK), calculate year-over-year growth using LAG(), and identify regions with >20% production increase. (4) Export results showing region, vintage, production volume, growth rate, and region rank. Automate the entire pipeline so it can accept a new CSV file and re-run end-to-end. Document assumptions about data quality._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com`
-  📁 Submit as: `quest3_2026-08-23.py`
+  📁 Submit as: `quest2_2026-08-24.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Patterns: SQL Analytics + Python Validation Pipeline
+  _Using Australian Bureau of Meteorology weather observations dataset: (1) Write SQL to identify the top 5 weather stations with the highest average daily temperature variance (using window functions to compute daily min/max and variance within 30-day rolling windows), rank them by state. (2) Export results to CSV via Python. (3) Build a Python validation script that reads the CSV, cross-checks station names against a reference list (create a small reference CSV or hardcode known stations), flags any data quality issues (missing coordinates, duplicate station entries), and generates a summary report showing data completeness % by state. (4) Re-import validated results into a SQLite database table for archival. Expected outputs: initial_analysis.csv, validation_report.txt, archived_weather_analysis.db with one validated table._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (via Kaggle: jsphyg/weather-australia)`
+  📁 Submit as: `quest3_2026-08-24.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
