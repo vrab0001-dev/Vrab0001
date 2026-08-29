@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-08-28 17:23 AEDT",
+  "last_sync": "2026-08-29 14:34 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Stock Momentum Ranking with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate the 30-day price momentum for each stock using window functions. For each stock, compute: (1) ROW_NUMBER() to rank stocks by closing price within each date window, (2) LAG() to fetch the closing price from 30 days ago, (3) momentum as percentage change, (4) RANK() to rank stocks by momentum descending within each date. Filter to show only the top 10 momentum gainers and top 10 momentum losers for the most recent date in the dataset. Expected output: stock_code, current_price, price_30_days_ago, momentum_percent, momentum_rank, date.",
+      "title": "ASX 200 Momentum Analysis with Window Functions",
+      "description": "Using ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) a 20-day moving average of closing price for each stock, (2) the rank of each stock by daily percentage change within its sector, and (3) the lag of the previous day's closing price to compute day-over-day volatility. Filter for the top 10 stocks by trading volume in the last 30 days. Return stock ticker, date, close price, moving average, rank, and volatility. Use CTEs to structure the query clearly.",
       "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Injury Classification",
-      "description": "Download NSW Road Crash Data (data.nsw.gov.au). Clean the dataset by: (1) handling missing values in injury_level and crash_type columns (document your strategy), (2) standardising datetime formats in the crash_date column, (3) removing duplicate records based on crash_id, (4) creating a new column severity_category that classifies crashes as 'Fatal', 'Serious', 'Minor', or 'Non-Injury' based on injury_level values, (5) exporting the cleaned dataset to CSV. Produce a summary report showing: record count before/after cleaning, percentage of missing values by column, and distribution of crashes by severity_category.",
+      "title": "NSW Road Crash Data Cleaning & Aggregation",
+      "description": "Download NSW Road Crash Data (includes crash records with location, vehicle type, severity, weather conditions). Use pandas to: (1) identify and handle missing values in critical columns (e.g., crash severity, road type), (2) standardise date formats and extract year/month/day_of_week, (3) clean categorical data (remove whitespace, unify inconsistent values in vehicle type), (4) create a new feature: crash severity index (weighted score based on injury count and fatality count), (5) aggregate crashes by suburb and day-of-week to identify high-risk patterns, (6) export cleaned dataset and aggregated summary to CSV. Write comments explaining each cleaning decision.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Melbourne Pedestrian Traffic Analysis Pipeline",
-      "description": "Build an end-to-end pipeline: (1) In Python/pandas, download Melbourne pedestrian counting data (Melbourne Open Data Portal), clean it by removing null counts and standardising sensor location names, then aggregate hourly pedestrian counts by location and hour-of-day. (2) Load the cleaned data into a SQL database (SQLite or PostgreSQL). (3) In SQL, write a query using CTEs and window functions to: identify the peak hour (hour_of_day with highest total pedestrians) for each sensor location, calculate the percentage contribution of each location to total daily foot traffic, and rank locations by average hourly pedestrian count. (4) Export results showing: location, peak_hour, avg_pedestrians, total_daily_pedestrians, pct_contribution_to_total, location_rank. Expected output: CSV with ranked analysis of top 15 locations by traffic volume.",
-      "dataset": "Melbourne Pedestrian Counting System \u2014 Melbourne Open Data Portal",
-      "file_ext": ".py"
+      "title": "Australian Wine Production: SQL Analysis + Python Pipeline",
+      "description": "Build an end-to-end pipeline: (1) In Python, fetch and clean Australian Wine Production Statistics (production volume, varietal type, region, year). Handle missing values, standardise region names, and convert production volumes to consistent units (tonnes). Export to a local SQLite database. (2) In SQL, query the database to calculate: cumulative production by region over time using window functions, year-over-year growth rate for each varietal, and rank regions by total production. (3) In Python, read SQL results and create a summary report: top 5 regions by growth, varietal concentration by region, and identify any data quality issues in the original source. Save findings to a markdown report.",
+      "dataset": "Australian Wine Production Statistics \u2014 wineaustralia.com (or Kaggle alternative)",
+      "file_ext": ".py/.sql"
     }
   ],
-  "last_quest_date": "2026-08-28"
+  "last_quest_date": "2026-08-29"
 }
