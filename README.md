@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-29 14:34 AEDT |
+| 📅 Last Sync | 2026-08-30 12:05 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
-  _Using ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) a 20-day moving average of closing price for each stock, (2) the rank of each stock by daily percentage change within its sector, and (3) the lag of the previous day's closing price to compute day-over-day volatility. Filter for the top 10 stocks by trading volume in the last 30 days. Return stock ticker, date, close price, moving average, rank, and volatility. Use CTEs to structure the query clearly._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-08-29.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download NSW Road Crash Data (includes crash records with location, vehicle type, severity, weather conditions). Use pandas to: (1) identify and handle missing values in critical columns (e.g., crash severity, road type), (2) standardise date formats and extract year/month/day_of_week, (3) clean categorical data (remove whitespace, unify inconsistent values in vehicle type), (4) create a new feature: crash severity index (weighted score based on injury count and fatality count), (5) aggregate crashes by suburb and day-of-week to identify high-risk patterns, (6) export cleaned dataset and aggregated summary to CSV. Write comments explaining each cleaning decision._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum with Window Functions
+  _Using ASX 200 historical price data, calculate a 20-day moving average and identify momentum shifts. Write a query using window functions (ROW_NUMBER, LAG, and a CTE) to: 1) Create a CTE that calculates the 20-day moving average for each stock's closing price, ordered by date. 2) Use LAG to compare today's price against yesterday's price and calculate daily percentage change. 3) Rank stocks by their 20-day momentum (highest average gain first) using ROW_NUMBER partitioned by stock symbol. Return the top 10 stocks with strongest upward momentum on the most recent trading date, including: stock symbol, closing price, 20-day moving average, daily % change, and momentum rank._
+  📦 Dataset: `ASX 200 Historical Stock Data — Kaggle`
+  📁 Submit as: `quest1_2026-08-30.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Safety Hotspot Mapping
+  _Download NSW Road Crash Data (contains crash locations, severity, vehicle types, timestamps). Write a Python/pandas script to: 1) Clean the dataset by handling missing values in critical columns (latitude, longitude, crash severity). 2) Remove duplicate crash records based on location and timestamp. 3) Filter for crashes with severity >= 'Serious Injury' in the last 2 years. 4) Standardise postcode formats and identify the top 15 postcodes by crash frequency. 5) Export a cleaned CSV with columns: crash_id, postcode, severity, date, vehicle_count, cleaned_location_description. The script should log all cleaning operations (rows dropped, values imputed, duplicates found)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-29.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production: SQL Analysis + Python Pipeline
-  _Build an end-to-end pipeline: (1) In Python, fetch and clean Australian Wine Production Statistics (production volume, varietal type, region, year). Handle missing values, standardise region names, and convert production volumes to consistent units (tonnes). Export to a local SQLite database. (2) In SQL, query the database to calculate: cumulative production by region over time using window functions, year-over-year growth rate for each varietal, and rank regions by total production. (3) In Python, read SQL results and create a summary report: top 5 regions by growth, varietal concentration by region, and identify any data quality issues in the original source. Save findings to a markdown report._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com (or Kaggle alternative)`
-  📁 Submit as: `quest3_2026-08-29.py`
+  📁 Submit as: `quest2_2026-08-30.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production Ranking Pipeline
+  _Build an end-to-end pipeline combining Python and SQL. Task: 1) Use Python/pandas to load Australian wine production statistics data (by region and year). Clean the data: standardise region names (remove whitespace, fix inconsistent capitalization), handle missing production volumes by forward-filling within regions, remove outlier years with zero production. 2) Export the cleaned data to a CSV. 3) Create a SQL query that: loads the cleaned CSV, calculates year-over-year production growth percentage for each region using window functions (LAG), ranks regions by production volume in the most recent year (ROW_NUMBER), and identifies which regions had consistent growth (>5% YoY for 3+ consecutive years). 4) Output: region name, latest production volume, YoY growth %, production rank, and a flag indicating consistent-growth regions. Expected output: a CSV with top 20 regions by consistency of growth._
+  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com`
+  📁 Submit as: `quest3_2026-08-30.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
