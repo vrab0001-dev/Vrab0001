@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-08-30 12:05 AEDT |
+| 📅 Last Sync | 2026-08-31 12:01 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum with Window Functions
-  _Using ASX 200 historical price data, calculate a 20-day moving average and identify momentum shifts. Write a query using window functions (ROW_NUMBER, LAG, and a CTE) to: 1) Create a CTE that calculates the 20-day moving average for each stock's closing price, ordered by date. 2) Use LAG to compare today's price against yesterday's price and calculate daily percentage change. 3) Rank stocks by their 20-day momentum (highest average gain first) using ROW_NUMBER partitioned by stock symbol. Return the top 10 stocks with strongest upward momentum on the most recent trading date, including: stock symbol, closing price, 20-day moving average, daily % change, and momentum rank._
-  📦 Dataset: `ASX 200 Historical Stock Data — Kaggle`
-  📁 Submit as: `quest1_2026-08-30.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Safety Hotspot Mapping
-  _Download NSW Road Crash Data (contains crash locations, severity, vehicle types, timestamps). Write a Python/pandas script to: 1) Clean the dataset by handling missing values in critical columns (latitude, longitude, crash severity). 2) Remove duplicate crash records based on location and timestamp. 3) Filter for crashes with severity >= 'Serious Injury' in the last 2 years. 4) Standardise postcode formats and identify the top 15 postcodes by crash frequency. 5) Export a cleaned CSV with columns: crash_id, postcode, severity, date, vehicle_count, cleaned_location_description. The script should log all cleaning operations (rows dropped, values imputed, duplicates found)._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Ranking with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query that calculates a 20-day rolling average closing price for each stock ticker. Then use window functions (ROW_NUMBER and RANK) to rank stocks by their momentum (current price minus 20-day average) within each date, partitioning by date. Include only the top 10 stocks by momentum per date. Expected output: date, ticker, close_price, 20day_avg, momentum, rank_by_momentum. Filter for the last 30 trading days only._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-08-31.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download the NSW Road Crash Data (CSV format from data.nsw.gov.au). Write a Python pandas script that: (1) removes rows with missing crash_id or longitude/latitude; (2) converts crash_date to datetime format and extracts day_of_week and hour_of_day; (3) creates a severity_category column ('Fatal', 'Serious Injury', 'Other Injury') from severity_level; (4) calculates the number of vehicles and persons involved per crash; (5) exports the cleaned dataset to a new CSV file. Add a summary report showing record count before/after cleaning and top 5 suburbs by crash count._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-08-30.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Ranking Pipeline
-  _Build an end-to-end pipeline combining Python and SQL. Task: 1) Use Python/pandas to load Australian wine production statistics data (by region and year). Clean the data: standardise region names (remove whitespace, fix inconsistent capitalization), handle missing production volumes by forward-filling within regions, remove outlier years with zero production. 2) Export the cleaned data to a CSV. 3) Create a SQL query that: loads the cleaned CSV, calculates year-over-year production growth percentage for each region using window functions (LAG), ranks regions by production volume in the most recent year (ROW_NUMBER), and identifies which regions had consistent growth (>5% YoY for 3+ consecutive years). 4) Output: region name, latest production volume, YoY growth %, production rank, and a flag indicating consistent-growth regions. Expected output: a CSV with top 20 regions by consistency of growth._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com`
-  📁 Submit as: `quest3_2026-08-30.py`
+  📁 Submit as: `quest2_2026-08-31.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Anomaly Detection Pipeline
+  _Using the Australian Weather observations dataset (Bureau of Meteorology via Kaggle): (1) Write a Python pandas script to load the CSV, clean temperature and rainfall data, handle missing values using forward-fill, and calculate monthly average temperature and total rainfall by station; (2) export cleaned monthly aggregates to a temporary CSV; (3) load this into a SQL database or query it with SQL to identify anomalies: stations where the current month's average temperature is >2 standard deviations above/below the 5-year historical average for that month, OR rainfall is >3 standard deviations from the mean. Expected output: station_name, month, actual_temp, avg_temp_5yr, std_dev, anomaly_type (High/Low Temp or High/Low Rainfall)._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (Kaggle: jsphyg dataset)`
+  📁 Submit as: `quest3_2026-08-31.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
