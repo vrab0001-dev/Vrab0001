@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-09-02 11:43 AEDT",
+  "last_sync": "2026-09-03 11:49 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Stock Momentum Analysis with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate a 20-day moving average and identify momentum shifts. Use window functions (ROW_NUMBER, LAG) to rank stocks by their price change momentum within each trading week. Create a CTE that identifies the top 5 stocks with the highest positive momentum and bottom 5 with negative momentum for the most recent week in your dataset. Return: stock_code, current_price, 20day_moving_avg, momentum_rank, price_change_pct, and momentum_category (bullish/bearish). Order by momentum_rank.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Price Momentum Analysis with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 5-day moving average of closing price for each stock, (2) the rank of each stock by daily percentage change within its sector, and (3) identify the day each stock hit its 52-week high. Use ROW_NUMBER(), LAG(), and RANK() window functions partitioned by stock ticker and ordered by date. Return: ticker, date, close_price, moving_avg_5day, daily_pct_change_rank, days_since_52week_high. Filter results for the top 10 ASX stocks by market cap in the last 90 days.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Injury Severity Pipeline",
-      "description": "Download NSW Road Crash Data (data.nsw.gov.au). Write a Python/pandas script that: (1) loads the CSV and identifies missing values in crash_severity, injury_type, and vehicle_type columns; (2) standardizes injury severity categories (handle typos, case inconsistencies); (3) removes duplicate crash records based on crash_id and timestamp; (4) creates a new column crash_hour extracted from crash_time; (5) filters for crashes in the last 12 months; (6) exports a cleaned CSV with columns: crash_id, crash_date, crash_hour, suburb, injury_type, severity_category, vehicle_count. Print data quality metrics: rows removed, missing values before/after, duplicate count.",
+      "title": "NSW Road Crash Data Cleaning and Aggregation Pipeline",
+      "description": "Download the NSW Road Crash Data (contains crash records with location, severity, vehicle type, weather conditions). Build a Python pandas script to: (1) handle missing values in severity and weather columns using mode imputation, (2) standardise postcode formats and geocode to LGA (Local Government Area), (3) remove duplicate records based on crash ID and timestamp, (4) create a categorical column binning crashes into severity levels (fatal, serious injury, other injury, non-injury), (5) export a cleaned CSV grouped by LGA showing crash count, average severity score, and top 3 vehicle types involved per LGA. Include data validation checks (e.g., warn if >20% of rows removed).",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Great Barrier Reef Coral Bleaching Event Detection Pipeline",
-      "description": "Combine Python and SQL to detect coral bleaching risk periods. (1) In Python: fetch or load Great Barrier Reef monitoring data (temperature, pH, bleaching_index by reef_site and date from AIMS or Kaggle). Clean the dataset: handle missing temperature readings using interpolation, standardize date formats, calculate weekly anomalies (temp deviation from 5-year mean). Export to CSV. (2) In SQL: load the cleaned data into a table. Write a query using CTEs and window functions to: identify reef_sites where temperature exceeded historical mean + 2 standard deviations for 3+ consecutive weeks; rank bleaching events by severity (max_temp_anomaly * duration); calculate the date range of each event. Return: reef_site, event_start_date, event_end_date, max_temp_anomaly, event_duration_weeks, severity_rank. Filter for events in 2024-2025.",
-      "dataset": "Great Barrier Reef Monitoring Data \u2014 AIMS (Australian Institute of Marine Science) or Kaggle",
-      "file_ext": ".py + .sql"
+      "title": "Australian Wildfire Risk Scoring Engine",
+      "description": "Integrate Australian Weather observations (Bureau of Meteorology) with the Australian Wildfire dataset (Kaggle). (1) In Python, load both datasets and merge on date and location (nearest weather station to fire record). Clean temperature, humidity, wind speed, and rainfall data. (2) Engineer features: calculate a fire risk score using the formula (temp \u00d7 wind_speed) / (humidity \u00d7 rainfall_mm + 1). (3) Load cleaned data into a local SQLite database with two tables: weather_stations and fire_incidents. (4) Write SQL queries to: identify the top 10 locations with highest average fire risk scores in the past 5 years, rank states by total incidents in high-risk weather conditions (temp > 35\u00b0C, humidity < 30%, wind > 40 km/h), and flag any anomalies (e.g., fires occurring in impossible weather). (5) Export summary report as CSV: state, risk_level, incident_count, avg_fire_risk_score, weather_pattern.",
+      "dataset": "Australian Weather Observations (Bureau of Meteorology) + Australian Wildfire Dataset \u2014 Kaggle",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-09-02"
+  "last_quest_date": "2026-09-03"
 }
