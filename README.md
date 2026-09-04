@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-09-03 11:49 AEDT |
+| 📅 Last Sync | 2026-09-04 11:43 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -30,17 +30,17 @@
 
 <!-- VRAB_QUESTS_START -->
 - [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 5-day moving average of closing price for each stock, (2) the rank of each stock by daily percentage change within its sector, and (3) identify the day each stock hit its 52-week high. Use ROW_NUMBER(), LAG(), and RANK() window functions partitioned by stock ticker and ordered by date. Return: ticker, date, close_price, moving_avg_5day, daily_pct_change_rank, days_since_52week_high. Filter results for the top 10 ASX stocks by market cap in the last 90 days._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-09-03.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation Pipeline
-  _Download the NSW Road Crash Data (contains crash records with location, severity, vehicle type, weather conditions). Build a Python pandas script to: (1) handle missing values in severity and weather columns using mode imputation, (2) standardise postcode formats and geocode to LGA (Local Government Area), (3) remove duplicate records based on crash ID and timestamp, (4) create a categorical column binning crashes into severity levels (fatal, serious injury, other injury, non-injury), (5) export a cleaned CSV grouped by LGA showing crash count, average severity score, and top 3 vehicle types involved per LGA. Include data validation checks (e.g., warn if >20% of rows removed)._
+  _Using ASX 200 historical price data, calculate a 20-day moving average and identify momentum shifts for each stock. Write a query using window functions (ROW_NUMBER, LAG, AVG OVER) to: (1) rank stocks by the largest positive price change in the last 30 days, (2) calculate the 20-day moving average for each stock's closing price, (3) identify the first day each stock crossed above its 20-day MA. Return stock symbol, date, closing price, 20-day MA, and momentum rank. Use a CTE to isolate the last 90 days of data before processing._
+  📦 Dataset: `ASX 200 historical prices — Kaggle`
+  📁 Submit as: `quest1_2026-09-04.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
+  _Download NSW Road Crash Data (from NSW Open Data) in CSV format. Write a Python/pandas script to: (1) load the dataset and handle missing values (document your strategy for each column), (2) standardise datetime columns to ISO 8601 format, (3) extract features: hour of day, day of week, and crash severity category from available columns, (4) remove duplicate records based on crash ID, (5) create a CSV output with cleaned data and a summary report showing row counts before/after, missing value percentages by column, and unique values in categorical columns. Ensure your script is reproducible and includes comments._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-09-03.py`
-- [ ] ⚡ **Combined Quest:** Australian Wildfire Risk Scoring Engine
-  _Integrate Australian Weather observations (Bureau of Meteorology) with the Australian Wildfire dataset (Kaggle). (1) In Python, load both datasets and merge on date and location (nearest weather station to fire record). Clean temperature, humidity, wind speed, and rainfall data. (2) Engineer features: calculate a fire risk score using the formula (temp × wind_speed) / (humidity × rainfall_mm + 1). (3) Load cleaned data into a local SQLite database with two tables: weather_stations and fire_incidents. (4) Write SQL queries to: identify the top 10 locations with highest average fire risk scores in the past 5 years, rank states by total incidents in high-risk weather conditions (temp > 35°C, humidity < 30%, wind > 40 km/h), and flag any anomalies (e.g., fires occurring in impossible weather). (5) Export summary report as CSV: state, risk_level, incident_count, avg_fire_risk_score, weather_pattern._
-  📦 Dataset: `Australian Weather Observations (Bureau of Meteorology) + Australian Wildfire Dataset — Kaggle`
-  📁 Submit as: `quest3_2026-09-03.py`
+  📁 Submit as: `quest2_2026-09-04.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production: Extract, Clean, and Analytical Query
+  _Create an end-to-end data pipeline: (1) source Australian wine production statistics (by region and year) from Wine Australia data or Kaggle, (2) write a Python script using pandas to load, clean (handle missing regions/years, standardise column names, convert volumes to consistent units), and export to a SQLite database with appropriate schema (tables: regions, vintages, production_volumes), (3) write SQL queries to find: the top 3 wine-producing regions by total volume (all time), regions with year-over-year production growth in the last 5 years, and a ranked list of regions by average production per vintage. Output: cleaned CSV, SQLite .db file, and a SQL script with all three analytical queries._
+  📦 Dataset: `Australian wine production statistics — Wine Australia or Kaggle`
+  📁 Submit as: `quest3_2026-09-04.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
