@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-09-10 11:49 AEDT",
+  "last_sync": "2026-09-11 11:48 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Daily Returns & Momentum Ranking",
-      "description": "Using ASX 200 historical price data, write a query that calculates daily percentage returns for each stock, then ranks stocks by their 20-day rolling average return using window functions. Use ROW_NUMBER() to identify the top 10 and bottom 10 performers for each date. Include columns: date, ticker, close_price, daily_return_pct, rolling_20day_avg_return, rank_within_date. Filter for the last 90 days of data. Expected output: ranked daily performer table showing momentum shifts.",
+      "title": "ASX 200 Price Momentum Ranking with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, calculate the 30-day rolling average price for each stock and rank stocks by their current price relative to their 30-day average (best performers first). Use window functions ROW_NUMBER() and AVG() OVER() to identify the top 10 stocks with the highest price-to-moving-average ratio on the most recent date in the dataset. Include columns: stock_code, current_price, moving_avg_30d, ratio, rank. Filter to include only stocks with at least 30 days of trading data.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Geospatial Aggregation",
-      "description": "Download NSW Road Crash Data (contains missing values, inconsistent date formats, and duplicates). Using pandas: (1) standardise all date columns to YYYY-MM-DD format, (2) handle missing values in 'Severity' and 'Crash Type' columns by imputation or removal with justification, (3) remove exact duplicate rows, (4) create a new 'Month_Year' column, (5) group crashes by Local Government Area (LGA) and severity level, counting incidents per LGA-Severity combination, (6) export cleaned data to CSV with clear column names. Document your data quality issues found and how you resolved them.",
+      "title": "NSW Road Crash Data Cleanup and Aggregation Pipeline",
+      "description": "Download or load the NSW Road Crash Data (focus on the crash/incident records). Build a Python script that: (1) handles missing values in key columns (crash_type, severity, location), (2) standardises date formats to YYYY-MM-DD, (3) cleans the location field by removing extra whitespace and converting to title case, (4) removes duplicate rows based on crash_id, (5) exports a cleaned CSV file. Then create a summary report showing crash counts by severity level and top 5 crash types. Save the cleaned data and summary as separate CSV files.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Wildfire Risk Dashboard Data Pipeline",
-      "description": "Build a mini ETL pipeline: (1) In Python, load Australian Wildfire dataset (Kaggle), clean the data (handle missing lat/lon, standardise date formats, remove outliers in fire size), and export to a CSV named 'cleaned_fires.csv'. (2) Create a SQL schema with a fires table (fire_id, date, latitude, longitude, estimated_area_hectares, state, severity). (3) Write a SQL query using window functions and CTEs to: identify the Top 5 most severe fire seasons by state (using LAG to compare year-over-year fire frequency), calculate a 'Fire Risk Score' (severity rank * fire count) for each state per season, and rank states by risk. (4) Output a summary table: state, fire_season_year, total_fires, avg_area_hectares, fire_risk_score, risk_rank. Expected outcome: actionable insights into which Australian states face escalating wildfire risk trends.",
-      "dataset": "Australian Wildfire Dataset \u2014 Kaggle",
-      "file_ext": ".py + .sql"
+      "title": "Australian Weather Anomaly Detection Pipeline",
+      "description": "Create an end-to-end pipeline: (1) Use Python/pandas to load Bureau of Meteorology weather observations data, clean temperature and rainfall columns (handle missing values, convert units if needed), and calculate monthly averages for 3 Australian cities. (2) Export the cleaned monthly aggregates to a CSV file. (3) Write a SQL query against this CSV (load it into a temporary table or use DuckDB/SQLite) to identify months where temperature was more than 2 standard deviations above the city's historical mean (anomalies). Return: city, month, avg_temperature, historical_mean, std_dev, anomaly_flag. Your Python script should orchestrate both steps and log the number of anomalies detected per city.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology (via Kaggle jsphyg) or AIMS weather station data",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-09-10"
+  "last_quest_date": "2026-09-11"
 }
