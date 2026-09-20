@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-09-19 11:59 AEDT",
+  "last_sync": "2026-09-20 12:03 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis",
-      "description": "Using ASX 200 historical price data, calculate the 20-day and 50-day moving averages for the top 5 most volatile stocks. Use window functions (AVG() OVER) to compute rolling averages. Then identify stocks where the 20-day MA crossed above the 50-day MA in the last 30 days using LAG() to detect the crossover point. Return stock symbol, crossover date, and both moving averages on that date. Order by crossover date descending.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Rolling Average Volatility Tracker",
+      "description": "Using ASX 200 historical price data, write a SQL query with window functions to calculate the 20-day rolling average closing price and volatility (standard deviation) for the top 5 most traded stocks by volume. Use ROW_NUMBER() to rank stocks, LAG() to access previous closing prices, and a CTE to pre-filter high-volume stocks. Return stock symbol, date, closing price, 20-day rolling average, and rolling volatility, ordered by stock and date. Expected output: 5 stocks \u00d7 ~252 trading days of rolling metrics.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning Pipeline",
-      "description": "Download NSW Road Crash Data from data.nsw.gov.au. Load the CSV into pandas and perform: (1) handle missing values in crash severity and crash type columns using forward fill, then drop rows with >30% missing data; (2) standardise date columns to YYYY-MM-DD format; (3) create new columns: crash_hour (extracted from time), is_fatal (boolean), speed_zone_category (binned from numeric speed data); (4) remove duplicate rows based on crash ID; (5) export cleaned data to a new CSV with '_cleaned' suffix. Document data quality metrics (rows dropped, missing % before/after) in a summary dictionary printed to console.",
+      "title": "NSW Road Crash Data Cleaning & Geocoding Pipeline",
+      "description": "Download NSW Road Crash Data (data.nsw.gov.au). Write a Python/pandas script to: (1) load the CSV and inspect missing values, data types, and duplicates; (2) clean date columns to datetime format and standardise location names (remove extra whitespace, convert to title case); (3) filter crashes with severity='Fatal' or 'Serious injury' from the last 5 years; (4) create a new column 'hour_of_day' extracted from crash time; (5) group by hour_of_day and count crashes, then export as a new CSV. Expected output: cleaned dataset and summary CSV showing crash frequency by hour.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Melbourne Pedestrian Traffic Anomaly Detection",
-      "description": "Part 1 (Python): Load Melbourne pedestrian counting data from Melbourne Open Data Portal. Clean the dataset by handling missing hourly counts and converting timestamps to datetime. Calculate daily total foot traffic and 7-day rolling average for each sensor location. Identify anomalies as days where traffic deviates >2 standard deviations from the rolling average. Export anomalies (date, sensor location, actual count, expected range) to CSV. Part 2 (SQL): Load the anomalies CSV into a database table. Write a query using CTEs to: (a) rank anomalies by severity (deviation magnitude) per location, (b) count anomalies per month, (c) identify which sensor locations experienced >5 anomalies in any single month. Return location name, anomaly month, anomaly count, and top 3 most severe individual anomalies for that location/month combo.",
-      "dataset": "Melbourne Pedestrian Counting System \u2014 Melbourne Open Data Portal",
-      "file_ext": ".py + .sql"
+      "title": "Australian Wine Production Analysis: Python ETL + SQL Analytics",
+      "description": "Challenge: Extract, transform, and analyse Australian wine production statistics. (1) Use Python/pandas to fetch or load wine production data (by region, vintage year, varietal), clean any inconsistencies (standardise region names, handle missing volumes), and load into a local SQLite database with two tables: wines (region, varietal, vintage, volume_produced, price_index) and regions (region_name, state, latitude, longitude). (2) Write SQL queries to: (a) use a CTE to rank top 3 varietals by total volume produced across all regions; (b) use ROW_NUMBER() and LAG() to identify year-on-year growth trends for the top producing region; (c) calculate cumulative production volume by vintage year using a window function. Expected output: populated SQLite database + 3 SQL result sets showing rankings, trends, and cumulative metrics.",
+      "dataset": "Australian Wine Production Statistics \u2014 wineaustralia.com or Kaggle",
+      "file_ext": ".py & .sql"
     }
   ],
-  "last_quest_date": "2026-09-19"
+  "last_quest_date": "2026-09-20"
 }
