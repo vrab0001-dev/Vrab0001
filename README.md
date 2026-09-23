@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-09-22 12:10 AEDT |
+| 📅 Last Sync | 2026-09-23 12:09 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking
-  _Using ASX 200 historical price data, create a CTE that calculates the 30-day price change percentage for each stock. Then use window functions (ROW_NUMBER and RANK) to rank stocks by momentum within each sector. Include a LAG function to show the previous day's closing price for comparison. Filter for stocks with at least 20 trading days of data in the last month. Output should show: stock_code, sector, current_price, previous_close, price_change_pct, momentum_rank_in_sector, and trading_day_count. Order by sector and momentum_rank._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-09-22.sql`
-- [ ] 🐍 **Python Quest:** Bureau of Meteorology Data Cleaning Pipeline
-  _Download Australian Weather observations data (daily maximum temperature, rainfall, wind speed across multiple stations). Write a Python script using pandas to: (1) handle missing values strategically (forward-fill for temperature, zero for rainfall if no rain recorded), (2) detect and flag outliers using IQR method for each weather variable, (3) convert date strings to datetime objects, (4) create new features: day_of_week, is_weekend, rolling_7day_avg_temp. (5) Export cleaned data to CSV with a timestamp suffix. Document which rows were flagged as outliers and why. Expected output: cleaned CSV with 10+ columns and summary statistics showing data quality improvements._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology (BOM) / Kaggle jsphyg`
-  📁 Submit as: `quest2_2026-09-22.py`
-- [ ] ⚡ **Combined Quest:** NSW Road Crash Risk Analysis Pipeline
-  _Build an end-to-end pipeline: (1) In Python, download NSW Road Crash Data, clean it by removing rows with null crash_date or location, standardise crash_severity categories (replace variations with canonical values), and engineer features: hour_of_day (from time), day_of_week, is_night (hour >= 18 or hour < 6). (2) Export cleaned data to CSV. (3) In SQL, load this CSV into a temporary table and write a query using CTEs to: calculate crash frequency by hour_of_day and day_of_week, use ROW_NUMBER to identify top 5 highest-risk time slots, calculate a running total of crashes by day_of_week using window functions. (4) Create a second CTE that ranks suburbs/locations by crash severity (count of severe/fatal crashes). Output: two result sets—one showing peak risk times with frequency metrics, one showing top 10 risky locations. Expected insight: identify if crashes cluster at specific times or locations._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Momentum Analysis with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query that calculates a 5-day moving average of closing prices and identifies momentum shifts. Use a CTE to filter for stocks with price increases over the last 20 trading days, then use window functions (LAG, ROW_NUMBER, AVG OVER) to rank stocks by momentum strength. Return the top 10 stocks with the highest 5-day moving average momentum, including: stock ticker, current close price, 5-day MA, 20-day price change percentage, and rank. Use PARTITION BY to handle each stock separately._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-09-23.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Missing Data Imputation
+  _Download the NSW Road Crash Data from data.nsw.gov.au (crash details, injury levels, locations). Load the dataset into pandas and perform: (1) identify all columns with missing values and document percentages; (2) remove rows where critical fields (crash date, location coordinates, severity) are missing; (3) standardise the 'crash_type' column by converting to lowercase and trimming whitespace; (4) create a new 'year_month' column from crash date; (5) fill missing 'speed_zone' values with the mode speed zone for that local government area; (6) export the cleaned dataset to a new CSV file. Document your data quality report as a summary dict showing original row count, final row count, and missing value statistics._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest3_2026-09-22.py`
+  📁 Submit as: `quest2_2026-09-23.py`
+- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Seasonality Pipeline
+  _Build an end-to-end pipeline: (1) Use Python/pandas to load Melbourne pedestrian counting data (from Melbourne Open Data Portal); clean the data by handling missing hourly counts and removing sensor outliers (values > 3 standard deviations from mean per sensor). (2) Create aggregated CSVs: one with daily totals per sensor, one with hourly averages by month. (3) Load the cleaned daily aggregates into a SQL database (SQLite or local DB); write a SQL query using window functions to calculate: month-over-month percentage change in foot traffic per sensor, rank sensors by seasonality volatility (coefficient of variation), and identify peak pedestrian months. (4) Return results showing top 5 most variable sensors, their peak months, and seasonal trends. Document your pipeline steps in comments._
+  📦 Dataset: `Melbourne Pedestrian Counting — Melbourne Open Data Portal`
+  📁 Submit as: `quest3_2026-09-23.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
