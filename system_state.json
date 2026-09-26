@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-09-25 12:13 AEDT",
+  "last_sync": "2026-09-26 12:18 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate a 20-day rolling average price and identify momentum shifts. For each stock, use ROW_NUMBER() to rank trading days, LAG() to compare current close price against the previous day, and a CTE to filter only days where price momentum changed direction (from gaining to losing or vice versa). Return stock symbol, date, close price, 20-day rolling average, and momentum direction. Order by stock and date. This tests your understanding of window functions, CTEs, and complex analytical queries.",
-      "dataset": "ASX 200 historical prices \u2014 Kaggle",
+      "title": "ASX 200 Momentum Ranking with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, calculate the 20-day rolling average closing price for each stock ticker. Then use window functions (ROW_NUMBER and RANK) to rank stocks by their current price relative to their 20-day moving average within each date partition. Specifically: 1) Calculate a CTE with LAG to get previous closing prices, 2) Build another CTE to compute the 20-day moving average, 3) Rank stocks on each date by (current_price - moving_average) / moving_average as a momentum score. Return the top 10 stocks by momentum rank for the most recent date in the dataset, showing ticker, date, price, moving_average, momentum_score, and rank.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Severity Classification",
-      "description": "Download NSW Road Crash Data (injury data). Write a pandas script that: (1) loads the CSV and inspects for missing values, duplicates, and data type inconsistencies, (2) handles missing severity classifications by imputing based on casualty count logic, (3) standardises location names by removing extra whitespace and converting to title case, (4) creates a new 'severity_category' column using pd.cut() to bin crash severity into Low/Medium/High based on injury count, (5) exports a cleaned CSV. Document your data quality issues found and decisions made in comments.",
+      "title": "NSW Road Crash Data Cleaning & Aggregation Pipeline",
+      "description": "Download the NSW Road Crash Data (contains crash locations, severity, vehicle types, timestamps). Write a Python script using pandas to: 1) Load the CSV and handle missing values in the 'Severity' and 'Speed Zone' columns (choose appropriate strategies: drop, fill, or flag), 2) Parse datetime columns correctly, 3) Remove duplicate crash records based on crash ID and timestamp, 4) Create new features: 'hour_of_day' from the crash timestamp and 'is_weekend' boolean flag, 5) Filter to crashes from the last 12 months only, 6) Aggregate to produce a summary CSV showing crash count and average severity by hour_of_day and speed_zone. Output the cleaned dataset and the summary file with clear column names.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Trends Pipeline: SQL + Python",
-      "description": "Build a mini data pipeline: (1) Download Australian Weather observations data (Bureau of Meteorology from Kaggle). (2) Use Python/pandas to load the CSV, clean temperature and rainfall columns (remove outliers beyond 3 standard deviations), and export to a local SQLite database. (3) Write SQL queries to calculate: monthly average max temperature, total rainfall per location, and identify the top 5 hottest days across all locations. (4) Use a CTE to rank locations by average annual temperature and RANK() to show ties. (5) Export results back to CSV. This tests end-to-end data engineering: ingestion, cleaning, storage, querying, and export.",
-      "dataset": "Australian Weather observations \u2014 Bureau of Meteorology (Kaggle)",
+      "title": "Great Barrier Reef Monitoring ETL: Load, Transform, Analyse",
+      "description": "Build a mini ETL pipeline using Python and SQL: 1) Use Python + pandas to extract Great Barrier Reef monitoring data (reef health metrics, temperature, coral bleaching observations). Clean the data by handling missing location coordinates, standardizing date formats, and removing outlier temperature readings (e.g., > 35\u00b0C). Save the cleaned data to a local SQLite database with two tables: 'reef_observations' (location, date, temperature, health_score) and 'bleaching_events' (location, date, bleaching_severity). 2) Write SQL queries to: a) Find the top 5 reef locations with the highest average temperature over the past 3 years, b) Use a CTE to calculate the month-over-month change in health_score for each location, c) Rank bleaching events by severity within each location and return only the top 2 per location. Output the SQL results as a summary report showing location-level trends.",
+      "dataset": "Great Barrier Reef Monitoring Data \u2014 aims.gov.au",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-09-25"
+  "last_quest_date": "2026-09-26"
 }
