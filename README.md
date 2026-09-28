@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-09-27 12:13 AEDT |
+| 📅 Last Sync | 2026-09-28 12:17 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Performance Analysis
-  _Using ASX 200 historical price data, write a query with window functions to calculate: (1) 30-day rolling average price for each stock, (2) rank stocks by daily percentage change within each date, (3) identify the top 5 stocks with highest cumulative gains over the entire period using ROW_NUMBER and LAG to compute price differences. Return stock symbol, date, closing price, 30-day moving average, daily rank, and cumulative gain percentage. Order by date descending and rank ascending._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-09-27.sql`
-- [ ] 🐍 **Python Quest:** Australian Weather Data Cleaning Pipeline
-  _Download Australian Weather observations dataset (Bureau of Meteorology historical data available on Kaggle). Build a pandas script to: (1) handle missing values in temperature, rainfall, and wind speed columns (document your imputation strategy), (2) remove or flag duplicate records based on station ID and timestamp, (3) convert temperature to Celsius if needed and standardize column names to snake_case, (4) create a summary CSV showing data quality metrics (% missing, duplicate count, date range) for each weather station. Output cleaned data and quality report._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle`
-  📁 Submit as: `quest2_2026-09-27.py`
-- [ ] ⚡ **Combined Quest:** NSW Road Crash Analysis: Data Ingestion & Reporting
-  _Combine Python and SQL: (1) Use Python with pandas to download NSW Road Crash data, clean it (standardize postcode format, remove null crash severity, parse datetime fields), and load into a SQLite database with proper schema (tables: crashes, locations, vehicles). (2) Write SQL queries using CTEs to identify: crash hotspots (suburbs with >50 crashes in past 5 years), peak crash hours using HOUR() function, and calculate a severity score (fatalities × 3 + serious injuries × 2 + other injuries × 1) ranked by location. (3) Export results to CSV showing top 10 hotspots with their severity metrics and recommended safety interventions._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using ASX 200 historical stock price data, write a SQL query with window functions to calculate: (1) a 20-day moving average of closing prices for each stock, (2) the percentage change from the previous day's close using LAG(), (3) a rank of stocks by daily percentage gain within each date partition, and (4) identify the top 5 stocks with the highest cumulative gains over the entire dataset using a CTE. Output should show stock_code, date, close_price, moving_avg_20day, pct_change_prev_day, daily_rank, and cumulative_gain. Filter to only stocks in the top 50 by trading volume._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-09-28.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Risk Scoring Pipeline
+  _Download NSW Road Crash Data (contains crash records with location, severity, weather conditions, road type). Build a Python/pandas script to: (1) handle missing values in weather_condition and road_type by imputing with mode per local government area, (2) remove duplicate crash records based on date, location coordinates, and vehicle count, (3) create a crash_severity_score (0-100) combining injury_count, vehicle_count, and speed_zone, (4) filter to crashes in the last 5 years, (5) export clean dataset to CSV with summary statistics printed (mean severity by council, crash count trends by month). Handle edge cases like invalid coordinates and future dates._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest3_2026-09-27.py`
+  📁 Submit as: `quest2_2026-09-28.py`
+- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Analysis: Extract, Transform, Load & Report
+  _Using AIHW health expenditure data by state and health sector: (1) In Python, download/load the dataset, clean column names, convert currency strings to floats, handle missing values, and pivot the data so each row is state + year with columns for hospital, mental_health, aged_care, primary_care spending. Save cleaned data to a SQLite database in a table called health_spending. (2) In SQL, write a query using CTEs to calculate: year-over-year percentage change in spending by state and sector, identify the top 3 states with fastest-growing mental health spending, and rank sectors by total spending growth across all states over the period. (3) Output a single result set showing state, sector, yoy_pct_change, growth_rank, and a category flag ('High Growth' if >8%, 'Moderate' if 3-8%, 'Low' if <3%)._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest3_2026-09-28.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
