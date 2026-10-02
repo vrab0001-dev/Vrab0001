@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-01 12:49 AEDT",
+  "last_sync": "2026-10-02 12:52 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Stock Performance Ranking with Moving Averages",
-      "description": "Using ASX 200 historical price data, write a query with window functions to: 1) Calculate the 20-day and 50-day moving averages for each stock using ROW_NUMBER and LAG functions, 2) Rank stocks by their year-to-date return using RANK() OVER (PARTITION BY ticker ORDER BY ytd_return DESC), 3) Identify stocks where the 20-day MA crossed above the 50-day MA in the last 10 trading days. Return ticker, date, close_price, ma_20, ma_50, ytd_return_rank, and a flag indicating golden_cross. Order by date descending and rank ascending.",
-      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
+      "title": "ASX 200 Price Momentum Analysis with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query that calculates a 30-day rolling average price for each stock ticker, ranks stocks by their current price momentum (price change from 30 days ago), and identifies the top 10 stocks with the highest positive momentum. Use window functions (AVG() OVER, ROW_NUMBER(), LAG()) and CTEs to structure the query. Your output should include: ticker, current_date, current_price, price_30_days_ago, momentum_percentage, and momentum_rank. Filter for data from the last quarter only.",
+      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Risk Score Calculation",
-      "description": "Download NSW Road Crash Data and build a data cleaning pipeline using pandas: 1) Handle missing values in severity, location (latitude/longitude), and crash type columns with appropriate strategies (drop, forward-fill, or impute), 2) Standardise the date column to ISO format and extract day_of_week and hour_of_day, 3) Remove duplicate crash records based on crash_id and timestamp, 4) Create a risk_score column (0-100) based on: severity (40%), number_of_vehicles (30%), number_of_persons_injured (20%), speed_zone (10%), 5) Filter for crashes with risk_score >= 70 and save to a clean CSV. Output summary statistics: total crashes, crashes by severity, average risk_score, and top 5 risk zones.",
+      "title": "NSW Road Crash Data Cleaning and Aggregation Pipeline",
+      "description": "Download the NSW Road Crash Data (contains crash details, injury severity, locations, dates). Write a Python script using pandas that: (1) loads the CSV, (2) handles missing values in location and injury severity columns by forward-filling or dropping as appropriate, (3) standardises location names (strip whitespace, convert to lowercase), (4) creates a new column for crash severity classification (fatal, serious injury, non-injury based on injury counts), (5) aggregates crashes by Local Government Area (LGA) and severity level, (6) exports the cleaned dataset to a new CSV. Include error handling for file I/O and data validation checks. Output should show total crashes per LGA with breakdown by severity.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Anomaly Detection Pipeline",
-      "description": "Build an end-to-end pipeline combining Python and SQL: 1) In Python: Extract Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) from the open dataset. Clean data by removing outliers (temps > 50\u00b0C or < -20\u00b0C as errors), handle missing rainfall values by forward-filling within 7-day windows, and standardise all numeric columns to z-scores. Save cleaned data to a SQLite database with tables: weather_raw and weather_cleaned. 2) In SQL: Write a query using CTEs and window functions to identify anomalies: for each location, calculate 30-day rolling average temperature and flag any day where actual temp deviates by > 2 standard deviations. Rank anomalies by severity (deviation magnitude) and return: location, date, actual_temp, rolling_avg_temp, deviation_std, anomaly_rank. Filter for anomaly_rank <= 10 per location. 3) Output: Provide both the cleaned CSV and a summary report of top 20 anomalies across all locations.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
-      "file_ext": ".py"
+      "title": "Australian Weather Patterns: SQL Analysis with Python Data Preparation",
+      "description": "Use the Australian Weather observations dataset (Bureau of Meteorology). Step 1 (Python): Load raw weather CSV files, clean temperature and rainfall columns (handle missing values, convert units if needed), validate date formats, filter for the last 12 months of data from a single state (e.g., NSW or Victoria), and export to a cleaned CSV. Step 2 (SQL): Import the cleaned data into a database. Write a query using window functions to calculate: (a) monthly average temperature and rainfall per station, (b) rank each station by rainfall consistency (lowest standard deviation = most consistent), (c) identify stations where the current month's rainfall is above the 12-month rolling average. Return: station_name, month, avg_temp, total_rainfall, rainfall_rank, is_above_avg. Present top 5 stations with most consistent rainfall patterns.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle",
+      "file_ext": ".py/.sql"
     }
   ],
-  "last_quest_date": "2026-10-01"
+  "last_quest_date": "2026-10-02"
 }
