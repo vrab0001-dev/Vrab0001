@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-02 12:52 AEDT",
+  "last_sync": "2026-10-03 12:39 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis with Window Functions",
-      "description": "Using the ASX 200 historical prices dataset, write a SQL query that calculates a 30-day rolling average price for each stock ticker, ranks stocks by their current price momentum (price change from 30 days ago), and identifies the top 10 stocks with the highest positive momentum. Use window functions (AVG() OVER, ROW_NUMBER(), LAG()) and CTEs to structure the query. Your output should include: ticker, current_date, current_price, price_30_days_ago, momentum_percentage, and momentum_rank. Filter for data from the last quarter only.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Stock Performance Rankings with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate the 30-day moving average for each stock's closing price using AVG() OVER (PARTITION BY stock_code ORDER BY date ROWS BETWEEN 29 PRECEDING AND CURRENT ROW); (2) Rank stocks by their latest closing price within each sector using RANK() OVER (PARTITION BY sector ORDER BY close_price DESC); (3) Calculate the percentage change from the previous day using LAG() OVER (PARTITION BY stock_code ORDER BY date); (4) Identify the date each stock hit its 52-week high using ROW_NUMBER(). Return the top 10 stocks by recent performance with all calculated columns. Expected output: stock_code, sector, date, close_price, moving_avg_30d, sector_rank, pct_change_prev_day, weeks_52_high_date.",
+      "dataset": "ASX 200 historical prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Aggregation Pipeline",
-      "description": "Download the NSW Road Crash Data (contains crash details, injury severity, locations, dates). Write a Python script using pandas that: (1) loads the CSV, (2) handles missing values in location and injury severity columns by forward-filling or dropping as appropriate, (3) standardises location names (strip whitespace, convert to lowercase), (4) creates a new column for crash severity classification (fatal, serious injury, non-injury based on injury counts), (5) aggregates crashes by Local Government Area (LGA) and severity level, (6) exports the cleaned dataset to a new CSV. Include error handling for file I/O and data validation checks. Output should show total crashes per LGA with breakdown by severity.",
+      "title": "NSW Road Crash Data Cleaning and Feature Engineering",
+      "description": "Download the NSW Road Crash Data (contains accident details, location, casualties, vehicle types). Write a Python/pandas script to: (1) Load the CSV and identify missing values\u2014document which columns have >20% missingness and decide on imputation or removal strategy; (2) Clean location data by extracting latitude/longitude from address fields (or use provided geo columns); (3) Create new features: time_of_day (from crash_time: early_morning, morning, afternoon, evening, night), severity_score (based on casualty counts and injury types), and road_type_category (group road types into Highway, Urban, Rural); (4) Remove duplicates based on crash_id and timestamp; (5) Export cleaned dataset to a new CSV. Expected output: cleaned CSV with 15-20 additional rows removed, 3 new feature columns, all data types correct (datetime, numeric, categorical), no nulls in critical columns.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Patterns: SQL Analysis with Python Data Preparation",
-      "description": "Use the Australian Weather observations dataset (Bureau of Meteorology). Step 1 (Python): Load raw weather CSV files, clean temperature and rainfall columns (handle missing values, convert units if needed), validate date formats, filter for the last 12 months of data from a single state (e.g., NSW or Victoria), and export to a cleaned CSV. Step 2 (SQL): Import the cleaned data into a database. Write a query using window functions to calculate: (a) monthly average temperature and rainfall per station, (b) rank each station by rainfall consistency (lowest standard deviation = most consistent), (c) identify stations where the current month's rainfall is above the 12-month rolling average. Return: station_name, month, avg_temp, total_rainfall, rainfall_rank, is_above_avg. Present top 5 stations with most consistent rainfall patterns.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle",
-      "file_ext": ".py/.sql"
+      "title": "Tourism Hotspot Analysis: Visitor Patterns and Venue Performance",
+      "description": "Combine Melbourne Pedestrian Counting data (foot traffic at major locations) with Tourism Research Australia visitor demographics. Task: (1) Use Python/pandas to load pedestrian_count.csv (hourly/daily foot traffic by sensor location) and clean it\u2014handle missing hours, remove sensor malfunctions (erratic spikes >3 std dev), aggregate to daily totals by location; (2) Load and merge visitor demographic data (nationality, visit purpose, length of stay); (3) Use SQL to query the cleaned data: identify top 5 locations by average daily foot traffic, calculate hourly peak times using RANK() OVER (PARTITION BY location ORDER BY avg_hourly_count DESC), determine if international vs domestic visitors correlate with foot traffic patterns using GROUP BY and HAVING clauses; (4) Create a summary report showing: location, avg_daily_traffic, peak_hour, traffic_trend (increasing/decreasing over last 30 days using LAG), visitor_type_split. Expected output: SQL query results in CSV + Python script demonstrating end-to-end ETL, with at least 10 cleaned records per location.",
+      "dataset": "Melbourne Pedestrian Counting \u2014 Melbourne Open Data Portal; Tourism Research Australia visitor data \u2014 tra.gov.au",
+      "file_ext": ".py and .sql"
     }
   ],
-  "last_quest_date": "2026-10-02"
+  "last_quest_date": "2026-10-03"
 }
