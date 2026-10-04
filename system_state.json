@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-03 12:39 AEDT",
+  "last_sync": "2026-10-04 14:10 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Stock Performance Rankings with Window Functions",
-      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate the 30-day moving average for each stock's closing price using AVG() OVER (PARTITION BY stock_code ORDER BY date ROWS BETWEEN 29 PRECEDING AND CURRENT ROW); (2) Rank stocks by their latest closing price within each sector using RANK() OVER (PARTITION BY sector ORDER BY close_price DESC); (3) Calculate the percentage change from the previous day using LAG() OVER (PARTITION BY stock_code ORDER BY date); (4) Identify the date each stock hit its 52-week high using ROW_NUMBER(). Return the top 10 stocks by recent performance with all calculated columns. Expected output: stock_code, sector, date, close_price, moving_avg_30d, sector_rank, pct_change_prev_day, weeks_52_high_date.",
-      "dataset": "ASX 200 historical prices \u2014 Kaggle",
+      "title": "ASX 200 Moving Average Momentum Tracker",
+      "description": "Using ASX 200 historical price data, write a query with window functions to calculate the 20-day and 50-day moving averages for each stock ticker. Then use a CTE to identify stocks where the 20-day MA crossed above the 50-day MA (bullish signal) in the last 10 trading days. Return ticker, date of crossover, closing price on that date, and the volume traded. Order by most recent crossover first. This tests ROW_NUMBER, LAG, and complex CTEs.",
+      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Feature Engineering",
-      "description": "Download the NSW Road Crash Data (contains accident details, location, casualties, vehicle types). Write a Python/pandas script to: (1) Load the CSV and identify missing values\u2014document which columns have >20% missingness and decide on imputation or removal strategy; (2) Clean location data by extracting latitude/longitude from address fields (or use provided geo columns); (3) Create new features: time_of_day (from crash_time: early_morning, morning, afternoon, evening, night), severity_score (based on casualty counts and injury types), and road_type_category (group road types into Highway, Urban, Rural); (4) Remove duplicates based on crash_id and timestamp; (5) Export cleaned dataset to a new CSV. Expected output: cleaned CSV with 15-20 additional rows removed, 3 new feature columns, all data types correct (datetime, numeric, categorical), no nulls in critical columns.",
-      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "title": "NSW Road Crash Data Cleaning Pipeline",
+      "description": "Download NSW Road Crash Data (contains crash records with location, time, vehicle types, injury severity). Write a Python/pandas script that: (1) loads the CSV, (2) handles missing values in key columns (crash_date, latitude, longitude, severity) by imputation or removal, (3) standardises datetime formats, (4) removes duplicate crash records, (5) creates a new column 'crash_hour' extracted from crash_time, (6) filters crashes in Greater Sydney (lat/lon bounds), and (7) exports a cleaned CSV. Include error handling for file I/O and data type mismatches.",
+      "dataset": "NSW Road Crash Data \u2014 NSW Open Data Portal (data.nsw.gov.au)",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Tourism Hotspot Analysis: Visitor Patterns and Venue Performance",
-      "description": "Combine Melbourne Pedestrian Counting data (foot traffic at major locations) with Tourism Research Australia visitor demographics. Task: (1) Use Python/pandas to load pedestrian_count.csv (hourly/daily foot traffic by sensor location) and clean it\u2014handle missing hours, remove sensor malfunctions (erratic spikes >3 std dev), aggregate to daily totals by location; (2) Load and merge visitor demographic data (nationality, visit purpose, length of stay); (3) Use SQL to query the cleaned data: identify top 5 locations by average daily foot traffic, calculate hourly peak times using RANK() OVER (PARTITION BY location ORDER BY avg_hourly_count DESC), determine if international vs domestic visitors correlate with foot traffic patterns using GROUP BY and HAVING clauses; (4) Create a summary report showing: location, avg_daily_traffic, peak_hour, traffic_trend (increasing/decreasing over last 30 days using LAG), visitor_type_split. Expected output: SQL query results in CSV + Python script demonstrating end-to-end ETL, with at least 10 cleaned records per location.",
-      "dataset": "Melbourne Pedestrian Counting \u2014 Melbourne Open Data Portal; Tourism Research Australia visitor data \u2014 tra.gov.au",
-      "file_ext": ".py and .sql"
+      "title": "Australian Weather Extremes ETL Pipeline",
+      "description": "Build a mini data pipeline: (1) Use Python/pandas to download Australian Bureau of Meteorology weather observations (CSV format), clean temperature and rainfall columns (handle nulls, convert to numeric), and standardise date formats. (2) Load the cleaned data into a local SQLite database. (3) Write SQL queries to find: the top 10 hottest days across all stations, stations with highest average rainfall by month, and use a window function (ROW_NUMBER) to identify the hottest day per station per season. Export results to separate CSVs. This tests end-to-end Python\u2192SQL\u2192Python workflow.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg dataset)",
+      "file_ext": ".py / .sql"
     }
   ],
-  "last_quest_date": "2026-10-03"
+  "last_quest_date": "2026-10-04"
 }
