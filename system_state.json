@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-04 14:10 AEDT",
+  "last_sync": "2026-10-05 13:44 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Moving Average Momentum Tracker",
-      "description": "Using ASX 200 historical price data, write a query with window functions to calculate the 20-day and 50-day moving averages for each stock ticker. Then use a CTE to identify stocks where the 20-day MA crossed above the 50-day MA (bullish signal) in the last 10 trading days. Return ticker, date of crossover, closing price on that date, and the volume traded. Order by most recent crossover first. This tests ROW_NUMBER, LAG, and complex CTEs.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Rolling Performance Ranking",
+      "description": "Using ASX 200 historical price data, write a SQL query with window functions to calculate: (1) the 20-day rolling average price for each stock, (2) the rank of each stock by price change percentage within each month, and (3) identify stocks that were in the top 10 performers for 3+ consecutive months. Use ROW_NUMBER(), RANK(), and LAG() functions. Output should show stock ticker, date, rolling_avg_price, monthly_rank, and consecutive_top10_months.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning Pipeline",
-      "description": "Download NSW Road Crash Data (contains crash records with location, time, vehicle types, injury severity). Write a Python/pandas script that: (1) loads the CSV, (2) handles missing values in key columns (crash_date, latitude, longitude, severity) by imputation or removal, (3) standardises datetime formats, (4) removes duplicate crash records, (5) creates a new column 'crash_hour' extracted from crash_time, (6) filters crashes in Greater Sydney (lat/lon bounds), and (7) exports a cleaned CSV. Include error handling for file I/O and data type mismatches.",
-      "dataset": "NSW Road Crash Data \u2014 NSW Open Data Portal (data.nsw.gov.au)",
+      "title": "NSW Road Crash Data Cleaning & Safety Hotspot Detection",
+      "description": "Download NSW Road Crash Data (2020-2025). Write a Python/pandas script to: (1) clean the dataset by handling missing values in location, crash type, and injury severity columns; (2) standardise date formats and geocode suburb names; (3) identify the top 15 crash hotspots by frequency and severity score (weighted by injury count); (4) export a cleaned CSV with hotspot classifications (High/Medium/Low risk). Handle duplicates, invalid coordinates, and data type conversions. Expected output: cleaned_crashes.csv with hotspot_risk column added.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Weather Extremes ETL Pipeline",
-      "description": "Build a mini data pipeline: (1) Use Python/pandas to download Australian Bureau of Meteorology weather observations (CSV format), clean temperature and rainfall columns (handle nulls, convert to numeric), and standardise date formats. (2) Load the cleaned data into a local SQLite database. (3) Write SQL queries to find: the top 10 hottest days across all stations, stations with highest average rainfall by month, and use a window function (ROW_NUMBER) to identify the hottest day per station per season. Export results to separate CSVs. This tests end-to-end Python\u2192SQL\u2192Python workflow.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg dataset)",
-      "file_ext": ".py / .sql"
+      "title": "Australian Weather Trends & Agricultural Impact Pipeline",
+      "description": "Build an end-to-end pipeline: (1) Load Australian Bureau of Meteorology weather observations (temperature, rainfall, humidity) for major agricultural regions (2020-2026). (2) Use Python/pandas to clean weather data, handle missing observations, and calculate monthly aggregates (avg temp, total rainfall, drought severity index). (3) Load ABARES crop production data for matching regions/years. (4) Create a SQL database with two tables: weather_monthly and crop_production. (5) Write a SQL query with CTEs to correlate rainfall anomalies with crop yield changes, identifying which crops are most sensitive to drought. Output: a summary table showing crop_type, region, rainfall_anomaly_pct, yield_change_pct, and correlation_strength. Use at least one CTE and one window function.",
+      "dataset": "Australian Weather Observations (Bureau of Meteorology / Kaggle jsphyg) + ABARES Crop Production Data \u2014 agriculture.gov.au",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-10-04"
+  "last_quest_date": "2026-10-05"
 }
