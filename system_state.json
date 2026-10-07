@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-06 14:36 AEDT",
+  "last_sync": "2026-10-07 14:02 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum: ROW_NUMBER & LAG Window Functions",
-      "description": "Using the ASX 200 historical prices dataset, calculate the daily price momentum for the top 10 most traded stocks. For each stock, use ROW_NUMBER() to rank trading days chronologically, then LAG() to compute the percentage change from the previous day's closing price. Filter for records where the price change exceeds 2% (positive or negative). Return: Stock symbol, trading date, closing price, previous day's close, and percentage change. Order by stock symbol and date. This tests your understanding of window functions and temporal analysis.",
+      "title": "ASX 200 Momentum Analysis with Window Functions",
+      "description": "Using ASX 200 historical price data, calculate the 20-day moving average and momentum rank for each stock. Use window functions (ROW_NUMBER, LAG) to: 1) Partition by stock symbol and order by date; 2) Calculate price change from previous day using LAG(); 3) Compute 20-day moving average of closing prices; 4) Rank stocks by momentum (highest positive change) within each date using ROW_NUMBER(). Return top 10 momentum stocks for the most recent date in your dataset. Expected output: stock_symbol, date, close_price, price_change, moving_avg_20d, momentum_rank.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data: Cleaning & Severity Classification",
-      "description": "Download the NSW Road Crash Data (data.nsw.gov.au). Load the CSV and perform the following data cleaning and transformation tasks: (1) Handle missing values in injury_type and severity columns by filling with 'Unknown'. (2) Standardise all text columns to lowercase. (3) Remove duplicate rows based on crash_id. (4) Create a new column 'severity_score' that assigns numerical scores (1-5) based on the severity category. (5) Extract the month and year from the crash_date column into separate columns. (6) Export the cleaned dataset to a new CSV file. Validate your work by printing row counts before/after cleaning and value_counts() for the new severity_score column.",
+      "title": "NSW Road Crash Data Cleaning & Feature Engineering",
+      "description": "Download NSW Road Crash Data (data.nsw.gov.au) and perform comprehensive data cleaning: 1) Identify and handle missing values in crash_date, time, severity, and location columns; 2) Standardise date/time formats and extract hour_of_day and day_of_week features; 3) Remove duplicates based on crash_id; 4) Validate latitude/longitude coordinates are within NSW bounds (-28.0 to -34.3 lat, 140.6 to 154.7 lon); 5) Create a severity_category column (map numeric codes to 'Fatal', 'Serious Injury', 'Other Injury'); 6) Export cleaned dataset to CSV with data quality report (rows removed, % missing per column). Expected output: cleaned_crashes.csv + data_quality_report.txt.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Bureau of Meteorology Data: Python ETL \u2192 SQL Analytics",
-      "description": "Retrieve Australian weather observations data (Bureau of Meteorology via Kaggle: Australian Weather observations by jsphyg). (1) Using Python/pandas: Load the CSV, clean temperature and rainfall columns (handle missing/outlier values), and create a new feature 'temp_anomaly' that flags days where max_temperature exceeds the station's 90th percentile. Export to a temporary cleaned CSV. (2) Create a SQL database schema with a 'weather_observations' table. Load the cleaned CSV into the database. (3) Write a SQL query using CTEs to: Calculate the rolling 7-day average temperature for each weather station, identify the top 5 stations with the highest anomaly frequency, and return station name, anomaly count, and 7-day avg temp for each. Verify your results by comparing Python and SQL outputs for at least one station.",
-      "dataset": "Australian Weather Observations \u2014 Kaggle (jsphyg)",
+      "title": "Australian Weather Trends: Extract, Transform, Load & Analyse",
+      "description": "Using Australian Bureau of Meteorology weather observations dataset (or jsphyg Kaggle weather data): 1) Write a Python script to load weather CSV, clean temperature/rainfall columns (remove outliers >50\u00b0C or <-20\u00b0C for temp; rainfall <0 invalid), and standardise location names; 2) Load cleaned data into a SQLite database (create weather_observations table with columns: station_id, date, temp_max, temp_min, rainfall, location); 3) Write SQL queries to: calculate monthly average max temperature by location using CTEs, identify top 5 driest months (lowest rainfall) using window functions (ROW_NUMBER), and find locations where temp exceeded 40\u00b0C in the last 12 months. Expected output: SQLite database file + Python script + SQL query results showing location, month, avg_temp, and drought ranking.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-10-06"
+  "last_quest_date": "2026-10-07"
 }
