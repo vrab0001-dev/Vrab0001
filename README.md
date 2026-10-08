@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-07 14:02 AEDT |
+| 📅 Last Sync | 2026-10-08 14:18 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
-  _Using ASX 200 historical price data, calculate the 20-day moving average and momentum rank for each stock. Use window functions (ROW_NUMBER, LAG) to: 1) Partition by stock symbol and order by date; 2) Calculate price change from previous day using LAG(); 3) Compute 20-day moving average of closing prices; 4) Rank stocks by momentum (highest positive change) within each date using ROW_NUMBER(). Return top 10 momentum stocks for the most recent date in your dataset. Expected output: stock_symbol, date, close_price, price_change, moving_avg_20d, momentum_rank._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
+  _Using ASX 200 historical price data, calculate a 20-day moving average and identify the top 10 stocks by momentum (current price vs. 20-day MA). Use a CTE to compute the moving average with ROW_NUMBER partitioned by stock ticker, then rank stocks by momentum percentage. Output: ticker, current_price, ma_20_day, momentum_pct, rank. Filter for stocks with at least 20 trading days of data._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-07.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download NSW Road Crash Data (data.nsw.gov.au) and perform comprehensive data cleaning: 1) Identify and handle missing values in crash_date, time, severity, and location columns; 2) Standardise date/time formats and extract hour_of_day and day_of_week features; 3) Remove duplicates based on crash_id; 4) Validate latitude/longitude coordinates are within NSW bounds (-28.0 to -34.3 lat, 140.6 to 154.7 lon); 5) Create a severity_category column (map numeric codes to 'Fatal', 'Serious Injury', 'Other Injury'); 6) Export cleaned dataset to CSV with data quality report (rows removed, % missing per column). Expected output: cleaned_crashes.csv + data_quality_report.txt._
+  📁 Submit as: `quest1_2026-10-08.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleansing Pipeline
+  _Load NSW Road Crash Data (CSV format) and build a data cleaning script using pandas. Tasks: (1) Remove duplicate crash records based on crash ID; (2) Handle missing values in 'Speed zone' and 'Weather condition' columns by filling with 'Unknown'; (3) Convert datetime columns to proper datetime format; (4) Create a new column 'severity_category' by binning 'Number of persons injured' into Low (0-1), Medium (2-5), High (6+); (5) Export cleaned dataset as 'nsw_crashes_cleaned.csv'. Validate row counts before/after and document any data quality issues found._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-07.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Trends: Extract, Transform, Load & Analyse
-  _Using Australian Bureau of Meteorology weather observations dataset (or jsphyg Kaggle weather data): 1) Write a Python script to load weather CSV, clean temperature/rainfall columns (remove outliers >50°C or <-20°C for temp; rainfall <0 invalid), and standardise location names; 2) Load cleaned data into a SQLite database (create weather_observations table with columns: station_id, date, temp_max, temp_min, rainfall, location); 3) Write SQL queries to: calculate monthly average max temperature by location using CTEs, identify top 5 driest months (lowest rainfall) using window functions (ROW_NUMBER), and find locations where temp exceeded 40°C in the last 12 months. Expected output: SQLite database file + Python script + SQL query results showing location, month, avg_temp, and drought ranking._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-10-07.py`
+  📁 Submit as: `quest2_2026-10-08.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring ETL Pipeline
+  _Build an ETL workflow combining Python and SQL: (1) In Python: Download/load Great Barrier Reef monitoring data (bleaching events, temperature anomalies), clean null values, parse dates, and load into a SQLite database as table 'reef_monitoring'; (2) In SQL: Query the table to find sites with the highest coral bleaching incidents in the last 5 years, calculate YoY temperature anomaly trends using LAG window function, and create a summary report ranking reef zones by health risk (combine bleaching frequency + temp anomaly severity). (3) Export results as CSV showing zone_name, total_bleaching_events, avg_temp_anomaly, health_risk_score, trend_direction. Document any data quality assumptions made during the Python phase._
+  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
+  📁 Submit as: `quest3_2026-10-08.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
