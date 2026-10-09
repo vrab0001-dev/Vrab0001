@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-08 14:18 AEDT |
+| 📅 Last Sync | 2026-10-09 14:24 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
-  _Using ASX 200 historical price data, calculate a 20-day moving average and identify the top 10 stocks by momentum (current price vs. 20-day MA). Use a CTE to compute the moving average with ROW_NUMBER partitioned by stock ticker, then rank stocks by momentum percentage. Output: ticker, current_price, ma_20_day, momentum_pct, rank. Filter for stocks with at least 20 trading days of data._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-08.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleansing Pipeline
-  _Load NSW Road Crash Data (CSV format) and build a data cleaning script using pandas. Tasks: (1) Remove duplicate crash records based on crash ID; (2) Handle missing values in 'Speed zone' and 'Weather condition' columns by filling with 'Unknown'; (3) Convert datetime columns to proper datetime format; (4) Create a new column 'severity_category' by binning 'Number of persons injured' into Low (0-1), Medium (2-5), High (6+); (5) Export cleaned dataset as 'nsw_crashes_cleaned.csv'. Validate row counts before/after and document any data quality issues found._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Tracker with Window Functions
+  _Using ASX 200 historical price data, calculate the 20-day moving average and identify momentum shifts for each stock. Write a query using window functions (ROW_NUMBER, LAG) to: (1) Rank stocks by daily percentage change within each trading date, (2) Calculate the 20-day moving average of closing prices for the top 10 stocks by market cap, (3) Identify dates where a stock's price crossed above/below its moving average. Return stock_code, date, close_price, moving_avg_20, price_momentum_rank, and cross_signal (UP/DOWN/NONE). Use a CTE to pre-filter data for the last 12 months._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-10-09.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download NSW Road Crash Data (contains crash records with inconsistent date formats, missing values, and duplicate entries). Build a Python/pandas script to: (1) Standardise date columns to YYYY-MM-DD format, (2) Handle missing values in Severity and Location fields using domain-appropriate imputation, (3) Remove exact duplicate rows and near-duplicates (same crash_id but different time entries within 5 minutes), (4) Categorise crashes by severity level and create a summary report showing crash count and injury rate by Local Government Area (LGA), (5) Export cleaned data to CSV and generate a data quality report (rows removed, nulls handled, duplicates found). Save outputs as cleaned_crashes.csv and data_quality_report.txt._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-08.py`
-- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring ETL Pipeline
-  _Build an ETL workflow combining Python and SQL: (1) In Python: Download/load Great Barrier Reef monitoring data (bleaching events, temperature anomalies), clean null values, parse dates, and load into a SQLite database as table 'reef_monitoring'; (2) In SQL: Query the table to find sites with the highest coral bleaching incidents in the last 5 years, calculate YoY temperature anomaly trends using LAG window function, and create a summary report ranking reef zones by health risk (combine bleaching frequency + temp anomaly severity). (3) Export results as CSV showing zone_name, total_bleaching_events, avg_temp_anomaly, health_risk_score, trend_direction. Document any data quality assumptions made during the Python phase._
-  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
-  📁 Submit as: `quest3_2026-10-08.py`
+  📁 Submit as: `quest2_2026-10-09.py`
+- [ ] ⚡ **Combined Quest:** Weather-Driven Energy Demand Correlation Analysis
+  _Combine Australian Weather observations (Bureau of Meteorology dataset) with AEMO electricity demand data. (1) In Python/pandas: load both datasets, align them by date and state, handle missing temperature/humidity readings using forward-fill, and calculate daily average temperature and peak demand per state. (2) In SQL: Create a table joining weather and demand data, then write a query using window functions to calculate the correlation between temperature and peak demand for each state, ranked by correlation strength. (3) Identify anomalies: dates where demand deviated >2 std devs from the temperature-predicted norm using LAG/LEAD to smooth trends. Return state, date, temp_avg, peak_demand_mwh, correlation_coefficient, and anomaly_flag. Document your pipeline in a Python script that orchestrates both data prep and SQL execution._
+  📦 Dataset: `Australian Weather Observations (Bureau of Meteorology / Kaggle jsphyg) + AEMO Electricity Demand Data — aemo.com.au`
+  📁 Submit as: `quest3_2026-10-09.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
