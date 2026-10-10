@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-09 14:24 AEDT",
+  "last_sync": "2026-10-10 14:04 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Momentum Tracker with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate the 20-day moving average and identify momentum shifts for each stock. Write a query using window functions (ROW_NUMBER, LAG) to: (1) Rank stocks by daily percentage change within each trading date, (2) Calculate the 20-day moving average of closing prices for the top 10 stocks by market cap, (3) Identify dates where a stock's price crossed above/below its moving average. Return stock_code, date, close_price, moving_avg_20, price_momentum_rank, and cross_signal (UP/DOWN/NONE). Use a CTE to pre-filter data for the last 12 months.",
-      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
+      "title": "ASX 200 Stock Performance Rankings with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their year-to-date percentage gain. For each stock, calculate: (1) ROW_NUMBER() ranking by YTD gain, (2) LAG() to show the previous day's closing price, (3) a running sum of daily volume traded over the past 30 days using ROWS BETWEEN. Filter for the top 20 performers. Your output should include: stock_code, current_price, ytd_gain_percent, rank, previous_close, and 30day_volume_sum. Expected output: ~20 rows showing ASX leaders.",
+      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning Pipeline",
-      "description": "Download NSW Road Crash Data (contains crash records with inconsistent date formats, missing values, and duplicate entries). Build a Python/pandas script to: (1) Standardise date columns to YYYY-MM-DD format, (2) Handle missing values in Severity and Location fields using domain-appropriate imputation, (3) Remove exact duplicate rows and near-duplicates (same crash_id but different time entries within 5 minutes), (4) Categorise crashes by severity level and create a summary report showing crash count and injury rate by Local Government Area (LGA), (5) Export cleaned data to CSV and generate a data quality report (rows removed, nulls handled, duplicates found). Save outputs as cleaned_crashes.csv and data_quality_report.txt.",
+      "title": "NSW Road Crash Data Cleaning and Risk Score Calculation",
+      "description": "Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python/pandas script to: (1) load the CSV, (2) handle missing values in columns like 'Severity', 'Speed_Zone', and 'Weather_Condition' by imputing or dropping as appropriate, (3) standardise text fields (remove extra spaces, convert to title case), (4) create a new 'risk_score' column (0-100) based on Severity weight (Fatal=100, Serious=75, Other=25) and Weather_Condition (Rain/Fog +20 points), (5) export cleaned data to a new CSV. Your output CSV should have all original columns plus 'risk_score' and a 'data_quality_flag' column marking rows with imputed values.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Weather-Driven Energy Demand Correlation Analysis",
-      "description": "Combine Australian Weather observations (Bureau of Meteorology dataset) with AEMO electricity demand data. (1) In Python/pandas: load both datasets, align them by date and state, handle missing temperature/humidity readings using forward-fill, and calculate daily average temperature and peak demand per state. (2) In SQL: Create a table joining weather and demand data, then write a query using window functions to calculate the correlation between temperature and peak demand for each state, ranked by correlation strength. (3) Identify anomalies: dates where demand deviated >2 std devs from the temperature-predicted norm using LAG/LEAD to smooth trends. Return state, date, temp_avg, peak_demand_mwh, correlation_coefficient, and anomaly_flag. Document your pipeline in a Python script that orchestrates both data prep and SQL execution.",
-      "dataset": "Australian Weather Observations (Bureau of Meteorology / Kaggle jsphyg) + AEMO Electricity Demand Data \u2014 aemo.com.au",
-      "file_ext": ".py"
+      "title": "Australian Wine Production ETL: Python Ingestion to SQL Analytics",
+      "description": "Integrate data from the Australian wine production statistics (Wine Australia) with a SQL analysis layer. (1) In Python: Write a script to fetch or load wine production CSV data, clean vintage years, standardise region names (remove special chars, lowercase), and handle null production volumes by forward-filling or interpolating. Save as 'wine_clean.csv'. (2) Load this into a SQL database (SQLite or PostgreSQL). (3) Write a SQL query with CTEs to: identify the top 5 regions by total production volume over the last 10 years, calculate year-on-year growth rate using LAG(), rank regions by consistency (lowest std_dev of production), and combine into a single result showing region, total_volume, yoy_growth_percent, and consistency_rank. Expected output: 5 rows with regional insights.",
+      "dataset": "Australian Wine Production Statistics \u2014 Wine Australia (wineaustralia.com data exports)",
+      "file_ext": ".py and .sql"
     }
   ],
-  "last_quest_date": "2026-10-09"
+  "last_quest_date": "2026-10-10"
 }
