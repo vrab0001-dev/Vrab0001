@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-10 14:04 AEDT |
+| 📅 Last Sync | 2026-10-11 13:35 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their year-to-date percentage gain. For each stock, calculate: (1) ROW_NUMBER() ranking by YTD gain, (2) LAG() to show the previous day's closing price, (3) a running sum of daily volume traded over the past 30 days using ROWS BETWEEN. Filter for the top 20 performers. Your output should include: stock_code, current_price, ytd_gain_percent, rank, previous_close, and 30day_volume_sum. Expected output: ~20 rows showing ASX leaders._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum with Window Functions
+  _Using the ASX 200 historical prices dataset, write a query that calculates a 20-day rolling average price and identifies the rank of each stock by price momentum (percentage change from 20-day low to current price). Use window functions ROW_NUMBER() and LAG() to compute daily percentage changes, then rank stocks within each date partition. Filter for the top 10 momentum gainers on the most recent trading date. Expected output: stock symbol, current price, 20-day moving average, momentum rank, and percentage gain._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-10.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Risk Score Calculation
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python/pandas script to: (1) load the CSV, (2) handle missing values in columns like 'Severity', 'Speed_Zone', and 'Weather_Condition' by imputing or dropping as appropriate, (3) standardise text fields (remove extra spaces, convert to title case), (4) create a new 'risk_score' column (0-100) based on Severity weight (Fatal=100, Serious=75, Other=25) and Weather_Condition (Rain/Fog +20 points), (5) export cleaned data to a new CSV. Your output CSV should have all original columns plus 'risk_score' and a 'data_quality_flag' column marking rows with imputed values._
-  📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-10.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production ETL: Python Ingestion to SQL Analytics
-  _Integrate data from the Australian wine production statistics (Wine Australia) with a SQL analysis layer. (1) In Python: Write a script to fetch or load wine production CSV data, clean vintage years, standardise region names (remove special chars, lowercase), and handle null production volumes by forward-filling or interpolating. Save as 'wine_clean.csv'. (2) Load this into a SQL database (SQLite or PostgreSQL). (3) Write a SQL query with CTEs to: identify the top 5 regions by total production volume over the last 10 years, calculate year-on-year growth rate using LAG(), rank regions by consistency (lowest std_dev of production), and combine into a single result showing region, total_volume, yoy_growth_percent, and consistency_rank. Expected output: 5 rows with regional insights._
-  📦 Dataset: `Australian Wine Production Statistics — Wine Australia (wineaustralia.com data exports)`
-  📁 Submit as: `quest3_2026-10-10.py`
+  📁 Submit as: `quest1_2026-10-11.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Risk Scoring
+  _Download NSW Road Crash Data (Motor Accident data) from data.nsw.gov.au. Write a Python script using pandas to: (1) load and inspect the CSV for missing values and data types; (2) clean datetime columns and standardise suburb names (remove extra spaces, lowercase); (3) create a derived 'severity_score' column (1-5 scale) based on injury type and number of vehicles involved; (4) export the cleaned dataset to a new CSV with only complete rows. Expected output: cleaned CSV with at least 5000 rows, no null values in key columns, and a new severity_score column with values 1-5._
+  📦 Dataset: `NSW Road Crash Data (Motor Accident data) — data.nsw.gov.au`
+  📁 Submit as: `quest2_2026-10-11.py`
+- [ ] ⚡ **Combined Quest:** Australian Weather Anomalies: Python ETL to SQL Analytics
+  _Using Australian Weather observations dataset (from Bureau of Meteorology or Kaggle jsphyg collection): (1) Write a Python script to load daily temperature and rainfall CSV files, calculate monthly anomalies (deviation from 30-year average), and load cleaned data into a SQLite database with tables for 'stations', 'daily_observations', and 'monthly_anomalies'. (2) Write SQL queries to: identify the 5 stations with highest temperature anomalies in the past 12 months, rank months by rainfall deficit, and generate a summary view showing anomaly trends by state/territory. Expected output: SQLite database with 3 normalised tables, Python script handling data transformation, and 3 SQL queries producing ranked anomaly reports._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
+  📁 Submit as: `quest3_2026-10-11.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
