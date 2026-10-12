@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-11 13:35 AEDT |
+| 📅 Last Sync | 2026-10-12 13:59 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum with Window Functions
-  _Using the ASX 200 historical prices dataset, write a query that calculates a 20-day rolling average price and identifies the rank of each stock by price momentum (percentage change from 20-day low to current price). Use window functions ROW_NUMBER() and LAG() to compute daily percentage changes, then rank stocks within each date partition. Filter for the top 10 momentum gainers on the most recent trading date. Expected output: stock symbol, current price, 20-day moving average, momentum rank, and percentage gain._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
+  _Using ASX 200 historical price data, write a SQL query with window functions to calculate the 20-day moving average and price momentum (current price - price 20 days ago) for the top 5 most volatile stocks. Use ROW_NUMBER() to rank stocks by volatility (standard deviation of daily returns), then LAG() to compare current close price with the close price from 20 trading days prior. Return stock ticker, date, close price, 20-day moving average, momentum value, and volatility rank. Order by date descending within each stock._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-11.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Risk Scoring
-  _Download NSW Road Crash Data (Motor Accident data) from data.nsw.gov.au. Write a Python script using pandas to: (1) load and inspect the CSV for missing values and data types; (2) clean datetime columns and standardise suburb names (remove extra spaces, lowercase); (3) create a derived 'severity_score' column (1-5 scale) based on injury type and number of vehicles involved; (4) export the cleaned dataset to a new CSV with only complete rows. Expected output: cleaned CSV with at least 5000 rows, no null values in key columns, and a new severity_score column with values 1-5._
-  📦 Dataset: `NSW Road Crash Data (Motor Accident data) — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-11.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomalies: Python ETL to SQL Analytics
-  _Using Australian Weather observations dataset (from Bureau of Meteorology or Kaggle jsphyg collection): (1) Write a Python script to load daily temperature and rainfall CSV files, calculate monthly anomalies (deviation from 30-year average), and load cleaned data into a SQLite database with tables for 'stations', 'daily_observations', and 'monthly_anomalies'. (2) Write SQL queries to: identify the 5 stations with highest temperature anomalies in the past 12 months, rank months by rainfall deficit, and generate a summary view showing anomaly trends by state/territory. Expected output: SQLite database with 3 normalised tables, Python script handling data transformation, and 3 SQL queries producing ranked anomaly reports._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-10-11.py`
+  📁 Submit as: `quest1_2026-10-12.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
+  _Download NSW Road Crash Data (CSV format). Write a Python script using pandas to: (1) handle missing values in Severity and Road Type columns by imputing with mode; (2) standardise date formats to YYYY-MM-DD; (3) remove duplicate records based on Crash ID; (4) create a new feature 'hour_of_day' extracted from Crash Time; (5) filter crashes where Severity is 'Fatal' or 'Serious injury'; (6) save the cleaned dataset to a new CSV. Output a summary report showing original row count, final row count, and top 5 postcodes by fatal/serious crash frequency._
+  📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
+  📁 Submit as: `quest2_2026-10-12.py`
+- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Analysis Pipeline
+  _Build a data pipeline: (1) Load Melbourne pedestrian counting data (CSV from Melbourne Open Data Portal); (2) Use Python/pandas to clean the data: convert timestamps, remove sensor anomalies (counts > 50,000 per hour), and aggregate hourly counts to daily totals by sensor location; (3) Export cleaned data to a CSV intermediate file; (4) Create a SQL query that ranks sensors by average daily foot traffic using window functions (RANK() OVER (ORDER BY avg_daily_count DESC)), calculates a 7-day rolling average using LAG(), and identifies peak traffic days (top 10% by count); (5) Return sensor name, location, daily average, rolling average, traffic rank, and flag for peak days. Document your data quality issues found and how you resolved them._
+  📦 Dataset: `Melbourne Pedestrian Counting System — Melbourne Open Data Portal`
+  📁 Submit as: `quest3_2026-10-12.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
