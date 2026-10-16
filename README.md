@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-15 13:08 AEDT |
+| 📅 Last Sync | 2026-10-16 12:58 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Volatility Rankings with Window Functions
-  _Using ASX 200 historical prices dataset, calculate daily percentage change for each stock using LAG window function. Then use ROW_NUMBER to rank stocks by volatility (standard deviation of percentage changes) within each month. Finally, identify the top 3 most volatile stocks per month using a CTE. Your output should show: month, rank, stock_code, volatility_score, and average_daily_change. Filter for 2024 data only._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-15.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download NSW Road Crash Data and perform comprehensive data cleaning: handle missing values in severity, speed_zone, and weather columns; standardise date formats; remove duplicate crash records; validate latitude/longitude bounds for NSW (between -28.0 to -34.0 and 140.0 to 154.0). Engineer new features: crash_hour (extract from time), is_nighttime (between 18:00-06:00), and weather_category (group rare weather types into 'Other'). Output a cleaned CSV with 15+ columns. Document all transformations in comments._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 20-day moving average for each stock, (2) the rank of stocks by daily percentage gain within each date partition, and (3) identify stocks where today's close price exceeds the 20-day moving average. Use ROW_NUMBER() or RANK() to find top 5 gainers per trading day. Return stock symbol, date, close price, 20-day MA, daily % change, and rank. Filter for dates in Q3 2024 only._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-10-16.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Incident Classification
+  _Download the NSW Road Crash Data (contains incident reports with missing values, inconsistent formatting, and duplicate records). Clean the dataset by: (1) handling missing values in severity and crash type columns using appropriate imputation, (2) standardising suburb names to title case and removing leading/trailing whitespace, (3) converting date columns to datetime format, (4) removing exact duplicate rows, (5) creating a new 'crash_category' column that classifies crashes as 'Fatal', 'Serious Injury', 'Other Injury', or 'Non-Injury' based on severity column. Export the cleaned dataset to a CSV file. Provide a summary report showing row count before/after cleaning and missing value percentages per column._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-15.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Analysis Pipeline
-  _Part 1 (Python): Fetch or load Australian wine production statistics by region and vintage year. Clean the data: handle missing production volumes, standardise region names (remove whitespace/case inconsistencies), remove outliers using IQR method on production volume. Export to a CSV named 'wine_clean.csv'. Part 2 (SQL): Load the cleaned data into a database table. Write a query using CTEs and window functions to: (1) calculate 3-year rolling average production per region, (2) rank regions by total production volume, (3) identify regions with year-on-year growth exceeding 10%. Output: region, vintage, production_volume, rolling_avg_3yr, region_rank, yoy_growth_pct. Limit results to top 20 regions by total production._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com or agriculture.gov.au`
-  📁 Submit as: `quest3_2026-10-15.py`
+  📁 Submit as: `quest2_2026-10-16.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production ETL: Database Population & Trend Analysis
+  _Build a Python script that: (1) extracts wine production data from the Australian wine production statistics dataset (vintage year, region, variety, production volume in litres), (2) cleans and validates the data (remove nulls, standardise region names, convert volumes to consistent units), (3) creates a SQLite database with a 'wine_production' table, and (4) loads the cleaned data into the table. Then, write SQL queries to: (a) calculate the total production volume by region and vintage year using GROUP BY and ORDER BY, (b) use a CTE to identify regions where production volume increased year-over-year, (c) rank wine varieties by total production across all years using ROW_NUMBER(). Return the top 5 regions by total production and top 10 varieties by volume. Document your ETL pipeline steps in comments._
+  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com / Kaggle`
+  📁 Submit as: `quest3_2026-10-16.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
