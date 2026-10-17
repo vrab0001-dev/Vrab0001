@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-16 12:58 AEDT |
+| 📅 Last Sync | 2026-10-17 12:53 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 20-day moving average for each stock, (2) the rank of stocks by daily percentage gain within each date partition, and (3) identify stocks where today's close price exceeds the 20-day moving average. Use ROW_NUMBER() or RANK() to find top 5 gainers per trading day. Return stock symbol, date, close price, 20-day MA, daily % change, and rank. Filter for dates in Q3 2024 only._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Volatility Rankings with Running Averages
+  _Using the ASX 200 historical prices dataset, calculate the 30-day rolling standard deviation of daily returns for each stock. Rank stocks by volatility within each month using RANK() and ROW_NUMBER() window functions. Use a CTE to compute daily returns (close - previous close / previous close), then a second CTE to calculate rolling volatility. Return the top 5 most volatile stocks per month, showing ticker, month, volatility rank, and rolling std dev. Filter for 2025 data only._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-16.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Incident Classification
-  _Download the NSW Road Crash Data (contains incident reports with missing values, inconsistent formatting, and duplicate records). Clean the dataset by: (1) handling missing values in severity and crash type columns using appropriate imputation, (2) standardising suburb names to title case and removing leading/trailing whitespace, (3) converting date columns to datetime format, (4) removing exact duplicate rows, (5) creating a new 'crash_category' column that classifies crashes as 'Fatal', 'Serious Injury', 'Other Injury', or 'Non-Injury' based on severity column. Export the cleaned dataset to a CSV file. Provide a summary report showing row count before/after cleaning and missing value percentages per column._
+  📁 Submit as: `quest1_2026-10-17.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation Pipeline
+  _Download NSW Road Crash data from data.nsw.gov.au (or equivalent CSV export). Write a Python script using pandas to: (1) handle missing values in crash severity, location, and date columns; (2) standardise datetime formats; (3) remove duplicate crash records based on crash ID and timestamp; (4) extract new features (day of week, hour of day from datetime); (5) categorise suburbs into regions; (6) aggregate crash counts by region, severity, and day of week; (7) export the cleaned and aggregated dataset to CSV and JSON formats. Include data quality checks (row counts before/after cleaning, null counts per column) printed to console._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-16.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production ETL: Database Population & Trend Analysis
-  _Build a Python script that: (1) extracts wine production data from the Australian wine production statistics dataset (vintage year, region, variety, production volume in litres), (2) cleans and validates the data (remove nulls, standardise region names, convert volumes to consistent units), (3) creates a SQLite database with a 'wine_production' table, and (4) loads the cleaned data into the table. Then, write SQL queries to: (a) calculate the total production volume by region and vintage year using GROUP BY and ORDER BY, (b) use a CTE to identify regions where production volume increased year-over-year, (c) rank wine varieties by total production across all years using ROW_NUMBER(). Return the top 5 regions by total production and top 10 varieties by volume. Document your ETL pipeline steps in comments._
-  📦 Dataset: `Australian Wine Production Statistics — wineaustralia.com / Kaggle`
-  📁 Submit as: `quest3_2026-10-16.py`
+  📁 Submit as: `quest2_2026-10-17.py`
+- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Analysis: Trend Detection and Reporting
+  _Use the Melbourne pedestrian counting dataset (Melbourne Open Data Portal). Step 1 (Python): Load hourly pedestrian count data, clean missing values using forward fill where appropriate, and create a pandas DataFrame with columns: sensor_id, date, hour, count, day_of_week, is_weekend. Step 2 (SQL): Create a database table from your cleaned CSV. Write SQL queries using LAG() and LEAD() window functions to detect traffic anomalies (hours where count deviates >2 standard deviations from the monthly mean). Use a CTE to compute rolling 7-day average traffic per sensor. Step 3 (Python): Query results back into pandas, generate a summary report showing: top 3 busiest sensors, bottom 3 quietest sensors, and a list of detected anomaly dates/times with explanations (e.g., public holiday, weekend spike). Save report as markdown or JSON._
+  📦 Dataset: `Melbourne Pedestrian Counting — Melbourne Open Data Portal`
+  📁 Submit as: `quest3_2026-10-17.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
