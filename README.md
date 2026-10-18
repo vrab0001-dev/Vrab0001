@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-17 12:53 AEDT |
+| 📅 Last Sync | 2026-10-18 12:51 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Volatility Rankings with Running Averages
-  _Using the ASX 200 historical prices dataset, calculate the 30-day rolling standard deviation of daily returns for each stock. Rank stocks by volatility within each month using RANK() and ROW_NUMBER() window functions. Use a CTE to compute daily returns (close - previous close / previous close), then a second CTE to calculate rolling volatility. Return the top 5 most volatile stocks per month, showing ticker, month, volatility rank, and rolling std dev. Filter for 2025 data only._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-17.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Aggregation Pipeline
-  _Download NSW Road Crash data from data.nsw.gov.au (or equivalent CSV export). Write a Python script using pandas to: (1) handle missing values in crash severity, location, and date columns; (2) standardise datetime formats; (3) remove duplicate crash records based on crash ID and timestamp; (4) extract new features (day of week, hour of day from datetime); (5) categorise suburbs into regions; (6) aggregate crash counts by region, severity, and day of week; (7) export the cleaned and aggregated dataset to CSV and JSON formats. Include data quality checks (row counts before/after cleaning, null counts per column) printed to console._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis
+  _Using ASX 200 historical price data, write a SQL query with window functions to calculate: (1) the 5-day rolling average closing price for each stock, (2) the rank of stocks by daily percentage change within each date, and (3) identify the top 10 stocks with the highest cumulative gains over the last 30 days using LAG and SUM window functions. Output should include stock symbol, date, closing price, 5-day moving average, daily percentage rank, and 30-day cumulative gain percentage. Use a CTE to organize intermediate calculations._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-10-18.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
+  _Download NSW Road Crash Data and build a Python pandas script to: (1) handle missing values in crash severity, location (latitude/longitude), and vehicle type columns using appropriate strategies (drop, forward-fill, or median imputation), (2) standardize date-time formats and extract temporal features (day of week, hour of day, season), (3) detect and remove duplicate crash records based on crash ID and timestamp, (4) validate data quality by flagging records with impossible values (e.g., negative speeds, invalid coordinates outside NSW bounds), and (5) export a cleaned CSV with a data quality report showing rows removed and transformations applied._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-17.py`
-- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Analysis: Trend Detection and Reporting
-  _Use the Melbourne pedestrian counting dataset (Melbourne Open Data Portal). Step 1 (Python): Load hourly pedestrian count data, clean missing values using forward fill where appropriate, and create a pandas DataFrame with columns: sensor_id, date, hour, count, day_of_week, is_weekend. Step 2 (SQL): Create a database table from your cleaned CSV. Write SQL queries using LAG() and LEAD() window functions to detect traffic anomalies (hours where count deviates >2 standard deviations from the monthly mean). Use a CTE to compute rolling 7-day average traffic per sensor. Step 3 (Python): Query results back into pandas, generate a summary report showing: top 3 busiest sensors, bottom 3 quietest sensors, and a list of detected anomaly dates/times with explanations (e.g., public holiday, weekend spike). Save report as markdown or JSON._
-  📦 Dataset: `Melbourne Pedestrian Counting — Melbourne Open Data Portal`
-  📁 Submit as: `quest3_2026-10-17.py`
+  📁 Submit as: `quest2_2026-10-18.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Health Trend Analysis Pipeline
+  _Build an end-to-end data engineering workflow: (1) In Python, fetch or load Great Barrier Reef monitoring data (coral coverage, water temperature, bleaching events) from AIMS, clean it using pandas (handle missing temporal data, standardize site names, convert measurements to consistent units), and export to a CSV. (2) In SQL, load this cleaned data into a table and create a query using window functions (ROW_NUMBER, AVG window) to: identify reef sites with declining coral health trends, calculate year-over-year change in coral coverage by site using LAG, rank reef sites by health deterioration rate, and flag sites requiring urgent intervention (coverage drop >5% annually). (3) Combine results: export the flagged high-risk sites with their trend metrics back to Python and generate a summary report (CSV and simple text summary) identifying the 5 most at-risk reefs and their trajectory._
+  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
+  📁 Submit as: `quest3_2026-10-18.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
