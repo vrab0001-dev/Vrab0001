@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-10-21 13:17 AEDT |
+| 📅 Last Sync | 2026-10-22 13:12 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Volatility Ranking with Window Functions
-  _Using the ASX 200 historical prices dataset, calculate the 30-day rolling standard deviation of daily returns for each stock. Use window functions (ROW_NUMBER, LAG) to: 1) Calculate daily percentage returns using LAG(close_price), 2) Compute rolling 30-day standard deviation partitioned by stock symbol, 3) Rank stocks by volatility (highest to lowest) using RANK() OVER, 4) Return top 10 most volatile stocks with their average volatility score, trading volume average, and date range. Expected output: 10 rows with columns: rank, stock_symbol, avg_volatility, avg_volume, date_first, date_last._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-10-21.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download NSW Road Crash Data (crash records with location, date, severity, vehicle type). Using pandas: 1) Handle missing values in Latitude/Longitude by removing rows or imputing with median by region, 2) Parse datetime columns and extract hour_of_day, day_of_week, month, 3) Categorise crash severity into ordinal levels (Low/Medium/High/Fatal), 4) Create a new feature 'peak_hour' (True if hour between 7-9 or 16-19), 5) Remove duplicate records based on crash ID, 6) Export cleaned dataset to CSV with 20+ rows validation output showing before/after row counts and null percentages per column._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Average & Momentum Ranking
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate a 20-day rolling average of closing prices for each stock ticker; (2) Use ROW_NUMBER() to rank stocks by their price momentum (current price vs 20-day avg) within each date; (3) Use a CTE to filter only the top 10 momentum gainers per trading day; (4) Return ticker, date, close_price, rolling_avg_20d, and momentum_rank. Ensure your query handles NULL values gracefully and orders results by date DESC, then momentum_rank ASC._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-10-22.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Safety Score Calculation
+  _Download the NSW Road Crash Data (available as CSV). Write a Python/pandas script to: (1) Load the dataset and inspect data types, missing values, and duplicates; (2) Clean crash severity categories by standardising text (trim whitespace, consistent casing); (3) Handle missing values in speed_zone_posted and severity columns using forward-fill or domain logic; (4) Create a new 'safety_score' column (0–100 scale) based on injury_count, vehicle_count, and severity; (5) Export the cleaned dataset to a new CSV file. Document any assumptions you make about data imputation._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-10-21.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Anomalies Detection Pipeline
-  _Using Australian Weather Observations dataset (daily temperature, rainfall, humidity): 1) In Python/pandas: load data, handle missing values, calculate rolling 30-day mean and standard deviation for temperature by location (state), 2) Flag anomalies as days where temperature is >2 standard deviations from rolling mean, 3) Create a CSV with columns: date, location, temp, rolling_mean, rolling_std, anomaly_flag (Boolean), 4) Load this CSV into SQL and write a query to: identify locations with most anomalies in past 90 days, calculate anomaly frequency (%), use CTE to rank locations by anomaly severity, 5) Export final report: top 5 locations, anomaly count, anomaly percentage, date range of anomalies. Expected output: SQL result set with 5 rows ranked by anomaly frequency descending._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-10-21.py`
+  📁 Submit as: `quest2_2026-10-22.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production Trend Analysis & Export Report
+  _Integrate Python and SQL: (1) Use Python/pandas to fetch or load the Australian wine production statistics dataset (by region and vintage year). Clean column names, standardise region names (handle spelling variations), and convert production volumes to consistent units (tonnes). Save to a local SQLite database using SQLAlchemy. (2) In SQL, write a query using CTEs and window functions to: calculate 5-year rolling average production by region; use RANK() to identify top-3 producing regions per decade; compute year-over-year growth % using LAG(). (3) Export results to CSV with columns: region, year, production_tonnes, rolling_avg_5yr, region_rank, yoy_growth_pct. Document your data quality decisions in a brief markdown comment within the Python script._
+  📦 Dataset: `Australian Wine Production Statistics — Wine Australia / ABS`
+  📁 Submit as: `quest3_2026-10-22.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
