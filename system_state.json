@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-25 13:03 AEDT",
+  "last_sync": "2026-10-26 13:04 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Price Momentum Analysis with Window Functions",
-      "description": "Using ASX 200 historical stock price data, calculate a 30-day rolling average price and identify momentum shifts for each stock. Write a query using window functions (AVG() OVER, ROW_NUMBER() OVER) to: (1) compute the 30-day moving average for each stock ordered by date, (2) rank stocks by their price change percentage in the last 7 days, (3) flag stocks where the current price crosses above/below the 30-day MA. Return stock symbol, date, close price, 30-day MA, price change %, and rank. Use a CTE to organize the window function logic cleanly.",
+      "title": "ASX 200 Performance Rankings with Rolling Averages",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate the 20-day and 50-day rolling average closing price for each stock, (2) Rank stocks by their current price relative to the 20-day average (highest outperformers first), (3) Use ROW_NUMBER to identify the top 3 performers in each sector for the most recent date in the dataset. Return columns: ticker, sector, date, close_price, ma_20, ma_50, performance_rank, sector_rank. Use a CTE to organize the window function logic.",
       "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning and Feature Engineering",
-      "description": "Download NSW Road Crash Data (injury crashes from the past 3 years). Use pandas to: (1) clean the dataset by handling missing values in severity, location, and vehicle type columns, (2) standardize datetime formats for crash dates, (3) create new features: time_of_day (peak vs off-peak hours), crash_type (multi-vehicle vs single), and location_category (urban vs rural based on postal code mapping), (4) remove duplicates and validate data integrity. Export the cleaned dataset to a new CSV file. Document any data quality issues found and your handling decisions in comments.",
-      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "title": "Australian Weather Data Cleaning & Temperature Anomaly Detection",
+      "description": "Download or load the Australian Weather observations dataset (Bureau of Meteorology). Write a Python/pandas script to: (1) Handle missing values in temperature and rainfall columns using appropriate imputation strategies, (2) Detect and flag outliers in daily maximum temperature using IQR method, (3) Create new columns: temperature_anomaly (difference from 30-year average for that location/month), rainfall_category (low/medium/high based on percentiles), (4) Export cleaned data to CSV with a timestamp. Document your data quality checks and decisions in comments.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "COVID-19 Vaccination Progress Dashboard Data Pipeline",
-      "description": "Build a mini ETL pipeline: (1) In Python, fetch and clean the COVID-19 Australia vaccination dataset (handle missing states, date formatting, and vaccination type inconsistencies), (2) load the cleaned data into a local SQLite database with appropriate schema (state, date, vaccine_type, doses_administered, population_eligible), (3) in SQL, write queries to calculate: cumulative vaccination rates by state, weekly dose administration trends using window functions, and states lagging behind the national average. (4) Export final analytical results to CSV. Combine both scripts into a single Python file that orchestrates the entire pipeline with error handling and logging.",
-      "dataset": "COVID-19 Australia Dataset \u2014 Kaggle",
-      "file_ext": ".py"
+      "title": "NSW Road Crash Analysis: Python ETL + SQL Analytics",
+      "description": "Using NSW Road Crash Data (data.nsw.gov.au): (1) Write a Python script to extract crash records, clean location coordinates (handle nulls/invalid entries), standardize crash type and severity codes, and load into a local SQLite database. (2) Write SQL queries to analyze: top 10 crash locations by frequency, average severity score by day-of-week and hour-of-day (use CASE statements and GROUP BY), identify crash patterns using a CTE that flags high-risk corridors (>50 crashes in 12 months). (3) Export a summary report showing geographic hotspots and temporal patterns. Include error handling in Python and document data transformations.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-10-25"
+  "last_quest_date": "2026-10-26"
 }
