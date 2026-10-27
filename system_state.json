@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-10-26 13:04 AEDT",
+  "last_sync": "2026-10-27 13:41 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Performance Rankings with Rolling Averages",
-      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to: (1) Calculate the 20-day and 50-day rolling average closing price for each stock, (2) Rank stocks by their current price relative to the 20-day average (highest outperformers first), (3) Use ROW_NUMBER to identify the top 3 performers in each sector for the most recent date in the dataset. Return columns: ticker, sector, date, close_price, ma_20, ma_50, performance_rank, sector_rank. Use a CTE to organize the window function logic.",
-      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
+      "title": "ASX 200 Stock Performance Rankings with Window Functions",
+      "description": "Using the ASX 200 historical prices dataset, write a SQL query with window functions to rank stocks by their 30-day average return within each sector. Use ROW_NUMBER() to identify the top performer per sector, LAG() to calculate day-over-day price changes, and a CTE to compute the 30-day moving average. Return: stock_code, sector, closing_price, 30day_avg_return, rank_in_sector, previous_day_close. Filter for the last 90 days of data and order by sector and rank.",
+      "dataset": "ASX 200 historical stock prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "Australian Weather Data Cleaning & Temperature Anomaly Detection",
-      "description": "Download or load the Australian Weather observations dataset (Bureau of Meteorology). Write a Python/pandas script to: (1) Handle missing values in temperature and rainfall columns using appropriate imputation strategies, (2) Detect and flag outliers in daily maximum temperature using IQR method, (3) Create new columns: temperature_anomaly (difference from 30-year average for that location/month), rainfall_category (low/medium/high based on percentiles), (4) Export cleaned data to CSV with a timestamp. Document your data quality checks and decisions in comments.",
-      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology / Kaggle (jsphyg)",
+      "title": "NSW Road Crash Data Cleaning & Injury Classification Pipeline",
+      "description": "Download the NSW Road Crash Data (data.nsw.gov.au). Build a Python/pandas script that: (1) loads the CSV and identifies missing values per column; (2) standardises datetime formats for crash_date and crash_time; (3) creates a new column injury_severity by mapping injury counts to categories (no_injury, minor, serious, fatal); (4) removes duplicate rows based on crash_id; (5) filters for crashes in the Sydney metropolitan area only; (6) exports the cleaned dataset to a new CSV with timestamp in filename. Log the number of rows removed at each step.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "NSW Road Crash Analysis: Python ETL + SQL Analytics",
-      "description": "Using NSW Road Crash Data (data.nsw.gov.au): (1) Write a Python script to extract crash records, clean location coordinates (handle nulls/invalid entries), standardize crash type and severity codes, and load into a local SQLite database. (2) Write SQL queries to analyze: top 10 crash locations by frequency, average severity score by day-of-week and hour-of-day (use CASE statements and GROUP BY), identify crash patterns using a CTE that flags high-risk corridors (>50 crashes in 12 months). (3) Export a summary report showing geographic hotspots and temporal patterns. Include error handling in Python and document data transformations.",
-      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
-      "file_ext": ".py + .sql"
+      "title": "AIHW Health Expenditure Trend Analysis: Python ETL \u2192 SQL Analytics",
+      "description": "Using AIHW health expenditure data: (1) Write a Python script using pandas to load the CSV, clean column names (remove spaces, standardise to snake_case), handle missing values by forward-filling by state and year, and add a new column real_expenditure_2020_dollars using a fixed CPI deflator. Export to a staging CSV. (2) Load the cleaned data into a SQL database (SQLite or PostgreSQL). (3) Write a SQL query using window functions to calculate year-over-year expenditure growth % by state, rank states by growth, and use LAG() to compare each year to the previous. Return: state, year, expenditure_2020_dollars, yoy_growth_pct, state_rank. Identify the top 3 states with highest average growth over the period.",
+      "dataset": "AIHW Health Expenditure Data \u2014 aihw.gov.au",
+      "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-10-26"
+  "last_quest_date": "2026-10-27"
 }
