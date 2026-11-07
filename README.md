@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-06 14:56 AEDT |
+| 📅 Last Sync | 2026-11-07 14:31 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Analysis with Window Functions
-  _Using ASX 200 historical stock price data, calculate the 20-day moving average and identify stocks where the current price has crossed above their moving average (bullish signal). Use window functions (AVG() OVER and LAG()) to compute rolling averages and detect crossovers. Rank the top 10 stocks by momentum (price - moving_average) and include their current price, 20-day MA, and crossover date. Output should show: stock_symbol, current_price, moving_avg_20d, momentum_score, crossover_date, rank._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 30-day moving average of closing price for each stock, (2) the daily price change rank within each stock (highest gain = rank 1), and (3) identify the date when each stock hit its 52-week high. Use ROW_NUMBER() and LAG() window functions. Filter for the top 10 stocks by trading volume. Return columns: stock_code, date, close_price, moving_avg_30d, price_change_rank, weeks_52_high_date. Order by stock_code and date._
   📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-06.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Safety Hotspot Detection
-  _Download NSW Road Crash Data and clean it for analysis. Tasks: (1) Remove rows with missing critical fields (crash_type, severity, location). (2) Standardise date formats to YYYY-MM-DD. (3) Extract suburb/postcode from address strings using regex or string methods. (4) Create a severity_category column (fatal=1, serious=2, other=3). (5) Identify top 15 crash hotspots (by frequency) and export to CSV with columns: location, crash_count, avg_severity, percentage_fatal. Use pandas and Python's datetime module._
+  📁 Submit as: `quest1_2026-11-07.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download the NSW Road Crash Data (available from NSW Open Data portal). Write a Python pandas script to: (1) handle missing values in crash severity and contributing factors columns (document your strategy), (2) create new features: crash_hour from datetime, is_weekend boolean, severity_category (ordinal encoding: minor/moderate/serious/fatal), (3) standardise location data by removing duplicates and normalising suburb names to title case, (4) export cleaned dataset to CSV with summary statistics (total crashes, crashes by severity, top 5 suburbs). The script should be robust and handle edge cases like malformed dates._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-06.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Pattern Analysis: SQL + Python Pipeline
-  _Build an end-to-end pipeline using Australian Weather observations data. (1) In Python: Load raw weather CSV, clean temperature and rainfall columns (handle missing values, convert units if needed), and export cleaned data to a SQL database or temporary table. (2) In SQL: Use CTEs and window functions to calculate: monthly average temperatures by station, identify months with anomalies (>2 std devs from annual mean), rank stations by rainfall volatility (using STDDEV_POP OVER), and detect consecutive dry periods (3+ days with <1mm rain using LAG/LEAD). (3) Back in Python: Query results, create a summary report showing: station_name, anomaly_months, volatility_rank, longest_dry_spell_days. Export final report to CSV and create a simple text summary of key findings._
-  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-11-06.py`
+  📁 Submit as: `quest2_2026-11-07.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: SQL Aggregation + Python Export
+  _Build a data pipeline using Australian wine production statistics (ABARES or Wine Australia data). Step 1 (SQL): Write a query to aggregate wine production by region and vintage year, calculate year-over-year growth using LAG() window function, and identify the top 3 regions by average production volume over the last 5 years. Step 2 (Python): Read the SQL query results, use pandas to create: (a) a pivot table showing region vs. vintage with production volumes, (b) a bar chart visualization of top regions, (c) export a summary report as CSV with regions, average production, growth trend, and recommendations for high-growth regions. Combine both steps in a single Python script that executes SQL and processes results._
+  📦 Dataset: `Australian Wine Production Statistics — Wine Australia (wineaustralia.com) or ABARES (agriculture.gov.au)`
+  📁 Submit as: `quest3_2026-11-07.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
