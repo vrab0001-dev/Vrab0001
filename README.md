@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-07 14:31 AEDT |
+| 📅 Last Sync | 2026-11-08 14:00 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -30,17 +30,17 @@
 
 <!-- VRAB_QUESTS_START -->
 - [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Analysis with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate: (1) the 30-day moving average of closing price for each stock, (2) the daily price change rank within each stock (highest gain = rank 1), and (3) identify the date when each stock hit its 52-week high. Use ROW_NUMBER() and LAG() window functions. Filter for the top 10 stocks by trading volume. Return columns: stock_code, date, close_price, moving_avg_30d, price_change_rank, weeks_52_high_date. Order by stock_code and date._
-  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-07.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
-  _Download the NSW Road Crash Data (available from NSW Open Data portal). Write a Python pandas script to: (1) handle missing values in crash severity and contributing factors columns (document your strategy), (2) create new features: crash_hour from datetime, is_weekend boolean, severity_category (ordinal encoding: minor/moderate/serious/fatal), (3) standardise location data by removing duplicates and normalising suburb names to title case, (4) export cleaned dataset to CSV with summary statistics (total crashes, crashes by severity, top 5 suburbs). The script should be robust and handle edge cases like malformed dates._
+  _Using the ASX 200 historical prices dataset, write a SQL query that calculates a 5-day moving average and identifies stocks that have gained more than 10% over the last 20 trading days. Use window functions (AVG() OVER, ROW_NUMBER() OVER) and a CTE to rank stocks by momentum. Your output should show: stock_code, current_price, 5day_moving_avg, 20day_return_pct, and momentum_rank. Order by momentum_rank ascending._
+  📦 Dataset: `ASX 200 historical stock prices — Kaggle`
+  📁 Submit as: `quest1_2026-11-08.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Incident Aggregation
+  _Download the NSW Road Crash dataset and clean it thoroughly: handle missing values in crash location and severity columns (decide: drop vs. impute), standardise crash_type values (remove whitespace, convert to uppercase), remove duplicate crash_id records, and convert date columns to datetime format. Then aggregate crashes by suburb and crash_type to produce a summary table showing crash_count, avg_severity_score, and date_range per suburb. Export to cleaned_crashes_summary.csv._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-07.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: SQL Aggregation + Python Export
-  _Build a data pipeline using Australian wine production statistics (ABARES or Wine Australia data). Step 1 (SQL): Write a query to aggregate wine production by region and vintage year, calculate year-over-year growth using LAG() window function, and identify the top 3 regions by average production volume over the last 5 years. Step 2 (Python): Read the SQL query results, use pandas to create: (a) a pivot table showing region vs. vintage with production volumes, (b) a bar chart visualization of top regions, (c) export a summary report as CSV with regions, average production, growth trend, and recommendations for high-growth regions. Combine both steps in a single Python script that executes SQL and processes results._
-  📦 Dataset: `Australian Wine Production Statistics — Wine Australia (wineaustralia.com) or ABARES (agriculture.gov.au)`
-  📁 Submit as: `quest3_2026-11-07.py`
+  📁 Submit as: `quest2_2026-11-08.py`
+- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Analysis: Python ETL + SQL Analytics
+  _Part 1 (Python): Extract Melbourne pedestrian counting data, parse the timestamp column, resample to hourly foot traffic counts, and load into a SQLite database table called pedestrian_traffic (columns: sensor_id, location_name, traffic_datetime, hourly_count). Part 2 (SQL): Query the database to find peak traffic hours (top 3 hours by total count), identify which sensor locations have the most consistent traffic using variance, and create a summary showing location_name, peak_hour, avg_hourly_count, and consistency_score (inverse of variance). Export results to peak_traffic_analysis.csv. This simulates a real data pipeline: ingest → transform → load → analyse._
+  📦 Dataset: `Melbourne Pedestrian Counting System — Melbourne Open Data Portal`
+  📁 Submit as: `quest3_2026-11-08.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
