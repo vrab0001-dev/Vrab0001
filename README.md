@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-10 15:59 AEDT |
+| 📅 Last Sync | 2026-11-11 14:30 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Price Momentum Ranking
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to calculate the 30-day price momentum for each stock. Use ROW_NUMBER() to rank stocks by momentum within each date partition, and LAG() to compare current price against the price 30 days ago. Return the top 10 stocks with highest positive momentum on the most recent date in the dataset, showing stock symbol, current price, price 30 days ago, momentum percentage, and rank. Use a CTE to calculate the momentum in a separate step for clarity._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Rolling Averages
+  _Using ASX 200 historical price data, write a SQL query with window functions to: (1) Calculate the 20-day rolling average closing price for each stock symbol, (2) Rank stocks by their current closing price relative to their 20-day average (highest premium first), (3) Use LAG() to show the previous day's closing price and calculate daily percentage change, (4) Filter for only stocks trading above their 20-day average. Return columns: symbol, date, close_price, rolling_avg_20d, price_premium_pct, previous_close, daily_pct_change, rank_by_premium. Order by rank ascending._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-10.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Load the CSV into pandas and perform the following: (1) Remove rows with missing values in critical columns (crash date, severity, location). (2) Convert crash date to datetime format. (3) Create a new column 'month_year' extracted from crash date. (4) Group by month_year and severity to count crashes per severity level per month. (5) Calculate a 3-month rolling average of total crashes. (6) Export the cleaned and aggregated data to a new CSV file named 'nsw_crash_summary.csv'. Print summary statistics showing trend direction (increase/decrease) over the last 6 months._
+  📁 Submit as: `quest1_2026-11-11.sql`
+- [ ] 🐍 **Python Quest:** Clean and Standardise Australian Weather Station Data
+  _Download Australian weather observations data (daily min/max temperatures, rainfall, wind speed across multiple stations). Your task: (1) Handle missing values in temperature and rainfall columns (forward-fill for max 2 consecutive days, then drop), (2) Standardise station names to title case and remove leading/trailing whitespace, (3) Convert all temperatures from Celsius to Fahrenheit, (4) Identify and flag anomalies (e.g., max temp < min temp for same day, rainfall > 500mm), (5) Create a new 'month_year' column and calculate monthly aggregates (avg temp, total rainfall) by station, (6) Export cleaned data to CSV with proper datetime indexing. Write a Python script using pandas that logs all cleaning operations performed._
+  📦 Dataset: `Australian Weather Observations — Bureau of Meteorology via Kaggle (jsphyg collection)`
+  📁 Submit as: `quest2_2026-11-11.py`
+- [ ] ⚡ **Combined Quest:** NSW Road Crash Analysis: Data Pipeline & Trend Analysis
+  _Build a complete data engineering pipeline: (1) Download NSW Road Crash data from the official source, (2) Use Python/pandas to clean the data: standardise location names, handle missing severity values, convert date columns to datetime, remove duplicates based on crash_id, (3) Load cleaned data into a SQL database or create a SQL-queryable format, (4) Write SQL queries to find: top 10 crash locations by frequency (past 5 years), monthly trend of fatal vs non-fatal crashes using window functions (ROW_NUMBER, SUM() OVER), and identify locations with increasing crash trends (compare year-over-year growth), (5) Export results to CSV with visualisation-ready columns (month, crash_count, severity_distribution). Document the pipeline steps in comments and measure data quality metrics (% missing values before/after cleaning)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-10.py`
-- [ ] ⚡ **Combined Quest:** Australian Wine Production ETL Pipeline
-  _Build a Python script that extracts Australian wine production data (by region and variety) from wineaustralia.com or a Kaggle wine dataset. (1) Use pandas to clean the data: handle missing values, standardize region names, convert production volumes to consistent units (tonnes). (2) Create a SQLite database with a schema containing tables for regions, varieties, and production facts. (3) Use SQL to write a query that ranks wine regions by total production volume across all varieties in the most recent year, and calculates year-on-year growth percentage. (4) Create a second query using a CTE to identify 'emerging varieties' (varieties that increased production by >20% YoY). (5) Export both query results to separate CSV files. Include error handling for missing data and log the ETL process with timestamps._
-  📦 Dataset: `Australian Wine Production Statistics — Wine Australia or Kaggle`
-  📁 Submit as: `quest3_2026-11-10.py`
+  📁 Submit as: `quest3_2026-11-11.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
