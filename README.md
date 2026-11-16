@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-15 14:31 AEDT |
+| 📅 Last Sync | 2026-11-16 14:31 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Rolling Volatility Analysis
-  _Using ASX 200 historical price data, calculate the 20-day rolling standard deviation of daily returns for each stock ticker. Use a window function with PARTITION BY ticker and ORDER BY date to compute rolling volatility. Include ticker, date, closing price, daily return percentage, and the 20-day rolling volatility. Filter for stocks with at least 100 trading days of data. Order results by ticker and date. Expected output: a time-series view showing how volatility changes over time for each security._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-15.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Enrichment
-  _Download NSW Road Crash Data (contains crash details, injuries, vehicle types, road conditions). Clean the dataset by: (1) removing rows with >30% missing values per record, (2) standardizing date/time formats, (3) converting categorical columns (crash type, road condition, severity) to consistent casing and removing leading/trailing spaces, (4) creating new features: day_of_week from crash date, hour_of_day from time, severity_category (group injury counts into 'minor', 'moderate', 'severe'), (5) detecting and handling outliers in latitude/longitude (keep only NSW bounds). Export cleaned data to CSV. Expected output: a clean, enriched CSV file with no duplicates, proper data types, and 3+ new derived columns._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
+  _Using the ASX 200 historical prices dataset, write a SQL query that ranks stocks by their year-to-date percentage return using window functions. Calculate for each stock: (1) ROW_NUMBER() ranked by YTD return descending, (2) the percentage change from start of year to most recent date, (3) LAG() to show the previous trading day's close price for comparison, (4) a running average of the last 20 trading days using a window frame. Filter to show only the top 20 performers and bottom 10 performers. Expected output: 30 rows with columns: stock_symbol, ytd_return_pct, rank, previous_close, twenty_day_moving_avg, trading_date._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-11-16.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
+  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas that: (1) loads the crash CSV file, (2) handles missing values intelligently (document your strategy for each column), (3) converts date/time columns to datetime objects, (4) extracts features like day_of_week, hour_of_day, is_nighttime (between 22:00-06:00), and severity_category (group injury levels), (5) removes duplicates based on crash_id, (6) exports a cleaned CSV with only relevant columns. Expected output: a cleaned CSV file with at least 15 columns and a summary report showing null counts before/after cleaning and row counts before/after deduplication._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-15.py`
-- [ ] ⚡ **Combined Quest:** Melbourne Pedestrian Traffic Peak Hour Detection Pipeline
-  _End-to-end data engineering task: (1) Extract Melbourne pedestrian counting data from the Melbourne Open Data Portal (sensor IDs, hourly counts, locations). (2) Use Python/pandas to clean the data: handle missing values with forward-fill (max 2 consecutive), validate counts are non-negative, standardize location names. (3) Create a Python script to load cleaned data into a local SQLite database with tables: sensors (sensor_id, location, latitude, longitude) and hourly_counts (sensor_id, datetime, count). (4) Write SQL queries to: identify the top 5 peak hours (hour of day, 0-23) across all sensors by average pedestrian count, and rank sensors by their busiest hour. (5) Export results to CSV: one file for peak hours, one for sensor rankings. Expected output: SQLite database, 2 result CSVs, and documented Python script showing data pipeline logic._
-  📦 Dataset: `Melbourne pedestrian counting — Melbourne Open Data Portal`
-  📁 Submit as: `quest3_2026-11-15.py`
+  📁 Submit as: `quest2_2026-11-16.py`
+- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Analysis: Python ETL + SQL Analytics
+  _Working with AIHW health expenditure data: (1) Use Python to extract and clean the health expenditure CSV (handle currency formats, missing values, and inconsistent state abbreviations), normalise state names to standard two-letter codes (NSW, VIC, QLD, etc.), and load the cleaned data into a SQLite database with appropriate schema and indexes. (2) Write SQL queries to: calculate total health spending by state and year, use a CTE to rank states by spending growth rate year-over-year, and create a window function query showing each state's spending as a percentage of national total, with a RANK() of states by their percentage share. (3) Output: a cleaned CSV, a SQLite .db file, and a results CSV containing the window function output (state, year, spending, pct_of_national, rank). Expected deliverables: 3 files demonstrating full data pipeline from raw to analytics-ready._
+  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
+  📁 Submit as: `quest3_2026-11-16.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
