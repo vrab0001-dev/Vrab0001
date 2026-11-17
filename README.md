@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-16 14:31 AEDT |
+| 📅 Last Sync | 2026-11-17 16:30 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Stock Performance Rankings with Window Functions
-  _Using the ASX 200 historical prices dataset, write a SQL query that ranks stocks by their year-to-date percentage return using window functions. Calculate for each stock: (1) ROW_NUMBER() ranked by YTD return descending, (2) the percentage change from start of year to most recent date, (3) LAG() to show the previous trading day's close price for comparison, (4) a running average of the last 20 trading days using a window frame. Filter to show only the top 20 performers and bottom 10 performers. Expected output: 30 rows with columns: stock_symbol, ytd_return_pct, rank, previous_close, twenty_day_moving_avg, trading_date._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Volatility Rankings with Window Functions
+  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for each stock using window functions. Rank stocks by volatility within each month using ROW_NUMBER(). Then use a CTE to identify the top 5 most volatile stocks for each calendar month. Expected output: a table with month, stock_code, volatility_rank, rolling_std_dev, and closing_price. Use LAG() to calculate daily percentage returns, then STDDEV() as a window function partitioned by stock and 30-day windows._
   📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-16.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning and Feature Engineering
-  _Download the NSW Road Crash Data from data.nsw.gov.au. Write a Python script using pandas that: (1) loads the crash CSV file, (2) handles missing values intelligently (document your strategy for each column), (3) converts date/time columns to datetime objects, (4) extracts features like day_of_week, hour_of_day, is_nighttime (between 22:00-06:00), and severity_category (group injury levels), (5) removes duplicates based on crash_id, (6) exports a cleaned CSV with only relevant columns. Expected output: a cleaned CSV file with at least 15 columns and a summary report showing null counts before/after cleaning and row counts before/after deduplication._
+  📁 Submit as: `quest1_2026-11-17.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download NSW Road Crash Data and perform the following: (1) Handle missing values in injury_level and crash_type columns using mode imputation. (2) Create a new feature 'time_of_day' by binning the crash_hour into periods (morning: 6-12, afternoon: 12-17, evening: 17-22, night: 22-6). (3) Standardise suburb names (strip whitespace, convert to title case). (4) Remove duplicate records based on crash_id, date, and location. (5) Export a cleaned CSV with 10 new columns. Expected deliverable: cleaned_nsw_crashes.csv with no null values in critical columns and consistent data types._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-16.py`
-- [ ] ⚡ **Combined Quest:** AIHW Health Expenditure Analysis: Python ETL + SQL Analytics
-  _Working with AIHW health expenditure data: (1) Use Python to extract and clean the health expenditure CSV (handle currency formats, missing values, and inconsistent state abbreviations), normalise state names to standard two-letter codes (NSW, VIC, QLD, etc.), and load the cleaned data into a SQLite database with appropriate schema and indexes. (2) Write SQL queries to: calculate total health spending by state and year, use a CTE to rank states by spending growth rate year-over-year, and create a window function query showing each state's spending as a percentage of national total, with a RANK() of states by their percentage share. (3) Output: a cleaned CSV, a SQLite .db file, and a results CSV containing the window function output (state, year, spending, pct_of_national, rank). Expected deliverables: 3 files demonstrating full data pipeline from raw to analytics-ready._
-  📦 Dataset: `AIHW Health Expenditure Data — aihw.gov.au`
-  📁 Submit as: `quest3_2026-11-16.py`
+  📁 Submit as: `quest2_2026-11-17.py`
+- [ ] ⚡ **Combined Quest:** Australian Wine Production Pipeline: SQL + Python ETL
+  _Build a mini data pipeline: (1) Download Australian wine production statistics by region and vintage year. (2) Use Python pandas to load the CSV, clean region names (standardise case/spacing), validate vintage years (must be 1980-2024), and remove rows with null production volumes. (3) Calculate a new column 'production_per_capita' by joining with ABS population data by region (you may mock this if unavailable). (4) Export to a temporary staging table structure via Python. (5) Write SQL queries to: identify the top 3 wine regions by average production over the last 10 years, calculate year-on-year production growth rate using LAG(), and rank vintage years by total national output using ROW_NUMBER(). Expected output: (a) cleaned_wine_data.csv, (b) a SQL script with 3 analytical queries, (c) a summary report showing top regions and growth trends._
+  📦 Dataset: `Australian Wine Production Statistics — Wine Australia (wineaustralia.com) + ABS Census 2021 for population context`
+  📁 Submit as: `quest3_2026-11-17.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
