@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-11-19 15:49 AEDT",
+  "last_sync": "2026-11-20 15:40 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Volatility Rankings with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for each stock using window functions. Rank stocks by volatility within each month using ROW_NUMBER(). Identify the top 5 most volatile stocks in the latest month and show their current price, average return, and volatility ranking. Expected output: table with stock symbol, price, avg_daily_return, rolling_std_dev, and volatility_rank columns, ordered by volatility rank.",
-      "dataset": "ASX 200 Historical Prices \u2014 Kaggle",
+      "title": "ASX 200 Momentum Trading Signal",
+      "description": "Using ASX 200 historical price data, calculate a 20-day moving average and identify trading signals. Write a query using window functions (ROW_NUMBER, LAG) and CTEs to: (1) Calculate the 20-day moving average for each stock using AVG() OVER (PARTITION BY ticker ORDER BY date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW), (2) Use LAG to compare current close price to previous close, (3) Flag 'BUY' when price crosses above MA and 'SELL' when it crosses below MA, (4) Rank signals by signal strength (momentum). Return top 10 stocks with strongest buy signals in the last 30 days. Output: ticker, date, close_price, moving_avg_20, signal_type, momentum_rank.",
+      "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning Pipeline",
-      "description": "Download NSW Road Crash Data (contains crash reports with missing values, inconsistent date formats, and duplicate entries). Write a Python script using pandas to: (1) standardise datetime columns to ISO format, (2) handle missing values in location and severity columns with appropriate strategies, (3) remove duplicate crash records based on crash ID and timestamp, (4) create a new column categorising crash severity as 'Fatal', 'Serious Injury', 'Other Injury', or 'Non-Injury', (5) export cleaned data to CSV. Expected output: cleaned CSV file with 90%+ data completeness, no duplicates, and new severity category column.",
-      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
+      "title": "Clean & Standardise Australian Weather Data",
+      "description": "Download or load Australian Bureau of Meteorology weather observations (daily min/max temperature, rainfall, wind speed for a major city like Sydney). Your task: (1) Handle missing values intelligently\u2014use forward fill for temperature, interpolation for rainfall, (2) Standardise date format to YYYY-MM-DD, (3) Convert temperature from Celsius to Fahrenheit in a new column, (4) Create a 'weather_category' column (Hot >30\u00b0C, Warm 20-30\u00b0C, Cool 10-20\u00b0C, Cold <10\u00b0C), (5) Remove outliers using IQR method on temperature, (6) Export cleaned data to CSV with proper column naming (snake_case). Output: cleaned CSV with 7+ columns, no NaN values in critical fields, 100+ rows minimum.",
+      "dataset": "Australian Weather Observations \u2014 Bureau of Meteorology (BoM) / Kaggle (jsphyg collection)",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Australian Wine Production ETL Pipeline",
-      "description": "Build an end-to-end pipeline combining Python and SQL: (1) Use Python with pandas to scrape/load Australian wine production statistics by region and vintage year (from Wine Australia or Kaggle wine dataset). Clean the data by removing outliers (using IQR method), standardising region names, and handling missing vintage years. (2) Load cleaned data into a SQL database (SQLite or PostgreSQL). (3) Write SQL queries to: calculate 5-year rolling average production by region using window functions, rank regions by average production volume using RANK(), and identify regions with the highest year-over-year production growth. Expected deliverables: (a) Python ETL script, (b) SQL schema creation script, (c) 3 analytical SQL queries with results showing top 10 regions by rolling average production, regional rankings, and growth leaders.",
-      "dataset": "Australian Wine Production Statistics \u2014 Wine Australia or Kaggle",
+      "title": "NSW Road Crash Analysis: Data Pipeline",
+      "description": "Build an end-to-end pipeline combining Python and SQL. (1) Python: Load NSW Road Crash Data (CSV from data.nsw.gov.au), clean it\u2014standardise location formats, handle missing severity/injury counts, convert date/time columns, deduplicate records. Output cleaned CSV. (2) SQL: Create a table from cleaned data, then write a query using window functions to: Calculate crash frequency by Local Government Area (LGA) with ROW_NUMBER() to rank LGAs, use LAG() to compare month-over-month crash changes, create a CTE to identify high-risk locations (top 10% by severity-weighted incidents). Calculate severity index: (fatal_count * 5) + (serious_count * 2) + (other_count * 1). Return: LGA, crash_count, severity_index, rank, month_change_pct, risk_category (High/Medium/Low). Bonus: Identify day-of-week patterns using GROUP BY and window functions.",
+      "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py + .sql"
     }
   ],
-  "last_quest_date": "2026-11-19"
+  "last_quest_date": "2026-11-20"
 }
