@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-21 15:34 AEDT |
+| 📅 Last Sync | 2026-11-22 14:49 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -30,17 +30,17 @@
 
 <!-- VRAB_QUESTS_START -->
 - [ ] 🗄️ **SQL Quest:** ASX 200 Volatility Rankings with Window Functions
-  _Using ASX 200 historical prices dataset, calculate the 30-day rolling standard deviation of closing prices for each stock symbol using window functions. Rank stocks by volatility (highest to lowest) using ROW_NUMBER(). Then use a CTE to filter only stocks in the top 20% volatility tier and return: symbol, current_price, volatility_rank, 30day_std_dev, and price_change_pct (comparing current close to 30 days ago using LAG window function). Order results by volatility_rank ascending._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-21.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download NSW Road Crash Data (contains crash records with timestamps, locations, severity, weather conditions). Write a Python/pandas script to: (1) Handle missing values in weather_condition and severity columns by forward-filling within each Local Government Area; (2) Convert timestamp to datetime and extract crash_hour and crash_month; (3) Remove duplicate records based on crash_id; (4) Create a new column injury_rate = (count of injured persons) / (total persons involved); (5) Export cleaned data to CSV. Validate that no nulls remain in critical columns (crash_id, location, severity). Output a summary report showing row counts before/after cleaning and % of data retained._
+  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for each stock using window functions. Rank stocks by volatility within each month using ROW_NUMBER(). Then use a CTE to identify the top 5 most volatile stocks each month. Your output should show: stock_code, month, volatility_rank, rolling_std_dev, and average_closing_price for that month. Order by month descending, then rank ascending._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-11-22.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation Pipeline
+  _Download NSW Road Crash Data and build a cleaning script that: (1) removes rows with missing crash_date or location coordinates, (2) standardises speed_zone values to uppercase and handles typos (e.g. '50 km/h', '50kmh', '50KM/H' all become '50'), (3) creates a new column crash_hour extracted from crash_time, (4) filters to crashes from 2020 onwards only, (5) exports a cleaned CSV with columns: crash_id, crash_date, crash_hour, speed_zone, location, severity. Write your script to handle at least 3 common data quality issues and log how many rows were removed at each step._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-21.py`
-- [ ] ⚡ **Combined Quest:** Australian Wildfire Risk & Climate Correlation Analysis
-  _Combine two datasets: Australian Wildfire dataset (Kaggle) and Australian Weather observations (Bureau of Meteorology / Kaggle). (1) In Python/pandas: load both datasets, standardise date formats, merge on nearest date and location (within 50km radius using lat/lon approximation or exact postcode match). Clean merged data, handle missing values in temperature and rainfall columns using interpolation. (2) Calculate monthly fire frequency and average temperature/rainfall by region. Export cleaned merged dataset as CSV. (3) In SQL: load the merged CSV, create a CTE that ranks regions by fire frequency, then join with weather metrics. Write query to identify regions where: (fire_frequency > 75th percentile) AND (average_temperature > 30°C) AND (average_rainfall < 200mm). Return region, fire_count, avg_temp, avg_rainfall, and risk_score (normalized 0-100). Order by risk_score descending._
-  📦 Dataset: `Australian Wildfire dataset + Australian Weather observations — Kaggle and Bureau of Meteorology`
-  📁 Submit as: `quest3_2026-11-21.py`
+  📁 Submit as: `quest2_2026-11-22.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring: SQL Analysis + Python Reporting
+  _Part 1 (SQL): Using Great Barrier Reef monitoring data, write a query that calculates: coral_bleaching_percentage by reef_site and monitoring_year, using LAG() to show year-over-year change in bleaching percentage, and RANK() to identify the top 10 most affected reefs across all years. Part 2 (Python): Import this SQL result into pandas and create a summary report that: (1) identifies reefs with worsening trends (bleaching increased for 3+ consecutive years), (2) calculates the average rate of change in bleaching percentage per reef, (3) exports a markdown report with headers, tables, and key findings. Combine the SQL output and Python analysis into one final CSV showing reef_site, year, bleaching_pct, yoy_change, and trend_direction._
+  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
+  📁 Submit as: `quest3_2026-11-22.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
