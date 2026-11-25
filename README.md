@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-24 18:22 AEDT |
+| 📅 Last Sync | 2026-11-25 16:53 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Trading Performance Streaks
-  _Using the ASX 200 historical prices dataset, write a SQL query with window functions to identify the longest consecutive days each stock experienced gains (close price higher than previous day). Use ROW_NUMBER and PARTITION BY to group stocks, then calculate streak lengths. Return the top 10 stocks with their longest winning streaks, including stock symbol, streak length in days, and the date range of the streak. Use a CTE to organize your window function logic._
-  📦 Dataset: `ASX 200 historical prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-24.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning Pipeline
-  _Download NSW Road Crash Data from the NSW open data portal. Write a Python pandas script that: (1) loads the CSV, (2) identifies and handles missing values in critical columns (crash date, severity, location), (3) standardizes location names (trim whitespace, convert to title case), (4) creates a new 'crash_hour' column extracted from the crash time, (5) removes duplicate records based on crash ID, and (6) exports the cleaned dataset to a new CSV. Document your data quality findings (% of missing data per column, # of duplicates removed)._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Volatility Rankings with Window Functions
+  _Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for each stock using window functions. Rank stocks by volatility within each month using ROW_NUMBER() and RANK(). Create a CTE to identify the top 10 most volatile stocks in the last quarter. Expected output: a table showing stock symbol, month, volatility rank, 30-day rolling std dev, and trading volume. Use LAG() to calculate daily percentage returns._
+  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
+  📁 Submit as: `quest1_2026-11-25.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download NSW Road Crash Data and clean it thoroughly: handle missing values in severity columns, standardise datetime formats, remove duplicates, and validate coordinate data. Engineer new features: time of day categories (early morning, peak hour, night), day of week groupings (weekday vs weekend), and crash severity risk scores. Create a summary report showing crash frequency by region, time period, and severity. Output cleaned data to CSV with data quality metrics (% missing, % duplicates, rows processed)._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-24.py`
-- [ ] ⚡ **Combined Quest:** Australian Weather Trends Analysis Pipeline
-  _Build an end-to-end pipeline: (1) Use Python pandas to load Australian Weather observations dataset (Bureau of Meteorology / Kaggle), clean temperature and rainfall columns, handle missing values, and aggregate daily data into monthly summaries grouped by weather station. Export to a CSV or SQLite database. (2) Write SQL queries to: calculate the month-over-month temperature change (using LAG window function), identify which stations had the highest rainfall variability (stddev) in the last 12 months, and rank stations by temperature anomaly (deviation from long-term mean). Combine results into a single summary report showing top 5 anomalies by station._
-  📦 Dataset: `Australian Weather observations — Bureau of Meteorology / Kaggle (jsphyg)`
-  📁 Submit as: `quest3_2026-11-24.py`
+  📁 Submit as: `quest2_2026-11-25.py`
+- [ ] ⚡ **Combined Quest:** Great Barrier Reef Monitoring Dashboard Pipeline
+  _Build a data pipeline: (1) Use Python/pandas to fetch and clean Great Barrier Reef monitoring data (coral bleaching events, temperature anomalies, biodiversity metrics). Handle missing dates, validate temperature ranges, and aggregate by reef zone. (2) Load cleaned data into a SQLite database. (3) Write SQL queries to calculate 12-month moving averages of bleaching events, year-over-year change in coral health metrics, and identify high-risk zones (using window functions). (4) Generate a summary: which zones show most improvement/decline, what's the correlation between temperature anomaly and bleaching events? Output: cleaned CSV, SQLite schema diagram, and a final summary report with top 3 findings._
+  📦 Dataset: `Great Barrier Reef Monitoring Data — aims.gov.au`
+  📁 Submit as: `quest3_2026-11-25.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
