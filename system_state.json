@@ -21,29 +21,29 @@
   "quests_completed": [
     "SQL Raid: Restructure Indian Govt CPI Data"
   ],
-  "last_sync": "2026-11-25 16:53 AEDT",
+  "last_sync": "2026-11-26 16:44 AEDT",
   "daily_quests": [
     {
       "type": "SQL",
-      "title": "ASX 200 Volatility Rankings with Window Functions",
-      "description": "Using ASX 200 historical price data, calculate the 30-day rolling standard deviation of daily returns for each stock using window functions. Rank stocks by volatility within each month using ROW_NUMBER() and RANK(). Create a CTE to identify the top 10 most volatile stocks in the last quarter. Expected output: a table showing stock symbol, month, volatility rank, 30-day rolling std dev, and trading volume. Use LAG() to calculate daily percentage returns.",
+      "title": "ASX 200 Momentum Rank \u2014 Window Functions Challenge",
+      "description": "Using ASX 200 historical price data, calculate a 30-day rolling average closing price for each stock. Then rank stocks within each date by their momentum (current price vs 30-day average). Use window functions ROW_NUMBER() OVER and a CTE to identify the top 10 gainers and top 10 losers on the most recent date in your dataset. Expected output: a table showing stock symbol, date, closing price, 30-day rolling average, momentum percentage, and rank within that date.",
       "dataset": "ASX 200 Historical Stock Prices \u2014 Kaggle",
       "file_ext": ".sql"
     },
     {
       "type": "Python",
-      "title": "NSW Road Crash Data Cleaning & Feature Engineering",
-      "description": "Download NSW Road Crash Data and clean it thoroughly: handle missing values in severity columns, standardise datetime formats, remove duplicates, and validate coordinate data. Engineer new features: time of day categories (early morning, peak hour, night), day of week groupings (weekday vs weekend), and crash severity risk scores. Create a summary report showing crash frequency by region, time period, and severity. Output cleaned data to CSV with data quality metrics (% missing, % duplicates, rows processed).",
+      "title": "NSW Road Crash Data Cleaning & Aggregation",
+      "description": "Download NSW Road Crash Data and load it into a pandas DataFrame. Clean the dataset by: (1) handling missing values in severity and location columns, (2) standardizing date formats, (3) removing duplicate crash records, (4) converting categorical columns (crash type, lighting condition) to lowercase. Then aggregate crashes by Local Government Area (LGA) and calculate: total crashes, fatal crashes, average number of vehicles involved, and injury rate. Export the cleaned and aggregated results to a new CSV file. Expected output: a cleaned CSV with LGA-level statistics ready for analysis.",
       "dataset": "NSW Road Crash Data \u2014 data.nsw.gov.au",
       "file_ext": ".py"
     },
     {
       "type": "Combined",
-      "title": "Great Barrier Reef Monitoring Dashboard Pipeline",
-      "description": "Build a data pipeline: (1) Use Python/pandas to fetch and clean Great Barrier Reef monitoring data (coral bleaching events, temperature anomalies, biodiversity metrics). Handle missing dates, validate temperature ranges, and aggregate by reef zone. (2) Load cleaned data into a SQLite database. (3) Write SQL queries to calculate 12-month moving averages of bleaching events, year-over-year change in coral health metrics, and identify high-risk zones (using window functions). (4) Generate a summary: which zones show most improvement/decline, what's the correlation between temperature anomaly and bleaching events? Output: cleaned CSV, SQLite schema diagram, and a final summary report with top 3 findings.",
-      "dataset": "Great Barrier Reef Monitoring Data \u2014 aims.gov.au",
+      "title": "Australian Wildfire Risk Assessment Pipeline",
+      "description": "Build an end-to-end data pipeline: (1) Extract wildfire incident data from the Australian Wildfire dataset (CSV). (2) Use Python/pandas to clean location data, parse fire dates, and categorize fire size (small/medium/large based on area burned). (3) Load the cleaned data into a local SQLite database. (4) Write SQL queries to: identify fire hotspots (states with highest fire frequency), calculate average fire size by season, and find the top 5 months with greatest total area burned across the decade. (5) Export results showing temporal and geographic trends. Expected output: a populated SQLite database, cleaned CSV, and a summary report with key fire risk metrics by region and season.",
+      "dataset": "Australian Wildfire Dataset \u2014 Kaggle",
       "file_ext": ".py"
     }
   ],
-  "last_quest_date": "2026-11-25"
+  "last_quest_date": "2026-11-26"
 }
