@@ -13,7 +13,7 @@
 | 🎖️ Title | Data Cadet |
 | ⚡ Level | 1 |
 | 💠 Total XP | 9  |
-| 📅 Last Sync | 2026-11-26 16:44 AEDT |
+| 📅 Last Sync | 2026-11-27 16:39 AEDT |
 
 **XP Progress:** `██████████████████░░ 9/10 XP`
 
@@ -29,18 +29,18 @@
 ### 📜 DAILY QUEST LOG
 
 <!-- VRAB_QUESTS_START -->
-- [ ] 🗄️ **SQL Quest:** ASX 200 Momentum Rank — Window Functions Challenge
-  _Using ASX 200 historical price data, calculate a 30-day rolling average closing price for each stock. Then rank stocks within each date by their momentum (current price vs 30-day average). Use window functions ROW_NUMBER() OVER and a CTE to identify the top 10 gainers and top 10 losers on the most recent date in your dataset. Expected output: a table showing stock symbol, date, closing price, 30-day rolling average, momentum percentage, and rank within that date._
-  📦 Dataset: `ASX 200 Historical Stock Prices — Kaggle`
-  📁 Submit as: `quest1_2026-11-26.sql`
-- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Aggregation
-  _Download NSW Road Crash Data and load it into a pandas DataFrame. Clean the dataset by: (1) handling missing values in severity and location columns, (2) standardizing date formats, (3) removing duplicate crash records, (4) converting categorical columns (crash type, lighting condition) to lowercase. Then aggregate crashes by Local Government Area (LGA) and calculate: total crashes, fatal crashes, average number of vehicles involved, and injury rate. Export the cleaned and aggregated results to a new CSV file. Expected output: a cleaned CSV with LGA-level statistics ready for analysis._
+- [ ] 🗄️ **SQL Quest:** ASX 200 Volatility Rankings with Window Functions
+  _Using ASX 200 historical price data, calculate the 20-day rolling standard deviation of daily returns for each stock. Use window functions (PARTITION BY ticker, ORDER BY date) to rank stocks by volatility within each month. Return the top 5 most volatile stocks per month, including ticker, date, closing price, rolling volatility, and volatility rank. Use a CTE to first calculate daily percentage returns, then another CTE for the rolling standard deviation._
+  📦 Dataset: `ASX 200 Historical Prices — Kaggle`
+  📁 Submit as: `quest1_2026-11-27.sql`
+- [ ] 🐍 **Python Quest:** NSW Road Crash Data Cleaning & Feature Engineering
+  _Download NSW Road Crash Data (contains crash records with location, severity, vehicle type, weather conditions). Clean the dataset by: (1) handling missing values in severity and weather columns (impute with mode or drop as appropriate), (2) standardising location strings to title case, (3) converting date columns to datetime format, (4) creating new features: crash_hour from timestamp, severity_category (binning injury counts), and weather_risk_score. Output a cleaned CSV with 10+ columns ready for analysis. Document your data quality assumptions in comments._
   📦 Dataset: `NSW Road Crash Data — data.nsw.gov.au`
-  📁 Submit as: `quest2_2026-11-26.py`
-- [ ] ⚡ **Combined Quest:** Australian Wildfire Risk Assessment Pipeline
-  _Build an end-to-end data pipeline: (1) Extract wildfire incident data from the Australian Wildfire dataset (CSV). (2) Use Python/pandas to clean location data, parse fire dates, and categorize fire size (small/medium/large based on area burned). (3) Load the cleaned data into a local SQLite database. (4) Write SQL queries to: identify fire hotspots (states with highest fire frequency), calculate average fire size by season, and find the top 5 months with greatest total area burned across the decade. (5) Export results showing temporal and geographic trends. Expected output: a populated SQLite database, cleaned CSV, and a summary report with key fire risk metrics by region and season._
+  📁 Submit as: `quest2_2026-11-27.py`
+- [ ] ⚡ **Combined Quest:** Australian Wildfire Impact Analysis Pipeline
+  _Build a data pipeline combining Python and SQL: (1) In Python, download Australian Wildfire dataset (Kaggle), clean fire duration data, convert hectares burned to standardised numeric format, and filter for fires in 2020-2024. Export to CSV. (2) In SQL, load the cleaned data, calculate cumulative hectares burned by state using window functions (SUM() OVER PARTITION BY state ORDER BY date), identify the fire season (months with peak activity) for each state, and rank states by total area burned across the period. Return a summary table: state, fire_season_months, total_hectares_burned, rank. Use CTEs to structure your query clearly._
   📦 Dataset: `Australian Wildfire Dataset — Kaggle`
-  📁 Submit as: `quest3_2026-11-26.py`
+  📁 Submit as: `quest3_2026-11-27.py`
 <!-- VRAB_QUESTS_END -->
 
 ---
